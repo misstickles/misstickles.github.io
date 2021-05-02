@@ -28,6 +28,17 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://misstickles.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: misstickles
 
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
 # Jekyll configuration
 markdown: kramdown
 highlighter: rouge
