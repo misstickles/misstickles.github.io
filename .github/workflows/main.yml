@@ -1,0 +1,34 @@
+# https://github.com/jeffreytse/jekyll-deploy-action
+name: Build and Deploy to Github Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: GitHub Checkout
+        uses: actions/checkout@v2
+      - name: Bundler Cache
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      - name: Build and Deploy to GitHub Pages
+        uses: jeffreytse/jekyll-deploy-action@v0.2.1
+        with:
+          provider: "github"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ secrets.GITHUB_REPOSITORY }}
+          branch: "gh-pages"
+          jekyll_src: "./"
+          jekyll_cfg: "_config.yml"
+          jekyll_baseurl: ""
+          bundler_ver: ">=0"
+          cname: ""
+          actor: ""

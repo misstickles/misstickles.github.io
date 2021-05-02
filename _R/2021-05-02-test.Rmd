@@ -1,0 +1,23 @@
+---
+title: "My first Rmarkdown"
+description: "Just trying to get #1 to play nice"
+output: html_document
+date: "`r Sys.Date()`"
+category: r
+tags: [r, test]
+---
+
+# First
+
+## This is my first Rmd execution
+
+```{r, echo=TRUE}
+x <- c(1, 2, 3, 4, 5, 6)
+mean(x)
+
+print("Hello")
+```
+
+```{r}
+plot(1:100, sin(1:100), type = "b")
+```
