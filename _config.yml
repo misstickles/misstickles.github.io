@@ -18,12 +18,13 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Your awesome title
+title: "// random blog;"
 email: your-email@example.com
 description: >-
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  random - /ˈrandəm/ <br/>
+  adjective > STATISTICS<br/>
+  &nbsp;&nbsp;governed by or involving equal chances for each item<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href='https://languages.oup.com/google-dictionary-en/'>Oxford Languages</a>
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://misstickles.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: misstickles

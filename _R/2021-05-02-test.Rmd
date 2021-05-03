@@ -18,6 +18,6 @@ mean(x)
 print("Hello")
 ```
 
-```{r}
+```{r sinplot}
 plot(1:100, sin(1:100), type = "b")
 ```

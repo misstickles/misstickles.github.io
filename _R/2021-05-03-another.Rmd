@@ -2,7 +2,6 @@
 title: "My next Rmd"
 description: "Just trying to get #2 to play nice"
 output: html_document
-date: "`r Sys.Date()`"
 category: r
 tags: [r, test]
 ---
