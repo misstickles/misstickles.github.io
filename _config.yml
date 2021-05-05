@@ -17,6 +17,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+      author: "Jo F"
   - scope:
       path: ""
     values:
