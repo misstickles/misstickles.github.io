@@ -9,7 +9,11 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://misstickles.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: misstickles
 github_repo: misstickles.github.io
+github_url: https://github.com/misstickles/misstickles.github.io
 github: [metadata]
+
+pages:
+  title: jojojojo
 
 defaults:
   - scope:
@@ -30,6 +34,8 @@ highlighter: rouge
 #theme: minima
 #theme: jekyll-swiss
 #theme_color: yellow
+# cv, https://github.com/sharu725/online-cv
+theme_skin: green # blue, turquoise, green, berry, orange, ceramic
 
 kramdown:
   auto_ids: true
