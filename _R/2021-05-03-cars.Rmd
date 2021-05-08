@@ -1,0 +1,27 @@
+---
+title: Graph for cars
+description: This is a graph to show cars and their stuff
+output: html_document
+category: r
+tags: [r, test, cars]
+---
+
+# Cars
+
+```{r echo=TRUE}
+summary(cars)
+```
+
+## Draw a ggplot for efficiency of car engines
+
+```{r cars_graph, echo=FALSE }
+library(ggplot2)
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point(aes(color = class)) +
+  geom_smooth(se = FALSE, method = "loess") +
+  labs(
+    title = "Fuel efficiency generally decreases with engine size",
+    subtitle = "Two seaters (sports cars) are an exception because of their light weight",
+    caption = "Data from fueleconomy.gov"
+  )
+```
