@@ -41,7 +41,7 @@ night_mode: "manual"
 #   text_transform: "uppercase"  # ("uppercase", "lowercase", "capitalize")
 
 plugins:
-  #  - jekyll-feed
+  - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-paginate

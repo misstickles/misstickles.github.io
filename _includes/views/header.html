@@ -34,7 +34,11 @@
 
           <div class="trigger">
             {%- for page in nav -%}
-              <a class="page-link" href="{{ page.link | relative_url }}">{{ page.name | upcase }}</a>
+              {% if page.name contains "Home" %}
+                <a class="page-link" href="{{ page.link | relative_url }}"><span class="fa-stack fa-lg"><i class="fas fa-home fa-stack-1x"></i></span></a>
+              {% else %}
+                <a class="page-link" href="{{ page.link | relative_url }}">{{ page.name |upcase }}</a>
+              {% endif %}
             {%- endfor -%}
           </div>
         </nav>
