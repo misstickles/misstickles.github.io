@@ -2,7 +2,11 @@
   link: /
 - name: About
   link: /about.html
-- name: Blog
-  link: /blog.html
+- name: Categories
+  link: /categories.html
+- name: Tags
+  link: /tags.html
+- name: Archives
+  link: /archives.html
 - name: CV
   link: /cv.html
