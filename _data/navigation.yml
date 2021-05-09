@@ -1,8 +1,16 @@
-- name: Home
+- name: |
+    <span class="fa-stack fa-xs">
+      <i class="fas fa-circle fa-stack-2x"></i>
+      <i class="fas fa-home fa-stack-1x"></i>
+    </span>
   link: /
 - name: About
   link: /about.html
-- name: Blog
-  link: /blog.html
+- name: Categories
+  link: /categories.html
+- name: Tags
+  link: /tags.html
+- name: Archives
+  link: /archives.html
 - name: CV
   link: /cv.html
