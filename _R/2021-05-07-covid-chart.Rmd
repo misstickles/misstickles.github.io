@@ -1,0 +1,94 @@
+---
+title: Covid-19 Charts
+output: html_document
+category: covid
+tags: [r, covid]
+---
+
+# Playing with UK Covid data
+
+```{r echo = FALSE, include = FALSE}
+library(tidyverse)
+library(zoo)
+```
+
+```{r get data, include = FALSE}
+cases <- read_csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&metric=newDeaths28DaysByDeathDate&metric=newCasesBySpecimenDate&format=csv")
+```
+
+Now we can get a summary of the `cases` data:
+
+```{r}
+summary(cases)
+```
+
+This shows that we have *162382* observations, with a dates between `r min(cases$date)` and `r max(cases$date)`.
+
+## Wrangling the Data
+
+To aide simplicity, we first choose a selected number of areas for data to compare and wrangle the data slightly to provide what we''ll be needing.
+
+```{r wrangle data}
+selected <- cases %>%
+  filter(areaName %in% c("Crawley", "Mid Sussex", "Horsham")) %>%
+  select(areaName, date, newCasesBySpecimenDate, newDeaths28DaysByDeathDate) %>%
+  mutate(
+    cases7 = rollmean(newCasesBySpecimenDate, 7, na.pad = TRUE),
+    deaths7 = rollmean(newDeaths28DaysByDeathDate, 7, na.pad = TRUE)
+  )
+```
+
+1. Filter our areas.
+1. Select the columns we are interested in.
+1. Mutate the data to add columns for 7-day Rolling Average of cases and deaths.
+
+### Crudely Plot our Data
+
+Using the 7 day rolling average, to avoid a jagged chart, we show deaths and cases.
+
+```{r deaths by date, warning = FALSE}
+selected %>%
+  ggplot(aes(date, deaths7, colour = areaName)) +
+  geom_line() +
+  labs(y = "# Deaths (7 day rolling average)", x = "Death Date") +
+  theme_classic()
+```
+
+The `Death Date` is the date of death, given that they had **Covid-19** within the past 28 days.
+
+```{r}
+selected %>%
+  ggplot(aes(date, cases7, colour = areaName)) +
+  geom_line() +
+  theme_classic()
+
+selected %>%
+  ggplot(aes(date, cases7, fill = areaName)) +
+  geom_bar(position = "fill", stat = "identity") +
+  theme_classic()
+```
+
+## Chart for Cases and Deaths
+
+Not the best way to display this data, but it shows the number of cases at a given time, and how the death rates followed the cases.
+
+```{r 7 day cases and deaths, warning = FALSE}
+selected %>%
+  ggplot(aes(date, newCasesBySpecimenDate, colour = areaName)) +
+  geom_line(aes(y = cases7)) +
+  geom_line(aes(y = deaths7)) +
+  #  geom_point() +
+  #  geom_smooth(method = loess) +
+  scale_y_continuous(trans = "log10") +
+  labs(y = "# Cases", x = "Case Specimin Date", title = "7 Day rolling average of cases and deaths in selected areas at 07 May 2021") +
+  theme_classic()
+```
+
+```{r box plot cases, fig.cap = "Boxplot with jitter for cases in selected areas"}
+selected %>%
+  ggplot(aes(areaName, newCasesBySpecimenDate, colour = areaName)) +
+  geom_boxplot(outlier.shape = NA) +
+  labs(y = "# Cases", x = "Area", title = "Cases in selected areas at 07 May 2021") +
+  geom_jitter(width = 0.3, alpha = 0.4, stroke = 0) +
+  theme_bw()
+```
