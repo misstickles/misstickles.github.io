@@ -4,11 +4,13 @@ layout: cv
 
 {% include cv/career-profile.html %}
 
-{% unless site.data.cv.sidebar.education %}
-{% include cv/education.html %}
-{% endunless %}
+{% include cv/skills-outline.html %}
 
-{% include cv/experiences.html %}
+{% include cv/experience.html %}
+
+{% if site.data.cv.education %}
+{% include cv/education.html %}
+{% endif %}
 
 {% include cv/projects.html %}
 

@@ -1,10 +1,6 @@
-#
-# Be aware that even a small syntax error here can lead to failures in output.
-#
-
 sidebar:
-  about: True # set to False or comment line if you want to remove the "how to use?" in the sidebar
-  education: True # set to False if you want education in main section instead of in sidebar
+  about: False # set to False or comment line if you want to remove the "how to use?" in the sidebar
+  education: False # set to False if you want education in main section instead of in sidebar
 
   # Profile information
   name: Jo Faircloth
@@ -25,26 +21,48 @@ sidebar:
   #  codewars:
   #  goodreads: # Number-Username, e.g. 123456-alandoe
 
-  languages:
-    - idiom: English
-      level: Native
+languages:
+  - idiom: English
+    level: Native
 
-  interests:
-    - item: Bellringing (tower)
-      link:
+interests:
+  - item: Bellringing (tower)
+    link:
 
-    - item: Steam Engines
-      link:
+  - item: Steam Engines
+    link:
 
 career-profile:
   title: Career Profile
   summary: |
-    Summarise your career here lorem ipsum dolor sit amet, consectetuer
-    adipiscing elit. You can [download this free resume/CV template here]().
-    Aenean commodo ligula eget dolor aenean massa. Cum sociis natoque
-    penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-    Donec quam felis, ultricies nec, pellentesque eu.
-    Second paragraph if required.
+    > Senior C# .NET web applications developer and software architect. I design and develop enterprise level REST APIs and solutions using best practices and industry standard patterns.
+
+    > Graduate of Electronic Engineering, BEng(hons) and have Open University points for a BSc(hons).
+
+    > I am looking to be involved in dynamic and challenging projects, where I can bring previous experience and aspiration for welldesigned and architected solutions; providing extendable and efficient solutions to meet client requirements.
+
+skills-outline:
+  title: Skills Outline
+
+  toolset:
+    - name: Python & Django
+      level: 98%
+
+    - name: Javascript & jQuery
+      level: 98%
+
+    - name: Angular
+      level: 98%
+
+    - name: HTML5 & CSS
+      level: 95%
+
+    - name: Ruby on Rails
+      level: 85%
+
+    - name: Sketch & Photoshop
+      level: 60%
+
 education:
   - degree: BEng (hons) Electronic and Electrical Engineering
     university: Loughborough University
@@ -154,28 +172,6 @@ publications:
       link: "#"
       authors: Edgar T. Irons
       conference: "Comm. ACM 4 (1961), 51–55"
-
-skills:
-  title: Skills &amp; Proficiency
-
-  toolset:
-    - name: Python & Django
-      level: 98%
-
-    - name: Javascript & jQuery
-      level: 98%
-
-    - name: Angular
-      level: 98%
-
-    - name: HTML5 & CSS
-      level: 95%
-
-    - name: Ruby on Rails
-      level: 85%
-
-    - name: Sketch & Photoshop
-      level: 60%
 
 footer: >
   Theme modified from <a href="https://github.com/sharu725/online-cv" target="_blank">online-cv</a>.

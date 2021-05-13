@@ -11,7 +11,18 @@
   </div>
   <!--//profile-container-->
 
-  {% include cv/contact.html %} {% if sidebar.education %} {% include cv/education.html %} {% endif %} {% include
-  cv/language.html %} {% include cv/interests.html %} {% if sidebar.about %} {% include cv/about.html %} {% endif %}
+  {% include cv/contact.html %}
+  
+  {% if sidebar.education %}
+    {% include cv/educktion.html %}
+  {% endif %}
+  
+  {% include cv/language.html %}
+  
+  {% include cv/interests.html %}
+  
+  {% if sidebar.about %}
+    {% include cv/about.html %}
+  {% endif %}
 </div>
 <!--//sidebar-wrapper-->
