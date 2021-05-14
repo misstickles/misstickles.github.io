@@ -1,0 +1,43 @@
+{% assign profile = site.data.cv.profile %}
+<div class="resume-header">
+  <div class="row align-items-center">
+    <div class="resume-title col-12 col-md-6 col-lg-8 col-xl-9">
+      <h2 class="resume-name mb-0 text-uppercase">{{ profile.name }}</h2>
+      {% if profile.tagline and profile.tagline != "" %}
+      <div class="resume-tagline mb-3 mb-md-0">{{ profile.tagline }}</div>
+      {% endif %}
+    </div>
+    <!--//resume-title-->
+    <div class="resume-contact col-12 col-md-6 col-lg-4 col-xl-3">
+      <ul class="list-unstyled mb-0">
+        {% if profile.telephone and profile.telephone != "" %}
+        <li class="mb-2">
+          <i class="fas fa-phone-square fa-fw fa-lg mr-2"></i>
+          <a class="resume-link" href="tel:{{ profile.telephone }}">{{ profile.telephone }}</a>
+        </li>
+        {% endif %}
+        {% if profile.email and profile.email != "" %}
+        <li class="mb-2">
+          <i class="fas fa-envelope-square fa-fw fa-lg mr-2"></i>
+          <a class="resume-link" href="mailto:{{ profile.email }}">{{profile.email }}</a>
+        </li>
+        {% endif %}
+        {% if profile.website and profile.website != "" %}
+        <li class="mb-2">
+          <i class="fas fa-globe fa-fw fa-lg mr-2"></i>
+          <a class="resume-link" href="https://{{ profile.website }}" target="_blank">{{ profile.website }}</a>
+        </li>
+        {% endif %}
+        {% if profile.location and profile.location != "" %}
+        <li class="mb-0"><i class="fas fa-map-marker-alt fa-fw fa-lg mr-2"></i>
+          {% if profile.location-map-link and profile.location-map-link != "" %}
+          <a class="resume-link" href="{{ profile.location-map-link }}" target="_blank">{{ profile.location }}</a>
+          {% else %}
+          {{ profile.location }}
+          {% endif %}
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</div>

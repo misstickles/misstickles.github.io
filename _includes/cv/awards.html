@@ -1,0 +1,16 @@
+
+{% assign awards = site.data.cv.awards %}
+{% if awards %}
+<section class="education-section py-3">
+  <h3 class="text-uppercase resume-section-heading mb-4">{{ awards.title }}</h3>
+  <ul class="list-unstyled resume-awards-list">
+    {% for award in awards.awards %}
+    <li class="mb-3">
+      <div class="font-weight-bold">{{ award.title }}</div>
+      <div class="text-muted">{{ award.detail }}</div>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+<!--//education-section-->
+{% endif %}

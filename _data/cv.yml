@@ -1,181 +1,183 @@
-#
-# Be aware that even a small syntax error here can lead to failures in output.
-#
-
 sidebar:
   about: True # set to False or comment line if you want to remove the "how to use?" in the sidebar
-  education: True # set to False if you want education in main section instead of in sidebar
+  education: False # set to False if you want education in main section instead of in sidebar
 
-  # Profile information
+profile:
   name: Jo Faircloth
-  tagline: Senior Software Engineer
-  avatar: profile.png #place a 100x100 picture inside /assets/images/ folder and provide the name of the file below
-
-  # Sidebar links
+  tagline: Senior Software Application Engineer
+  location: Mid Sussex
+  location-map-link: https://goo.gl/maps/GGwMWpdFAnCRgk1V6
+  avatar: profile.png
+  avatar-alt: My Profile Pic
   email: jo@jofaircloth.co.uk
-  website: misstickles.github.io #do not add http://
+  website: misstickles.github.io
   linkedin: jo.faircloth
-  #  xing: alandoe
   github: misstickles
-  #  telegram: # add your nickname without '@' sign
-  #  gitlab:
-  #  bitbucket:
-  #  twitter: "@webjeda"
-  #  stack-overflow: # Number/Username, e.g. 123456/alandoe
-  #  codewars:
-  #  goodreads: # Number-Username, e.g. 123456-alandoe
-
-  languages:
-    - idiom: English
-      level: Native
-
-  interests:
-    - item: Bellringing (tower)
-      link:
-
-    - item: Steam Engines
-      link:
 
 career-profile:
-  title: Career Profile
   summary: |
-    Summarise your career here lorem ipsum dolor sit amet, consectetuer
-    adipiscing elit. You can [download this free resume/CV template here]().
-    Aenean commodo ligula eget dolor aenean massa. Cum sociis natoque
-    penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-    Donec quam felis, ultricies nec, pellentesque eu.
-    Second paragraph if required.
+    Senior C# .NET web applications developer and software architect. I design and develop enterprise level REST APIs and solutions using best practices and industry standard patterns.
+
+    Graduate of Electronic Engineering, BEng(hons) and have Open University points for a BSc(hons).
+
+    I am looking to be involved in dynamic and challenging projects, where I can bring previous experience and aspiration for welldesigned and architected solutions; providing extendable and efficient solutions to meet client requirements.
+
+experience:
+  title: Professional Experience
+  roles:
+    - role:
+      title: Senior Software Application Engineer
+      dates: 2020 - Present
+      company: Elekta
+      location: Crawley
+      business: medical devices
+      details: |
+        Describe your role here lorem ipsum dolor sit amet, consectetuer
+        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+        Cum sociis natoque penatibus et magnis dis parturient montes,
+        nascetur ridiculus mus. Donec quam felis, ultricies nec,
+        pellentesque eu, pretium quis, sem. Nulla consequat massa quis
+        enim. Donec pede justo. Sed ut perspiciatis unde omnis iste natus
+        error sit voluptatem accusantium doloremque laudantium, totam rem
+        aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+        architecto beatae vitae dicta sunt explicabo.
+          - Bullet point
+          - Bullet point
+    - role: 
+      title: Senior Software Engineer
+      dates: 2014 - 2015
+      company: Google, London
+      details: |
+        Describe your role here lorem ipsum dolor sit amet, consectetuer
+        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+        Cum sociis natoque penatibus et magnis dis parturient montes,
+        nascetur ridiculus mus. Donec quam felis, ultricies nec,
+        pellentesque eu, pretium quis, sem.
+          - Bullet point
+          - Bullet point
+    - role:
+      title: UI Developer
+      dates: 2012 - 2014
+      company: Amazon, London
+      details: |
+        Describe your role here lorem ipsum dolor sit amet, consectetuer
+        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+        Cum sociis natoque penatibus et magnis dis parturient montes,
+        nascetur ridiculus mus. Donec quam felis, ultricies nec,
+        pellentesque eu, pretium quis, sem.
+          - Bullet point
+          - Bullet point
+
 education:
-  - degree: BEng (hons) Electronic and Electrical Engineering
-    university: Loughborough University
-    time: 1997 - 2001
-    details: |
-      Describe your study here lorem ipsum dolor sit amet, consectetuer
-      adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
-      sociis natoque penatibus et magnis dis parturient montes, nascetur
-      ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-      pretium quis, sem.
-        - Bullet point
-        - Bullet point
-  - degree: (Enough points for) BSc (hons)
-    university: Open University<br />(courses aced, no certificate)
-    time: 2006 - 2012
-    details: |
-      Describe your study here lorem ipsum dolor sit amet, consectetuer
-      adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
-      sociis natoque penatibus et magnis dis parturient montes, nascetur
-      ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-      pretium quis, sem.
-        - Bullet point
-        - Bullet point
-experiences:
-  - role: Senior Software Application Engineer
-    time: 2020 - Present
-    company: Elekta, Crawley
-    details: |
-      Describe your role here lorem ipsum dolor sit amet, consectetuer
-      adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-      Cum sociis natoque penatibus et magnis dis parturient montes,
-      nascetur ridiculus mus. Donec quam felis, ultricies nec,
-      pellentesque eu, pretium quis, sem. Nulla consequat massa quis
-      enim. Donec pede justo. Sed ut perspiciatis unde omnis iste natus
-      error sit voluptatem accusantium doloremque laudantium, totam rem
-      aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-      architecto beatae vitae dicta sunt explicabo.
-        - Bullet point
-        - Bullet point
-  - role: Senior Software Engineer
-    time: 2014 - 2015
-    company: Google, London
-    details: |
-      Describe your role here lorem ipsum dolor sit amet, consectetuer
-      adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-      Cum sociis natoque penatibus et magnis dis parturient montes,
-      nascetur ridiculus mus. Donec quam felis, ultricies nec,
-      pellentesque eu, pretium quis, sem.
-        - Bullet point
-        - Bullet point
-  - role: UI Developer
-    time: 2012 - 2014
-    company: Amazon, London
-    details: |
-      Describe your role here lorem ipsum dolor sit amet, consectetuer
-      adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-      Cum sociis natoque penatibus et magnis dis parturient montes,
-      nascetur ridiculus mus. Donec quam felis, ultricies nec,
-      pellentesque eu, pretium quis, sem.
-        - Bullet point
-        - Bullet point
-projects:
-  title: Projects
-  intro: >
-    You can list your side projects or open source libraries in this
-    section. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Vestibulum et ligula in nunc bibendum fringilla a eu lectus.
-  assignments:
-    - title: Velocity
-      link: "#hook"
-      tagline: "A responsive website template designed to help startups promote, market and sell their products."
+  title: Education
+  qualifications:
+    - qualification:
+      title: BEng (hons) Electronic and Electrical Engineering
+      university: Loughborough University
+      dates: 1997 - 2001
+      details: |
+        Describe your study here lorem ipsum dolor sit amet, consectetuer
+        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
+        sociis natoque penatibus et magnis dis parturient montes, nascetur
+        ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+        pretium quis, sem.
+          - Bullet point
+          - Bullet point
+    - qualification:
+      title: (Enough points for) BSc (hons)
+      university: Open University<br />(courses aced, no certificate)
+      dates: 2006 - 2012
+      details: |
+        Describe your study here lorem ipsum dolor sit amet, consectetuer
+        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
+        sociis natoque penatibus et magnis dis parturient montes, nascetur
+        ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+        pretium quis, sem.
+          - Bullet point
+          - Bullet point
 
-    - title: DevStudio
-      link: "#"
-      tagline: "A responsive website template designed to help web developers/designers market their services."
+# projects:
+#   title: Projects
+#   intro: >
+#     You can list your side projects or open source libraries in this
+#     section. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+#     Vestibulum et ligula in nunc bibendum fringilla a eu lectus.
+#   assignments:
+#     - title: Velocity
+#       type: opensource
+#       link: "#hook"
+#       tagline: "A responsive website template designed to help startups promote, market and sell their products."
 
-    - title: Tempo
-      link: "#"
-      tagline: "A responsive website template designed to help startups promote their products or services and to attract users &amp; investors"
+#     - title: DevStudio
+#       link: ""
+#       tagline: "A responsive website template designed to help web developers/designers market their services."
 
-    - title: Atom
-      link: "#"
-      tagline: "A comprehensive website template solution for startups/developers to market their mobile apps."
+#     - title: Tempo
+#       tagline: "A responsive website template designed to help startups promote their products or services and to attract users &amp; investors"
 
-    - title: Delta
-      link: "#"
-      tagline: "A responsive Bootstrap one page theme designed to help app developers promote their mobile apps"
+#     - title: Atom
+#       link: "#"
+#       tagline: "A comprehensive website template solution for startups/developers to market their mobile apps."
 
-publications:
-  title: Publications
-  intro: |
-    You can list your publications in this section. Lorem ipsum dolor sit
-    amet, consectetur adipiscing elit. Vestibulum et ligula in nunc
-    bibendum fringilla a eu lectus.
-  papers:
-    - title: The Art of Computer Programming
-      link: "#"
-      authors: Donald E. Knuth
-      conference: Addison-Wesley, 1968
+#     - title: Delta
+#       link: "#"
+#       tagline: "A responsive Bootstrap one page theme designed to help app developers promote their mobile apps"
 
-    - title: "Genetic Programming III: Darwinian Invention &amp; Problem Solving"
-      link: "#"
-      authors: Koza, J.R., Andre, D., Bennett, F.H., Keane, M.A.
-      conference: "Morgan Kaufmann Publishers Inc., San Francisco, CA, USA, 1st edn. (1999)"
+# publications:
+#   title: Publications
+#   intro: |
+#     You can list your publications in this section. Lorem ipsum dolor sit
+#     amet, consectetur adipiscing elit. Vestibulum et ligula in nunc
+#     bibendum fringilla a eu lectus.
+#   papers:
+#     - title: The Art of Computer Programming
+#       link: "#"
+#       authors: Donald E. Knuth
+#       conference: Addison-Wesley, 1968
 
-    - title: A syntax directed compiler for Algol 60
-      link: "#"
-      authors: Edgar T. Irons
-      conference: "Comm. ACM 4 (1961), 51–55"
+#     - title: "Genetic Programming III: Darwinian Invention &amp; Problem Solving"
+#       link: "#"
+#       authors: Koza, J.R., Andre, D., Bennett, F.H., Keane, M.A.
+#       conference: "Morgan Kaufmann Publishers Inc., San Francisco, CA, USA, 1st edn. (1999)"
+
+#     - title: A syntax directed compiler for Algol 60
+#       link: "#"
+#       authors: Edgar T. Irons
+#       conference: "Comm. ACM 4 (1961), 51–55"
 
 skills:
   title: Skills &amp; Proficiency
+  toolsets:
+    - title: Technical
+      tools:
+        - C#
+        - .NET Core
+        - Powershell
+        - HTML5 & CSS
+    - title: Professional
+      tools:
+        - Effective communication
+        - Team player
+        - Strong problem solver
+        - Good time management
 
-  toolset:
-    - name: Python & Django
-      level: 98%
+languages:
+  - idiom: English
+    level: Native
 
-    - name: Javascript & jQuery
-      level: 98%
+interests:
+  - item: Bellringing (tower)
+    link:
 
-    - name: Angular
-      level: 98%
+  - item: Steam Engines
+    link:
 
-    - name: HTML5 & CSS
-      level: 95%
-
-    - name: Ruby on Rails
-      level: 85%
-
-    - name: Sketch & Photoshop
-      level: 60%
+# awards:
+#   title: Awards
+#   awards:
+#     - award:
+#       title: 50m Swimming Badge
+#       detail: Swam 50m
 
 footer: >
-  Theme modified from <a href="https://github.com/sharu725/online-cv" target="_blank">online-cv</a>.
+  Designed with <i class="fas fa-heart"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers.

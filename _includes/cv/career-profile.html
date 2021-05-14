@@ -1,15 +1,16 @@
-{% assign career-profile = site.data.cv.career-profile %} {% if career-profile %}
-<section class="section summary-section">
-  <h2 class="section-title">
-    <span class="fa-stack fa-xs">
-      <i class="fas fa-circle fa-stack-2x"></i>
-      <i class="fas fa-user fa-stack-1x fa-inverse"></i>
-    </span>
-    {{ career-profile.title }}
-  </h2>
-
-  <div class="summary">{{ career-profile.summary | markdownify }}</div>
-  <!--//summary-->
-</section>
-<!--//section-->
+{% assign career-profile = site.data.cv.career-profile %}
+{% assign profile = site.data.cv.profile %}
+{% if career-profile %}
+<div class="resume-intro py-3">
+  <div class="media flex-column flex-md-row align-items-center">
+    <img
+      class="resume-profile-image mb-3 mb-md-0 mr-md-5 ml-md-0 rounded mx-auto"
+      src="{{ site.baseurl }}/assets/images/{{ profile.avatar }}"
+      alt="{{ profile.avatar-alt }}"
+    />
+    <div class="media-body text-left">
+      <p class="mb-0">{{ career-profile.summary | markdownify }}</p>
+    </div>
+  </div>
+</div>
 {% endif %}

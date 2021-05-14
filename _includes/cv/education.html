@@ -1,27 +1,6 @@
-{% assign education = site.data.cv.education %} {% if education %} {% if site.data.cv.sidebar.education %}
-<div class="education-container container-block">
-  <h2 class="container-block-title">Education</h2>
-
-  {% for graduation in education %}
-  <div class="item">
-    <h4 class="degree">{{ graduation.degree }}</h4>
-    <h5 class="meta">{{ graduation.university }}</h5>
-    <div class="time">{{ graduation.time }}</div>
-  </div>
-  <!--//item-->
-  {% endfor %}
-</div>
-<!--//education-container-->
+<!-- {% assign education = site.data.cv.education %} {% if education %} {% if site.data.cv.sidebar.education %}
 {% else %}
 <section class="section educations-section">
-  <h2 class="section-title">
-    <span class="fa-stack fa-xs">
-      <i class="fas fa-circle fa-stack-2x"></i>
-      <i class="fas fa-graduation-cap fa-stack-1x fa-inverse"></i>
-    </span>
-    Education
-  </h2>
-
   {% for graduation in education %}
   <div class="item">
     <div class="meta">
@@ -29,19 +8,60 @@
         <h3 class="degree">{{ graduation.degree }}</h3>
         <div class="time">{{ graduation.time }}</div>
       </div>
-      <!--//upper-row-->
-
       <div class="university">{{ graduation.university }}</div>
     </div>
-    <!--//meta-->
-
     {% if graduation.details %}
     <div class="details">{{ graduation.details | markdownify }}</div>
-    <!--//details-->
     {% endif %}
   </div>
-  <!--//item-->
   {% endfor %}
 </section>
-<!--//section-->
-{% endif %} {% endif %}
+{% endif %} {% endif %} -->
+
+
+{% assign education = site.data.cv.education %}
+{% if education %}
+{% if site.data.cv.sidebar.education %}
+<!-- if in sidebar -->
+<section class="education-section py-3">
+  <h3 class="text-uppercase resume-section-heading mb-4">{{ education.title }}</h3>
+  <ul class="list-unstyled resume-education-list">
+    {% for quali in education.qualifications %}
+    <li class="mb-3">
+      <div class="resume-degree font-weight-bold">{{ quali.title }}</div>
+      <div class="resume-degree-org text-muted">{{ quali.university }}</div>
+      <div class="resume-degree-time text-muted">{{ quali.dates }}</div>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% else %}
+<section class="work-section py-3">
+  <h3 class="text-uppercase resume-section-heading mb-4">{{ education.title }}</h3>
+  {% for quali in education.qualifications %}
+  <div class="item mb-3">
+    <div class="item-heading row align-items-center mb-2">
+      <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">
+        {{ quali.title }}
+      </h4>
+      <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">
+        {{ quali.dates }}
+      </div>
+    </div>
+    <div class="item-heading row align-items-center mb-2">
+      <h4 class="item-title col-12 col-md-6 col-lg-8 text-muted mb-2 mb-md-0">
+        {{ quali.university }}
+      </h4>
+    </div>
+    {% if quali.details %}
+    <div class="item-content">
+      <p>
+        {{ quali.details | markdownify }}
+      </p>
+    </div>
+    {% endif %}
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+{% endif %}
