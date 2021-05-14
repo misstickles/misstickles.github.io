@@ -16,11 +16,15 @@ kramdown:
   auto_ids: true
   input: GFM
 
-# themes
-# cv, https://github.com/sharu725/online-cv
-theme_skin: orange # blue, turquoise, green, berry, orange, ceramic
+sass:
+  style: compressed
 
-# yat
+# themes
+# cv
+theme_skin: ceramic # blue, turquoise, green, berry, orange, ceramic
+theme_background: skin # skin, white
+
+# main
 yat:
   date_format: "%d %B %Y"
 # Pagination setting

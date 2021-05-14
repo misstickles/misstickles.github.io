@@ -1,274 +1,166 @@
-/* ======= Base ======= */
-body {
-    font-family: 'Roboto', sans-serif;
-    color: $text-color-secondary;
-    background: $smoky-white;
-    font-size: 14px;
-    padding: 30px;
+
+/*********** Theme Generic **********/
+body { 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color: $theme-text-color-secondary;
+    background-color: $theme-background-color;
 }
 
-h1, h2, h3, h4, h5, h6  {
-    font-weight: 700;
+h1, h2, h3, h4, h5, h6 {
+	color: $theme-text-color-primary;
+	font-weight: bold;
 }
 
-a {
-    color: darken($theme-color, 15%);
+a.theme-link {
+	color: $theme-text-color-primary;
+	text-decoration: underline;
+    -webkit-text-decoration-color: rgba($theme-text-color-primary,0.3);
+    text-decoration-color: rgba($theme-text-color-primary,0.3);
     &:hover {
-        text-decoration: underline;
-        color: darken($theme-color, 30%);
-    }
-    &:focus {
-        text-decoration: none;
+	    color: $theme-color-primary;
+	    -webkit-text-decoration-color: rgba($theme-color-primary,0.8);
+	        text-decoration-color: rgba($theme-color-primary,0.8);
     }
 }
 
-p {
-    line-height: 1.5;
+.btn {
+	font-weight: bold;
+	padding: .375rem 1rem;
+	height: 2.5rem;
+	font-size: 1rem;
 }
 
-.wrapper {
-    background:$theme-color;
-    max-width: 1000px;
-    margin: 0 auto;
-    position: relative;
-    @include box-shadow(0px 2px 4px rgba(0,0,0,0.1));
+.btn:focus, .btn.focus {
+	box-shadow: none !important;
 }
 
-.sidebar-wrapper {
-    background: $theme-color;
-    position: absolute;
-    right: 0;
-    width: 280px;
-    height: 100%;
-    min-height: 800px;
-    color: #fff;
-    a {
-        color: #fff;
-    }
-    .profile-container {
-        padding: 30px;
-        //background: darken($theme-color, 10%);
-        background: rgba(0, 0, 0, 0.2);
-        text-align: center;
-        color: #fff;
-    }
-    .name {
-        font-size: 32px;
-        font-weight: 900;
-        margin-top: 0;
-        margin-bottom: 10px;
-    }
-    .tagline {
-        color: rgba(256, 256, 256, 0.6);
-        font-size: 16px;
-        font-weight: 400;
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-    .profile {
-        margin-bottom: 15px;
-    }
-
-    .avatar {
-        //used for profile image
-        max-width: 100px;
-        margin-bottom: 15px;
-        border: 0px solid #fff;
-        border-radius: 100%;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    }
-    .contact-list {
-        .fas, .fab {
-            margin-right: 5px;
-            font-size: 18px;
-            vertical-align: middle;
-        }
-        li {
-            margin-bottom: 15px;
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-    }
-    .container-block {
-        padding: 30px;
-    }
-    .container-block-title {
-        text-transform: uppercase;
-        font-size: 16px;
-        font-weight: 700;
-        margin-top: 0;
-        margin-bottom: 15px;
-    }
-    .degree {
-        font-size: 14px;
-        margin-top: 0;
-        margin-bottom: 5px;
-    }
-    .education-container {
-        .item {
-            margin-bottom: 15px;
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-        .meta {
-            color: rgba(256, 256, 256, 0.6);
-            font-weight: 500;
-            margin-bottom: 0px;
-            margin-top: 0;
-        }
-        .time {
-            color: rgba(256, 256, 256, 0.6);
-            font-weight: 500;
-            margin-bottom: 0px;
-        }
-    }
-    .languages-container {
-        .lang-desc {
-            color: rgba(256, 256, 256, 0.6);
-        }
-    }
-
-    .languages-list {
-        margin-bottom: 0;
-        li {
-            margin-bottom: 10px;
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-    }
-
-    .interests-list {
-        margin-bottom: 0;
-        li {
-            margin-bottom: 10px;
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-    }
+.btn-primary {
+	color: #fff;
 }
 
-.main-wrapper {
-    background: #fff;
-    padding: 60px;
-    padding-right: 340px;
-    .section-title {
-        text-transform: uppercase;
-        font-size: 20px;
-        font-weight: 500;
-        color: darken($theme-color, 15%);
-        position: relative;
-        margin-top: 0;
-        margin-bottom: 20px;
-    }
-    .section {
-        margin-bottom: 60px;
-    }
+.demo-btn-on-bg {
+	background: rgba(0, 0, 0, 0.2);
+	&:hover {
+		background: rgba(0, 0, 0, 0.3);
+	}
+}
 
-    .experiences-section, .educations-section {
-        .item {
-            margin-bottom: 30px;
-        }
-    }
-    .upper-row {
-        position: relative;
-        overflow: hidden;
-        margin-bottom: 2px;
-    }
-    .job-title, .degree {
-        color: $text-color;
-        font-size: 16px;
-        margin-top: 0;
-        margin-bottom: 0;
-        font-weight: 500;
-    }
-    .time {
-        position: absolute;
-        right: 0;
-        top: 0;
-        color: $text-grey;
-    }
-    .company, .university {
-        margin-bottom: 10px;
-        color: $text-grey;
-    }
+/*********** Resume **********/
+.resume-wrapper {
+	border: 1px solid rgba(0, 0, 0, 0.025);
+    background-color: #FFF;
+}
 
-    .project-title {
-        font-size: 16px;
-        font-weight: 400;
-        margin-top: 0;
-        margin-bottom: 5px;
-	color: darken($theme-color, 15%);
-    }
-    .projects-section {
-        .intro {
-            margin-bottom: 30px;
-        }
-        .item {
-            margin-bottom: 15px;
-        }
-    }
+.resume-section-heading {
+	position: relative;
+	padding-left: 1rem;
+	font-size: 1.125rem;
+	letter-spacing: 0.15rem;
+	color: $theme-color-primary;
+   &:before {
+	   content: "";
+	    display: inline-block;
+	    width: 5px;
+	    height: 100%;
+	    background: $theme-color-primary;
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+   }
+}
 
-    .publication-title {
-        font-size: 16px;
-        font-weight: 400;
-        color: $text-color;
-        margin-bottom: 1px;
-    }
-    .publication-authors {
-        font-style: italic;
-        color: $text-grey;
-        margin-bottom: 1px;
-    }
-    .publications-section {
-        .intro {
-            margin-bottom: 30px;
-        }
-        .item {
-            margin-bottom: 15px;
-        }
+.resume-name {
+	font-size: 2.75rem;
+	font-weight: 900;
+	letter-spacing: 0.4rem;
+	color: $theme-color-primary;
+	
+}
+
+.resume-tagline {
+	font-size: 1.25rem;
+	font-weight: 300;
+}
+
+.resume-contact {
+	border-left: 1px solid rgba(0, 0, 0, 0.08);
+	font-size: 0.75rem;
+}
+
+a.resume-link {
+	color: $theme-text-color-secondary;
+	&:hover {
+		color: $theme-color-primary;
+	}
+}
+
+.resume-profile-image {
+	max-width: 120px;
+}
+
+.resume-intro {
+	font-size: 0.875rem;
+}
+.resume-main {
+	.item-title {
+		font-size: 1rem;
+	}
+	
+   .item-meta {
+	   font-size: 0.75rem;
+   }
+   .item-content {
+		font-size: 0.875rem;
+	}
+}
+
+.resume-aside {
+	border-left: 1px solid rgba(0, 0, 0, 0.08);
+	.item {
+		font-size: 0.875rem;
+	}
+	.item-title {
+		font-size: 1rem;
+	}
+	
+}
+
+
+.resume-education-list, .resume-awards-list {
+    font-size: 0.875rem;
+}
+
+
+.resume-degree-time-org, .resume-degree-time {
+	font-size: 0.75rem;
+}
+
+.resume-lang-list, .resume-interests-list {
+	font-size: 0.875rem;
+}
+
+.resume-social-list {
+	font-size: 0.75rem;
+}
+
+
+.fa-heart {
+	color: #fb866a;
+}
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {
+
+    .resume-aside {
+	    border-left: 0;
     }
 }
 
 
-.skillset {
-    .item {
-        margin-bottom: 15px;
-        overflow: hidden;
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+	.resume-contact {
+	    border-left: 0;
     }
-    .level-title {
-        font-size: 14px;
-        margin-top: 0;
-        margin-bottom: 12px;
-    }
-    .level-bar {
-        height: 12px;
-        background: $smoky-white;
-    }
-    .level-bar-inner {
-        height: 12px;
-        background: lighten($theme-color, 15%);
-    }
-}
-
-
-
-
-.footer {
-    padding-top: 30px;
-    .copyright {
-        line-height: 1.6;
-        color: $text-color-secondary;
-        font-size: 13px;
-    }
-
-    .fa-heart {
-        color: $heart;
-    }
-
 }
