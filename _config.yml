@@ -45,6 +45,12 @@ night_mode: "manual"
 #   background_color: "#ff4e00"
 #   text_transform: "uppercase"  # ("uppercase", "lowercase", "capitalize")
 
+# compress html, http://jch.penibelst.de/
+compress_html:
+  clippings: all
+  profile: true
+  blanklines: true
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag

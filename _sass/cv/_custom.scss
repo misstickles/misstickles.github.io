@@ -8,3 +8,8 @@
     list-style: square;
   }
 }
+
+mark,
+.mark {
+  background-color: lighten($theme-color-primary, 53%);
+}

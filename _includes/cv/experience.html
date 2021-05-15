@@ -13,7 +13,7 @@
     {% if role.details %}
     <div class="item-content">
       <p>
-        {{ role.details | markdownify }}
+        {{ role.details | replace: '~:', '<mark>' | replace: ':~', '</mark>' | markdownify }}
       </p>
     </div>
     {% endif %}
