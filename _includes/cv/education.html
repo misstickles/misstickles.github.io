@@ -1,24 +1,3 @@
-<!-- {% assign education = site.data.cv.education %} {% if education %} {% if site.data.cv.sidebar.education %}
-{% else %}
-<section class="section educations-section">
-  {% for graduation in education %}
-  <div class="item">
-    <div class="meta">
-      <div class="upper-row">
-        <h3 class="degree">{{ graduation.degree }}</h3>
-        <div class="time">{{ graduation.time }}</div>
-      </div>
-      <div class="university">{{ graduation.university }}</div>
-    </div>
-    {% if graduation.details %}
-    <div class="details">{{ graduation.details | markdownify }}</div>
-    {% endif %}
-  </div>
-  {% endfor %}
-</section>
-{% endif %} {% endif %} -->
-
-
 {% assign education = site.data.cv.education %}
 {% if education %}
 {% if site.data.cv.sidebar.education %}
@@ -30,7 +9,9 @@
     <li class="mb-3">
       <div class="resume-degree font-weight-bold">{{ quali.title }}</div>
       <div class="resume-degree-org text-muted">{{ quali.university }}</div>
+      {% if quali.dates %}
       <div class="resume-degree-time text-muted">{{ quali.dates }}</div>
+      {% endif %}
     </li>
     {% endfor %}
   </ul>
@@ -48,7 +29,7 @@
         {{ quali.dates }}
       </div>
     </div>
-    <div class="item-heading row align-items-center mb-2">
+    <div class="item row align-items-center mb-2">
       <h4 class="item-title col-12 col-md-6 col-lg-8 text-muted mb-2 mb-md-0">
         {{ quali.university }}
       </h4>

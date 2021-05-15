@@ -2,8 +2,6 @@
 layout: cv
 ---
 
-
-
 <!-- {% include cv/career-profile.html %}
 
 {% unless site.data.cv.sidebar.education %}

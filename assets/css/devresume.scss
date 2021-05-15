@@ -10,9 +10,16 @@
  * Website: http://themes.3rdwavemedia.com/
 */
 
+/*!
+ * Converted Template to Jekyll, themed and made personal modifications
+ * Version: 1.0
+ * Author: Jo Faircloth
+ * Copyright: Inherited
+ * Website: https://misstickles.github.io
+*/
 @charset "utf-8";
 
 @import "cv/skins/{{ site.theme_skin | default: 'blue' }}"; // skin
-@import "cv/skins/background-{{ site.theme_background | default: 'skin' }}";  // background
+@import "cv/skins/background-{{ site.theme_background | default: 'skin' }}"; // background
 
 @import "cv/devresume";

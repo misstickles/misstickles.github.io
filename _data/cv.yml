@@ -16,85 +16,142 @@ profile:
 
 career-profile:
   summary: |
-    Senior C# .NET web applications developer and software architect. I design and develop enterprise level REST APIs and solutions using best practices and industry standard patterns.
+    Senior C# .NET application engineer and software architect.
 
-    Graduate of Electronic Engineering, BEng(hons) and have Open University points for a BSc(hons).
+    I design and develop enterprise level REST APIs and solutions using best practices and industry standard patterns.
+
+    Graduate of Electronic and Electrical Engineering, BEng(hons) with Open University points for a BSc(hons).
 
     I am looking to be involved in dynamic and challenging projects, where I can bring previous experience and aspiration for welldesigned and architected solutions; providing extendable and efficient solutions to meet client requirements.
 
 experience:
   title: Professional Experience
   roles:
-    - role:
-      title: Senior Software Application Engineer
-      dates: 2020 - Present
+    - title: Senior Software Application Engineer
+      dates: August 2020 - Present
       company: Elekta
       location: Crawley
-      business: medical devices
+      business: Medical Devices
       details: |
-        Describe your role here lorem ipsum dolor sit amet, consectetuer
-        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-        Cum sociis natoque penatibus et magnis dis parturient montes,
-        nascetur ridiculus mus. Donec quam felis, ultricies nec,
-        pellentesque eu, pretium quis, sem. Nulla consequat massa quis
-        enim. Donec pede justo. Sed ut perspiciatis unde omnis iste natus
-        error sit voluptatem accusantium doloremque laudantium, totam rem
-        aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-        architecto beatae vitae dicta sunt explicabo.
-          - Bullet point
-          - Bullet point
-    - role:
-      title: Senior Software Engineer
-      dates: 2014 - 2015
-      company: Google, London
+        - Learning Kubernetes and Azure DevOps.
+    - title: Software Architect
+      dates: May 2019 - July 2020
+      company: Shieldpay
+      location: Haywards Heath
+      business: FinTech Startup
       details: |
-        Describe your role here lorem ipsum dolor sit amet, consectetuer
-        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-        Cum sociis natoque penatibus et magnis dis parturient montes,
-        nascetur ridiculus mus. Donec quam felis, ultricies nec,
-        pellentesque eu, pretium quis, sem.
-          - Bullet point
-          - Bullet point
-    - role:
-      title: UI Developer
-      dates: 2012 - 2014
-      company: Amazon, London
+        - Performing a software architect role.
+        - Liaise closely with the business and analysts to design and architect new solutions for an entire secure payments platform.
+        - Build REST APIs and NuGet packages - C#; DDD; TDD; Entity Framework; mediator patterns; DI; vertical slices in .Net Core 3.1 and Standard 2.1
+        - Designed and developed a new payments solution for the NACHA payments system within the United States.
+        - Designed backend SQL data schema, to additionally integrate to existing solutions.
+        - Work with and enforce CI/CD pipelines through GitFlow-like processes, code review and autobuilds.
+        - Migrating legacy requirements and code from a C# / .Net Framework stack to AWS / Node (Serverless, Lambda, API Gateway, Infrastructure as Code, Typescript).
+        - Introducing an automated flow of versioned API endpoints from design to external documentation, via OpenAPI YAML and Postman; introduced ADRs, to manage and share architectural decisions.
+        - **Training**
+          - Numerous AWS events and on-line
+          - SDD Deep Dive – Building Software Architecture, Neal Ford
+    - title: Senior Software Engineer
+      dates: Jan 2018 - May 2019
+      company: IHS Markit
+      location: Coulsdon
+      business: Jane's Online Catalogue
       details: |
-        Describe your role here lorem ipsum dolor sit amet, consectetuer
-        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-        Cum sociis natoque penatibus et magnis dis parturient montes,
-        nascetur ridiculus mus. Donec quam felis, ultricies nec,
-        pellentesque eu, pretium quis, sem.
-          - Bullet point
-          - Bullet point
+        - Working on features, user stories, defects and BAU support within a growing Agile team on a very large .Net, data-driven (MSSQL, Oracle, MarkLogic, XML files) web application.
+        - Presented new ideas and concepts to help modularise a large and aging, mainly C# .Net, monolith application.
+        - Created a suite/framework to automate UI testing.
+        - Introduced the team to Git version control for the automation test framework, along with branching techniques and code review processes.
+        - Crafting a collaborative API definition/design process, with documentation, for a new and complete API solution. Identified tools to use OpenAPI for API design, and reStructuredText for sharing client and technical documentation.
+        - **Training**
+          - Three day conference at Software Design and Development (SDD 2018), London.
+    - title: .Net Developer
+      dates: 2016 - Dec 2017
+      company: The Caravan Club
+      location: East Grinstead
+      business: Membership Club
+      details: |
+        - Member of an Agile/scrum team to convert 10-15 year old C#.NET monolith applications to DDD (Domain Driven Design) style / microservice applications.
+        - Support applications providing interfaces to 3rd party systems / data sources (via REST, WebMethods, SOAP).
+        - Owner of VSTS Git repositories, TeamCity build/unit tests and Octopus deployments for new solutions, enabling continuous deployment.
+        - Converted existing applications' source control from SVN to Git, introducing GitFlow.
+        - Involved in BAU defects, requiring understanding of system infrastructure; interaction with and configuring 3rd party tools; handling data files directly on a live environments.
+        - Owned requirements to introduce common packages by reviewing architectural options, refactoring, documenting and presenting proof of concept. Including logging, data access, cache libraries; introducing unit tests; better patterns and practices; improving interfaces with existing 3rd party systems (including SAP, Redis, Layer 7).
+        - Created the NuGet source on TeamCity and release common packages via nuspec files and continuous deployment.
+        - **Training**
+          - One week at Software Design and Development (SDD 2017) conference, London.
+          - Two days training in the Content Management System, epiServer.
+          - One week course on 'Lean Six Sigma, Yellow Belt' training (project planning and analysis).
+          - I am interested in DevOps processes, and personally took 2 days training on demo days at Microsoft, London.
+    - title: Pensions Software Developer, Products
+      dates: 2015 - 2016
+      company: Equiniti
+      location: Crawley
+      business: Pensions Administration
+      details: |
+        - Worked with and added new functionality into core product C# .NET web APIs (MVC5/APIv2). Used best practices and patterns such as dependency injection, unit of work, repository, AutoMapper, OWIN.
+        - Responsible for the completed MVC5 Umbraco CMS integration into an existing responsive web application, as used by many large clients. Originally designed by a 3rd party, I was the sole developer and product owner resolving hundreds of GUI defects and functionality change requests. Used Chrome debugger, AJAX, jQuery, JavaScript, CSS3, Bootstrap, charts and graphs, and referencing the above web APIs.
+        - Wrote solutions with Umbraco plugins and Windows installer, to synchronise CMS content databases, and to automate installs and upgrades.
+        - Part of an Agile team using Team Foundation Server for timebox stories, defects, code version control and branch management.
+    - title: Analyst Developer and Technical Lead, Client Solutions
+      dates: 2012 - 2015
+      company: Equiniti
+      location: Crawley
+      business: Pensions Administration
+      details: |
+        - Due to ability to identify, demonstrate and explain code approaches, I was promoted to technical lead on large software configuration projects to provide a back-end administration portal for civil service pensions (2.5 million members, 800 database tables).
+        - Managed fixes to the core product, writing mostly generic components for 100+ workflows across two projects (pensions administration and payroll).
+        - Successfully managed over 1500 defects raised during all stages of testing (admin only) over a small team of developers (average 6) to meet deadlines.
+        - Trained and supported new team members to be productive in a very short time (within 2 months of deadline).
+        - Was the 'goto' for technical support within my team and wider company. SQL, XSL, CSS, HTML and understanding VB and .NET errors particularly important.
+        - **Training**
+          - Pensions Management Institute : Retirement Provision Certificate
+
+    # - title: Software Engineer
+    #   dates: 2011 - 2012
+    #   company: STG (Student Travel Group)
+    #   location: Brighton
+    #   business: School Travel
+    #   details: |
+    #     - Developed various live and near-live web applications, including a contact manager, booking manager and intranet.
+    #     - New code based on MSSQL, LINQ-to-SQL, VB.NET and AJAX controls. Existing code was JavaScript/jQuery intense, which I maintained with help from developer tools, such as Internet Explorer's 'F12', Fiddler and SQL Server Profiler.
+    - title: Junior Engineer
+      dates: 2002 - 2003
+      company: Trimble Navigation New Zealand Ltd
+      location: Christchurch, NZ
+      business: GPS Solutions
+      details: |
+        Part of an international development team, developing a GPS "Rugged Colour Display Unit" for Caterpillar.
 
 education:
   title: Education
   qualifications:
-    - qualification:
-      title: BEng (hons) Electronic and Electrical Engineering
+    - title: "[Enough points for] BSc(hons)(open) Open"
+      university: The Open University
+      details: |
+        Note: Qualification to be claimed, due to transfer of previous first year credit.
+
+        First class with Honours expected.
+
+        Included two undergraduate certificates:
+          - Certificate in Astronomy and Planetary Science (CertAPS(open))
+          - Certificate in Web Applications Development (CertWAD(open))
+    - title: BEng(hons) Electronic and Electrical Engineering, DIS
       university: Loughborough University
-      dates: 1997 - 2001
       details: |
-        Describe your study here lorem ipsum dolor sit amet, consectetuer
-        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
-        sociis natoque penatibus et magnis dis parturient montes, nascetur
-        ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-        pretium quis, sem.
-          - Bullet point
-          - Bullet point
-    - qualification:
-      title: (Enough points for) BSc (hons)
-      university: Open University<br />(courses aced, no certificate)
-      dates: 2006 - 2012
-      details: |
-        Describe your study here lorem ipsum dolor sit amet, consectetuer
-        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
-        sociis natoque penatibus et magnis dis parturient montes, nascetur
-        ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-        pretium quis, sem.
-          - Bullet point
-          - Bullet point
+        Second class with Honours and a Diploma in Industrial Studies (DIS).
+
+# Positions of Responsibility and Interests
+# Church Bellringing  I am a church bellringer and have held positions including Tower Captain, Vice Tower Captain,
+# Steeple Keeper and involvement in the Sussex Northern Division committee.
+#  As a more advanced member at many towers, I often explain complicated concepts to
+# beginners.
+# Steam Locomotive
+# Overhauling
+#  I work at Sheffield Park, Bluebell Railway, on steam locomotives.
+#  I am a company director of the Maunsell Locomotive Society.
+# Working abroad  In 2002–3, I took a one year work and travel holiday in New Zealand, financed by securing a
+# career related job abroad.
+#  I also self-funded a 3 month working holiday trip to Canada in summer 1998
 
 # projects:
 #   title: Projects
@@ -152,14 +209,26 @@ skills:
       tools:
         - C#
         - .NET Core
-        - Powershell
-        - HTML5 & CSS
+        - Microservices; Vertical Slices; Event Driven; DDD; TDD
+        - .Net Patterns and Practices; SOLID principles
+        - Git, VSTS, SVN; release processes
+        - CI / CD
+        - Azure; AWS
+        - Responsive Web Design; JavaScript; Typescript
+        - MSSQL
     - title: Professional
       tools:
         - Effective communication
         - Team player
         - Strong problem solver
         - Good time management
+    - title: Personal Technology
+      tools:
+        - R; Rmd
+        - Jekyll; Liquid; GitHub Pages
+        - ReactJS; MEAN stack; LESS/SCSS; F#
+        - Python; Java (Android)
+        - C++; PHP; Monkey C (Garmin, Connect IQ)
 
 languages:
   - idiom: English
@@ -179,5 +248,7 @@ interests:
 #       title: 50m Swimming Badge
 #       detail: Swam 50m
 
-footer: >
+footer: |
   Designed with <i class="fas fa-heart"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers.
+
+  Converted to <a class="theme-link" href="https://jekyllrb.com" target="_target">Jekyll</a> and modified by <a class="theme-link" href="https://misstickles.github.io" target="_blank">Jo Faircloth</a>.
