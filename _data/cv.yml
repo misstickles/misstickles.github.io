@@ -1,6 +1,6 @@
 sidebar:
   about: True # set to False or comment line if you want to remove the "how to use?" in the sidebar
-  education: False # set to False if you want education in main section instead of in sidebar
+  education: True # set to False if you want education in main section instead of in sidebar
 
 profile:
   name: Jo Faircloth
@@ -27,7 +27,7 @@ career-profile:
 experience:
   title: Professional Experience
   roles:
-    - title: Senior Software Application Engineer and Scrum Master
+    - title: Senior Software Application Engineer & Scrum Master
       dates: August 2020 - Present
       company: Elekta
       location: Crawley
@@ -92,7 +92,7 @@ experience:
         - Responsible for the completed MVC5 Umbraco CMS integration into an existing responsive web application, as used by many large clients. Originally designed by a 3rd party, I was the sole developer and product owner resolving hundreds of GUI defects and functionality change requests. Used Chrome debugger, AJAX, jQuery, JavaScript, CSS3, Bootstrap, charts and graphs, and referencing the above web APIs.
         - Wrote solutions with Umbraco plugins and Windows installer, to synchronise CMS content databases, and to automate installs and upgrades.
         - Part of an Agile team using Team Foundation Server for timebox stories, defects, code version control and branch management.
-    - title: Analyst Developer and Technical Lead, Client Solutions
+    - title: Analyst Developer & Technical Lead, Client Solutions
       dates: 2012 - 2015
       company: Equiniti
       location: Crawley
@@ -131,10 +131,11 @@ education:
         Note: Qualification to be claimed, due to transfer of previous first year credit.
 
         First class with Honours expected.
-
-        Included two undergraduate certificates:
-          - Certificate in Astronomy and Planetary Science (CertAPS(open))
-          - Certificate in Web Applications Development (CertWAD(open))
+    - title: Certificate in Astronomy and Planetary Science
+      university: The Open University
+      details:
+    - title: Certificate in Web Applications Development
+      university: The Open University
     - title: BEng(hons) Electronic and Electrical Engineering, DIS
       university: Loughborough University
       details: |
