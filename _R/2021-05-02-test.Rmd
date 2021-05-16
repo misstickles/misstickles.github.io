@@ -2,20 +2,26 @@
 title: "My first Rmarkdown"
 description: "Just trying to get #1 to play nice"
 output: html_document
-category: r
+category: test
 tags: [r, test]
 ---
 
-# First
+## My first Rmd execution
 
-## This is my first Rmd execution
+### Hello, World :D
 
-```{r, echo=TRUE}
+```{r}
 x <- c(1, 2, 3, 4, 5, 6)
 mean(x)
-
-print("Hello")
 ```
+
+```{r}
+print("Hello, World!")
+```
+
+#### A `sin` chart
+
+'coz, why not
 
 ```{r sinplot}
 plot(1:100, sin(1:100), type = "b")

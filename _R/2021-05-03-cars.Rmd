@@ -1,18 +1,18 @@
 ---
-title: Graph for cars
+title: Car Engine Graph
 description: This is a graph to show cars and their stuff
 output: html_document
-category: r
+category: test
 tags: [r, test, cars]
 ---
 
-# Cars
+## Cars
 
 ```{r echo=TRUE}
 summary(cars)
 ```
 
-## Draw a ggplot for efficiency of car engines
+### Draw a ggplot for efficiency of car engines
 
 ```{r cars_graph, echo=FALSE }
 library(ggplot2)
