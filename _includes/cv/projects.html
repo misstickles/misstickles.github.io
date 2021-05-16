@@ -1,31 +1,22 @@
 {% assign projects = site.data.cv.projects %} {% if projects %}
-<section class="section projects-section">
-  <h2 class="section-title">
-    <span class="fa-stack fa-xs">
-      <i class="fas fa-circle fa-stack-2x"></i>
-      <i class="fas fa-archive fa-stack-1x fa-inverse"></i>
-    </span>
-    {{ projects.title }}
-  </h2>
-
-  {% if projects.intro %}
-  <div class="intro">
-    <p>{{ projects.intro }}</p>
+<section class="project-section py-3">
+  <h3 class="text-uppercase resume-section-heading mb-4">{{ projects.title }}</h3>
+  {% for project in projects.assignments %}
+  <div class="item mb-3">
+    <div class="item-heading row align-items-center mb-2">
+      <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">
+        {% if project.link and project.link != "" %}
+        <a class="resume-link" href="{{project.link}}" target="_blank">{{ project.title }}</a>
+        {% else %}
+        {{project.title }}
+        {% endif %}
+      </h4>
+      <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">{{ project.type }}</div>
+    </div>
+    <div class="item-content">
+      <p>{% if project.tagline %} {{ project.tagline }} {% endif %}</p>
+    </div>
   </div>
-  <!--//intro-->
-  {% endif %} {% for project in projects.assignments %}
-  <div class="item">
-    <span class="project-title">
-      {% if project.link %}
-      <a href="{{ project.link }}" target="_blank">{{ project.title }}</a>
-      {% else %} {{ project.title }} {% endif %}
-    </span>
-
-    {% if project.tagline %} - <span class="project-tagline">{{ project.tagline }}</span>
-    {% endif %}
-  </div>
-  <!--//item-->
   {% endfor %}
 </section>
-<!--//section-->
 {% endif %}

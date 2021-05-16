@@ -38,3 +38,6 @@ end
 
 # Performance-booster for watching directories on Windows
 gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
+
+# Eventmachine fix (gem uninstall eventmachine (mingw32); execute bundle install; bundle exec jekyll clean)
+gem 'eventmachine', '1.2.7', git: 'https://github.com/eventmachine/eventmachine.git', tag: 'v1.2.7'

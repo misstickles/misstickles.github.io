@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:eventmachine/eventmachine
+  remote: https://github.com/eventmachine/eventmachine.git
   revision: 9cb13a8a62363df5ebcc414169a3deb2c1608528
   tag: v1.2.7
   specs:
@@ -31,7 +31,7 @@ GEM
       http_parser.rb (~> 0.6.0)
     ethon (0.14.0)
       ffi (>= 1.15.0)
-    execjs (2.7.0)
+    execjs (2.8.0)
     faraday (1.4.1)
       faraday-excon (~> 1.1)
       faraday-net_http (~> 1.0)
@@ -41,7 +41,6 @@ GEM
     faraday-excon (1.1.0)
     faraday-net_http (1.0.1)
     faraday-net_http_persistent (1.1.0)
-    ffi (1.15.0)
     ffi (1.15.0-x64-mingw32)
     forwardable-extended (2.6.0)
     gemoji (3.0.1)
@@ -227,8 +226,6 @@ GEM
     multipart-post (2.1.1)
     nokogiri (1.11.3-x64-mingw32)
       racc (~> 1.4)
-    nokogiri (1.11.3-x86_64-linux)
-      racc (~> 1.4)
     octokit (4.21.0)
       faraday (>= 0.9)
       sawyer (~> 0.8.0, >= 0.5.3)
@@ -267,7 +264,6 @@ GEM
       tzinfo (>= 1.0.0)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.7)
     unf_ext (0.0.7.7-x64-mingw32)
     unicode-display_width (1.7.0)
     wdm (0.1.1)
@@ -275,7 +271,6 @@ GEM
 
 PLATFORMS
   x64-mingw32
-  x86_64-linux
 
 DEPENDENCIES
   eventmachine (= 1.2.7)!
@@ -288,4 +283,4 @@ DEPENDENCIES
   wdm (~> 0.1.1)
 
 BUNDLED WITH
-   2.2.16
+   2.2.17

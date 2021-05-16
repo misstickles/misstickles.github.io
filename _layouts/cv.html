@@ -1,5 +1,5 @@
 ---
-#Add "layout: compress" here to compress the html code
+layout: conpress
 ---
 
 <!DOCTYPE html>
@@ -11,12 +11,39 @@
   {% include cv/head.html %}
 
   <body>
-    <div class="wrapper">
-      {% include cv/sidebar.html %}
+    <div class="main-wrapper">
+      <div class="container px-3 px-lg-5">
+        <article class="resume-wrapper mx-auto theme-bg-light p-5 mb-5 my-5 shadow-lg">
+          {% include cv/header.html %}
 
-      <div class="main-wrapper">{{ content }}</div>
+          <hr />
+
+          {% include cv/career-profile.html %}
+
+          <hr />
+
+          <div class="resume-body">
+            <div class="row">
+              <div class="resume-main col-12 col-lg-8 col-xl-9 pr-0 pr-lg-5">
+                {% include cv/experience.html %}
+                {% unless site.data.cv.sidebar.education %}
+                  {% include cv/education.html %}
+                {% endunless %}
+                {% include cv/projects.html %}
+              </div>
+
+              {% include cv/sidebar.html %}
+            </div>
+          </div>
+
+          <hr />
+
+          {% include cv/connect.html %}
+        </article>
+      </div>
+
+      {% include cv/footer.html %}
+      <!-- {% include cv/scripts.html %} -->
     </div>
-
-    {% include cv/footer.html %} {% include cv/scripts.html %}
   </body>
 </html>

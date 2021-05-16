@@ -1,26 +1,16 @@
-{% assign skills = site.data.cv.skills %} {% if skills %}
-<section class="skills-section section">
-  <h2 class="section-title">
-    <span class="fa-stack fa-xs">
-      <i class="fas fa-circle fa-stack-2x"></i>
-      <i class="fas fa-wrench fa-stack-1x fa-inverse"></i>
-    </span>
-    {{ skills.title }}
-  </h2>
-
-  <div class="skillset">
-    {% for skill in skills.toolset %}
-    <div class="item">
-      <h3 class="level-title">{{ skill.name }}</h3>
-
-      <div class="level-bar">
-        <div class="level-bar-inner" data-level="{{ skill.level }}"></div>
-      </div>
-      <!--//level-bar-->
-    </div>
-    <!--//item-->
-    {% endfor %}
+{% assign skills = site.data.cv.skills %}
+{% if skills %}
+<section class="skills-section py-3">
+  <h3 class="text-uppercase resume-section-heading mb-4">{{ skills.title }}</h3>
+  {% for toolset in skills.toolsets %}
+  <div class="item">
+    <h4 class="item-title">{{ toolset.title }}</h4>
+    <ul class="list-unstyled resume-skills-list">
+      {% for tool in toolset.tools %}
+        <li class="mb-2">{{ tool }}</li>
+      {% endfor %}
+    </ul>
   </div>
+  {% endfor %}
 </section>
-<!--//skills-section-->
 {% endif %}

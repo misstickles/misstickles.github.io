@@ -17,11 +17,15 @@ kramdown:
   auto_ids: true
   input: GFM
 
-# themes
-# cv, https://github.com/sharu725/online-cv
-theme_skin: orange # blue, turquoise, green, berry, orange, ceramic
+sass:
+  style: compressed
 
-# yat
+# themes
+# cv
+theme_skin: ceramic # blue, turquoise, green, berry, orange, ceramic
+theme_background: skin # skin, white
+
+# main
 yat:
   date_format: "%d %B %Y"
 # paginate: 5
@@ -40,9 +44,18 @@ night_mode: "manual"
 #   background_color: "#ff4e00"
 #   text_transform: "uppercase"  # ("uppercase", "lowercase", "capitalize")
 
+# compress html, http://jch.penibelst.de/
+compress_html:
+  clippings: all
+  profile: true
+  blanklines: true
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-spaceship
+
+exclude:
+  - .jekyll-cache

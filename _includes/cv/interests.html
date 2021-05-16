@@ -1,14 +1,14 @@
-{% assign interests = site.data.cv.sidebar.interests %} {% if interests %}
-<div class="interests-container container-block">
-  <h2 class="container-block-title">Interests</h2>
-
-  <ul class="list-unstyled interests-list">
-    {% for interest in interests %} {% if interest.link %}
-    <li><a href="{{ interest.link }}">{{ interest.item }}</a></li>
-    {% else %}
-    <li>{{ interest.item }}</li>
-    {% endif %} {% endfor %}
+{% assign interests = site.data.cv.interests %} {% if interests %}
+<section class="skills-section py-3">
+  <h3 class="text-uppercase resume-section-heading mb-4">Interests</h3>
+  <ul class="list-unstyled resume-interests-list mb-0">
+    {% for interest in interests %}
+    <li class="mb-2">
+      {% if interest.link and interst.link != "" %}
+      {% endif %}
+      {{ interest.item }}
+    </li>
+    {% endfor %}
   </ul>
-</div>
-<!--//interests-->
+</section>
 {% endif %}
