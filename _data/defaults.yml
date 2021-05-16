@@ -3,7 +3,7 @@
     type: "posts"
   values:
     layout: "post"
-    author: "Jo F"
+    author: "Jo Faircloth"
 - scope:
     path: ""
   values:

@@ -29,6 +29,11 @@
         <span class="post-date"><i class="fa fa-calendar"></i> {{ post.date | date: date_format }}</span>
         <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> {{ reading_time }}</span>
       </div>
+      {% if post.description %}
+      <p class="post-excerpt">
+        {{ post.description }}
+      </p>
+      {% endif %}
       <p class="post-excerpt">
         {{ excerpt }}
       </p>

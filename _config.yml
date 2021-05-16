@@ -1,6 +1,7 @@
 title: "// probably; definitely"
 description: ""
-heading: "Jo Faircloth"
+copyright: "&copy; Jo Faircloth 2021"
+heading: Jo Faircloth
 subheading: "Software Application Engineer<br /><i class='fas fa-map-marker-alt'></i> Mid Sussex, UK</a>"
 email: your-email@example.com
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -27,15 +28,13 @@ theme_background: skin # skin, white
 # main
 yat:
   date_format: "%d %B %Y"
-# Pagination setting
 # paginate: 5
+
 # Default theme colors as below:
 # coolblack: #090a0b
 # spacegrey: #353535
 # snowwhite: #ffffff
-#
 theme_color: "spacegrey"
-#
 # Custom color as below:
 # theme_color: "#882250"
 night_mode: "manual"
