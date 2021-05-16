@@ -27,6 +27,9 @@ group :jekyll_plugins do
   gem "rouge", "~> 3.26.0"
 end
 
+# Eventmachine fix (gem uninstall eventmachine (mingw32); execute bundle install; bundle exec jekyll clean)
+gem 'eventmachine', '1.2.7', git: 'git@github.com:eventmachine/eventmachine', tag: 'v1.2.7'
+
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
 # and associated library.
 platforms :mingw, :x64_mingw, :mswin, :jruby do
@@ -36,6 +39,3 @@ end
 
 # Performance-booster for watching directories on Windows
 gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
-
-# Eventmachine fix (gem uninstall eventmachine (mingw32); execute bundle install; bundle exec jekyll clean)
-gem 'eventmachine', '1.2.7', git: 'https://github.com/eventmachine/eventmachine.git', tag: 'v1.2.7'
