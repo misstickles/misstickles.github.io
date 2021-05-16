@@ -21,9 +21,6 @@ $theme-colors: (
   "secondary": $theme-text-color-secondary,
 );
 
-/*************************** Import Bootstrap  *****************************/
-@import "../vendor/bootstrap/bootstrap.scss";
-
 @import "base";
 @import "custom";
 @import "responsive";
