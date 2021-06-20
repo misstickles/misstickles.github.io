@@ -59,4 +59,4 @@ plugins:
 
 exclude:
   - .jekyll-cache
-  - [vendor]
+  - vendor
