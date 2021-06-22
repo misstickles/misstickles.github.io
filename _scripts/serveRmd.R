@@ -3,6 +3,6 @@
 servr::jekyll(
   input = "_R",
   output = "_posts",
-  command = "bundle exec jeykll build",
+  command = "bundle exec jekyll build",
   serve = TRUE
 )

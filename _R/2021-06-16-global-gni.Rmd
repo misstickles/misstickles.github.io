@@ -1,6 +1,6 @@
 ---
 title: World GNI
-description: Some very high level of global GNI since 1971
+description: Some very high level looking at a selection of countries's GNI since 1971, with a global map plot.
 output: html_document
 category: "population data"
 tags: [r, gni, map]
@@ -12,22 +12,22 @@ tags: [r, gni, map]
 
 Is the sum of value added by all resident producers plus any product taxes (less subsidies) not included in the valuation of output plus net receipts of primary income (compensation of employees and property income) from abroad.
 
-Data are in current U.S. dollars., "World Bank national accounts data, and OECD National Accounts data files.",
-
-Economic Policy & Debt: National accounts: US$ at current prices: Aggregate indicators,Annual,Gap-filled total,"Because development encompasses many factors - economic, environmental, cultural, educational, and institutional - no single measure gives a complete picture. However, the total earnings of the residents of an economy, measured by its gross national income (GNI), is a good measure of its capacity to provide for the well-being of its people.",https://datacatalog.worldbank.org/public-licenses#cc-by
+All data are in current U.S. dollars.
 
 ## Source
 
-<https://datacatalog.worldbank.org/public-licenses#cc-by>
+All data is from the *[World Bank](https://www.worldbank.org/)* and uses a [Creative Commons](https://datacatalog.worldbank.org/public-licenses#cc-by) licence.  Current at `r Sys.Date()`.  Data is found here:
+
+<https://databank.worldbank.org/reports.aspx?source=2&series=NY.GNP.PCAP.CD&country=>
 
 ```{r load, message = FALSE, echo = FALSE}
 library(maps)
+library(Hmisc)
 library(RColorBrewer)
 library(forcats)
 library(tidyverse)
 library(scales)
 library(countrycode)
-library(Hmisc)
 
 theme_set(theme_minimal())
 ```
@@ -190,7 +190,12 @@ gni_pct %>%
   filter(CountryCode == biggest$CountryCode) %>%
   ggplot(aes(year, percent, group = CountryCode, colour = CountryCode)) +
   geom_vline(xintercept = biggest$year, colour = "green3", size = 0.5) +
-  geom_vline(xintercept = "2008", colour = "red3", size = 0.6, linetype = "dotted") +
+  geom_vline(
+    xintercept = "2008",
+    colour = "red3",
+    size = 0.6,
+    linetype = "dotted"
+  ) +
   geom_line(stat = "identity") +
   geom_point() +
   geom_smooth(method = "loess") +
@@ -201,7 +206,8 @@ gni_pct %>%
     subsitle = "percent increase in GNI, since the previous year",
     x = "Year",
     y = "Percent Increase",
-    caption = "dashed line marks the 2008 'financial crisis'\ngreen line is the year 2014"
+    caption = "dashed line marks the 2008 'financial crisis'\n
+      green line is the year 2014"
   ) +
   theme(legend.position = "none")
 ```
@@ -255,7 +261,7 @@ Hmmmm....
 
 Normally, you may want to take population into account when displaying the "value" of a country.  I don't intend to do that here, so this is one of many, many approaches that could be used to demonstrate the distribution of wealth around the world.
 
-Randomly, I'm selecting 2019 data.  Most countries should have a value (for the interested reader to confirm if this is true!); and the value will not be impacted with the Covid-19 global epidemic.
+Randomly, I'm selecting 2019 data.  Most countries should have a value (for the interested reader to confirm if this is true!); and the value will not be impacted by the Covid-19 global epidemic.
 
 ### Arrange World Data and Create Map Data
 
@@ -265,10 +271,10 @@ world_map$region <- iso.alpha(world_map$region)
 
 gni_map <- gni %>%
   filter(year == 2019) %>%
-  na.omit() %>%
   mutate(
     iso2 = countrycode(CountryCode, origin = "iso3c", destination = "iso2c")
-  )
+  ) %>%
+  na.omit()
 
 gni_map %>%
   filter(iso2 == "NA") %>%
@@ -278,33 +284,60 @@ gni_map %>%
 gni_map$iso2[gni_map$CountryCode == "NAM"] <- "<NA>"
 ```
 
-In this code, we obtain a range (I'm sure this can be done 'automatically', but enough for now!).  Dividing into 8 groups, each group has 22/23 countries - each being within the same range of GNI.  On another project, we could first remove the regions (groups of countries) that are in the data, which may skew the result...
+In this code, we obtain a range (I'm sure this can be done 'automatically', but enough for now!).  Dividing into 8 groups, each group has 28/9 countries - each being within the same range of GNI.  On another project, we could first remove the regions (groups of countries) that are in the data, which may skew the result...
 
 We manually create the list of breaks and labels, based on the result.
 
 ```{r range-column}
-split(gni_map, cut2(gni_map$gni, g = 8))
+table(cut2(gni_map$gni, g = 9))
 
-gni_map$ranges <- cut(
+gni_map$range <- cut(
   gni_map$gni,
-  breaks = c(0, 2.7e9, 1.2e10, 1.7e10, 3.75e10, 7.1e10, 2.5e11, 4.5e11, 2.2e13, Inf),
-  labels = c("Under 2.7", "2.7 - 12", "12 - 17", "17 - 37.5", "37.5 - 71", "71 - 250", "250 - 450", "450 - 2,200", "Over 2,200")
+  breaks = c(
+    0, 2.30e9,
+    7.84e9, 1.5e10,
+    2.46e10, 5.27e10,
+    9.53e10, 2.92e11,
+    7.17e11, 2.17e13
+  ),
+  labels = c(
+    "Under 2.30", "2.30 - 7.84",
+    "7.84 - 15.0", "15.0 - 24.0",
+    "24.0 - 52.7", "52.7 - 95.3",
+    "95.3 - 292", "292 - 717",
+    "Over 717"
+  )
 )
 ```
+
+... 9 groups, because that is the max number of colours in the brewer sequential colour palette!
+
+<https://colorbrewer2.org/>
 
 ### Plot the World
 
 ```{r world-plot}
 world <- gni_map %>%
   ggplot() +
-  geom_map(aes(map_id = iso2, fill = (ranges)), map = world_map) +
-  geom_polygon(data = world_map, aes(x = long, y = lat, group = group), colour = "black", fill = NA) +
-  scale_fill_manual(name = "GNI Range", values = (brewer.pal(9, name = "Reds"))) +
-  theme_bw() +
+  geom_map(aes(map_id = iso2, fill = (range)), map = world_map) +
+  geom_polygon(
+    data = world_map, aes(
+      x = long,
+      y = lat,
+      group = group
+    ),
+    colour = "black",
+    fill = NA
+  ) +
+  scale_fill_manual(
+    name = "GNI Range ($000,000,000)",
+    values = (brewer.pal(9, name = "Reds"))
+  ) +
+  theme_void() +
   theme(legend.position = "bottom") +
   labs(
     title = "World map of GNI in 2019",
-    subtitle = "current USD ($) all values in billion dollars (10e9)\n"
+    subtitle = "current USD ($) all values in billion dollars\n"
   )
 
 world
@@ -318,9 +351,14 @@ world +
   scale_y_continuous(limits = c(33, 73), expand = c(0, 0))
 ```
 
-Clearly, North America, much of Europe and Asia are all in the top 23 countries of GNI.  For some, this is the sheer size of the country, and others actually have higher wealth.
+It is probably no surprise that North America, much of Europe and Asia are all in the top 2 groups of GNI.
+
+For some, this is the sheer size of the country, but individuals in less populated countries actually have higher wealth.
 
 ## Conclusion
 
 ... Much more to do ...
-Many more places to go.  This has been great learning for **R**, but perhaps I should write more conclusions!!
+
+Many more places to go.
+
+This has been great learning for **R**, but perhaps I should write more conclusions!!
