@@ -20,7 +20,7 @@ All data is from the *[World Bank](https://www.worldbank.org/)* and uses a [Crea
 
 <https://databank.worldbank.org/reports.aspx?source=2&series=NY.GNP.PCAP.CD&country=>
 
-```{r load, message = FALSE, echo = FALSE}
+```{r load, include=FALSE, echo=FALSE}
 library(maps)
 library(Hmisc)
 library(RColorBrewer)
@@ -36,7 +36,7 @@ theme_set(theme_minimal())
 
 Read the raw data from *World Bank*.  We replace `..` with `NA` as this is easier to work with in R and remove *Series Name* and *Series Code* columns, as we will not need these.
 
-```{r setup, cache = TRUE, message = FALSE}
+```{r setup, cache=TRUE, message=FALSE}
 gni_raw <- read_csv(
   "../data/global_gni.csv",
   na = c("..")
@@ -316,7 +316,7 @@ gni_map$range <- cut(
 
 ### Plot the World
 
-```{r world-plot}
+```{r world-plot, fig.width=10}
 world <- gni_map %>%
   ggplot() +
   geom_map(aes(map_id = iso2, fill = (range)), map = world_map) +
@@ -345,10 +345,11 @@ world
 
 ### Zoom in to Europe
 
-```{r europe-plot}
+```{r europe-plot, fig.width=8}
 world +
   scale_x_continuous(limits = c(-13, 40), expand = c(0, 0)) +
-  scale_y_continuous(limits = c(33, 73), expand = c(0, 0))
+  scale_y_continuous(limits = c(33, 73), expand = c(0, 0)) +
+  labs(title = "Europe map of GNI in 2019")
 ```
 
 It is probably no surprise that North America, much of Europe and Asia are all in the top 2 groups of GNI.
@@ -357,7 +358,7 @@ For some, this is the sheer size of the country, but individuals in less populat
 
 ## Conclusion
 
-... Much more to do ...
+Much more to do.
 
 Many more places to go.
 
