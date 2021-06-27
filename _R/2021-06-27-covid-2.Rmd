@@ -1,0 +1,220 @@
+---
+title: Covid-19 Heatmaps
+description: Heatmaps of Covid-19 cases in the UK; using data from public government data
+output: html_document
+category: covid
+tags: [r, covid]
+layout: post
+---
+
+# Let's Map Covid-19 in the UK...
+
+```{r setup, include=FALSE, warning=FALSE}
+rm(list = ls())
+
+library(tidyverse)
+library(readxl)
+library(zoo)
+library(cowplot)
+
+# prevent scientific notation below 10000
+options(scipen = 9999)
+```
+
+```{r load, cache=TRUE, message=FALSE}
+source <- "https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&metric=newDeaths28DaysByDeathDate&metric=newCasesBySpecimenDate&format=csv"
+src <- read_csv(source)[, c(1:2, 4:6)]
+
+source_counties <- "http://geoportal1-ons.opendata.arcgis.com/datasets/89109c7ba29f496187e125b5c8a091b6_0.csv"
+counties <- read_csv(source_counties)[, c(1, 4)]
+
+source_population <- "./data/population-mid2019.xls"
+population <- read_excel(
+  source_population,
+  sheet = "MYE2 - Persons",
+  skip = 4
+)[, c(1, 4)]
+
+raw <- src %>%
+  left_join(counties, by = c("areaCode" = "LTLA18CD")) %>%
+  left_join(population, by = c("areaCode" = "Code"))
+
+colnames(raw) <- c(
+  "code", "name", "date", "cases",
+  "deaths", "county", "population"
+)
+```
+
+This data is sourced from the [ONS](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland) website.  It is from mid 2019, but good enough for our use.
+
+Create an R tidy table.
+
+```{r tidy, cache=TRUE}
+data <- raw %>%
+  pivot_longer(c("cases", "deaths"), names_to = "type", values_to = "count")
+data
+```
+
+For simplicity, split the data into `cases` and `deaths`.
+
+Add some helper columns to each dataset.
+
+Convert case and death counts to a rolling 7-day average.
+
+```{r}
+cases <- subset(data, type == "cases")
+deaths <- subset(data, type == "deaths")
+
+cases_heatmap <- cases %>%
+  arrange(code, date) %>%
+  na.omit() %>%
+  group_by(code) %>%
+  mutate(
+    max_count = max(count, na.rm = TRUE),
+    max_date = date[which(count == max_count)][1],
+    count7 = rollmean(count, 7, na.pad = TRUE),
+    prop_max = count / max_count,
+    per_ht = as.integer(count7 * 100000 / population),
+    total = sum(count, na.rm = TRUE),
+    total_per_ht = as.integer(total * 100000 / population)
+  ) %>%
+  ungroup()
+
+max(cases_heatmap$total_per_ht)
+View(cases_heatmap %>% arrange(desc(total)))
+View(cases_heatmap %>% filter(name == "Birmingham"))
+min_date <- min(cases$date)
+max_date <- max(cases$date)
+```
+
+Total cases for 7-day rolling average.
+
+```{r, fig.height=10}
+ggplot(cases_heatmap, aes(
+  x = date,
+  y = fct_reorder(name, desc(max_date)),
+  fill = prop_max
+)) +
+  geom_tile(color = "white", show.legend = TRUE) +
+  scale_fill_distiller(palette = "Spectral") +
+  scale_x_date(
+    name = "Date",
+    limits = as.Date(c(min_date, max_date)),
+    expand = c(0, 0)
+  ) +
+  #  scale_y_reverse(name = "", expand = c(0, 0)) +
+  scale_y_discrete(
+    name = "",
+    expand = c(0, 0)
+  ) +
+  theme_classic() +
+  labs(
+    title = "Timeline for COVID-19 Cases in UK Local Authorities",
+    subtitle = paste0("The heatmap represents the 7-day rolling average of the number of confirmed cases within each Local Authority (LA).
+To avoid imacting each area with outliers from other LAs, values are normalised to the maximum value within each LA.
+LAs are ordered by the date at which they recorded their maximum cases
+Data updated to ", max_date),
+    caption = "Plot by @misstickles"
+  ) +
+  theme(
+    axis.line.y = element_blank(),
+    #    plot.subtitle = element_text(size = rel(0.78)),
+    plot.title.position = "plot",
+    #    axis.text.y = element_text(colour = "Black"),
+    #    plot.title = element_text(size = rel(2.3))
+  )
+```
+
+Introduce population.
+
+```{r cases-heatmap, fig.height=40, fig.width=30, echo=FALSE}
+case_tiles <- cases_heatmap %>%
+  ggplot(aes(
+    x = date,
+    y = fct_reorder(name, desc(max_date)),
+    fill = per_ht
+  )) +
+  geom_tile(color = "white", show.legend = FALSE) +
+  scale_fill_distiller(palette = "Spectral", name = "Cases") +
+  scale_x_date(
+    name = "Date",
+    limits = as.Date(c(min_date, max_date)),
+    expand = c(0, 0)
+  ) +
+  scale_y_discrete(
+    name = "",
+    expand = c(0, 0)
+  ) +
+  theme_classic() +
+  labs(
+    title = "Timeline for COVID-19 Cases in UK Local Authorities, per 100,000 population",
+    subtitle = paste0("The heatmap represents the 7-day rolling average of the number of confirmed cases per 100,000 within each Local Authority (LA).
+To avoid imacting each LA with outliers from other LAs, values are normalised to the maximum value within each.
+LAs are ordered by the date at which they recorded their maximum count of cases.
+Data updated to ", max_date),
+    caption = "Plot by @misstickles"
+  ) +
+  theme(
+    axis.line.y = element_blank(),
+    #    plot.subtitle = element_text(size = rel(0.78)),
+    plot.title.position = "plot",
+    #    axis.text.y = element_text(colour = "Black"),
+    #    plot.title = element_text(size = rel(2.3)),
+    legend.position = "bottom"
+  )
+
+case_cols <- cases_heatmap %>%
+  ggplot(subset(cases_heatmap, date == max_date), aes(
+    x = total_per_ht,
+    y = fct_reorder(name, desc(max_date)),
+    fill = total_per_ht
+  )) +
+  geom_col(show.legend = FALSE) +
+  scale_fill_distiller(palette = "Spectral", name = "Total") +
+  scale_x_continuous(
+    name = "Total cases",
+    breaks = c(0, 5000, 10000, 15000),
+    expand = c(0, 0)
+  ) +
+  theme_classic() +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.line.y = element_blank(),
+    legend.position = "right"
+  )
+
+plot_grid(case_tiles, case_cols, align = "h", rel_widths = c(1, 0.2))
+```
+
+
+
+```{r}
+ggplot(deaths_heatmap, aes(x = date, y = name, fill = count7)) +
+  geom_tile(color = "white", show.legend = FALSE) +
+  scale_fill_distiller(palette = "Spectral") +
+  scale_x_date(
+    name = "Date",
+    limits = as.Date(c(min_date, max_date)),
+    expand = c(0, 0)
+  ) +
+  scale_y_discrete(
+    name = "",
+    expand = c(0, 0)
+  ) +
+  theme_classic() +
+  labs(
+    title = "Timeline for COVID-19 Deaths in UK Local Authorities",
+    subtitle = "The heatmap represents the 7-day rolling average of the number of confirmed deaths within each Local Authority.",
+    caption = "Plot by @misstickles"
+  ) +
+  theme(
+    axis.line.y = element_blank(),
+    plot.subtitle = element_text(size = rel(0.78)),
+    plot.title.position = "plot",
+    axis.text.y = element_text(colour = "Black"),
+    plot.title = element_text(size = rel(2.3))
+  )
+```
