@@ -33,10 +33,10 @@ platforms :mingw, :x64_mingw, :mswin, :jruby do
   gem "tzinfo-data"
 end
 
-platforms :mingw, :x64_mingw, :mswin do
-  # Performance-booster for watching directories on Windows
-  gem "wdm", "~> 0.1.1"
+# Performance-booster for watching directories on Windows
+gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
 
-  # Eventmachine fix (gem uninstall eventmachine (mingw32); bundle install; bundle exec jekyll clean)
+group :development do
+    # Eventmachine fix (gem uninstall eventmachine (mingw32); bundle install; bundle exec jekyll clean)
   gem 'eventmachine', '1.2.7', git: 'git@github.com:eventmachine/eventmachine', tag: 'v1.2.7'
 end
