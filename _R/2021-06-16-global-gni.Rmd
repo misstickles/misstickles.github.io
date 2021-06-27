@@ -2,7 +2,7 @@
 title: World GNI
 description: Some very high level looking at a selection of countries's GNI since 1971, with a global map plot.
 output: html_document
-category: "population data"
+category: "population-data"
 tags: [r, gni, map]
 ---
 
