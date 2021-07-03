@@ -7,9 +7,9 @@ tags: [r, covid]
 layout: post
 ---
 
-# Let's Map Covid-19 in the UK...
+# Let's Plot Covid-19 in the UK...
 
-```{r setup, include=FALSE, warning=FALSE}
+```{r load, include=FALSE}
 rm(list = ls())
 
 library(tidyverse)
@@ -19,16 +19,44 @@ library(cowplot)
 
 # prevent scientific notation below 10000
 options(scipen = 9999)
+
+knitr::opts_chunk$set(
+  cache = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  fig.height = 40,
+  fig.width = 30
+)
 ```
 
-```{r load, cache=TRUE, message=FALSE}
+## Source
+
+### Covid-19
+
+Covid data is from the UK Government website, using the following URL:
+
+<https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&metric=newDeaths28DaysByDeathDate&metric=newCasesBySpecimenDate&format=csv>
+
+Covid-19 data is CONFIRMED cases or deaths only.
+
+- A case is registered on the date of the test specimen.
+- A death is registered on the day of death, and the death occurs within 28 days of a positive Covid-19 test.
+- The dates, especially more recent ones, are subject to change as data comes in.
+
+### Population
+
+This data is sourced from the [ONS](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland) website.  It is from mid 2019, but good enough for our use.
+
+### Read and Select Required Data
+
+```{r source, dependson="load"}
 source <- "https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&metric=newDeaths28DaysByDeathDate&metric=newCasesBySpecimenDate&format=csv"
 src <- read_csv(source)[, c(1:2, 4:6)]
 
 source_counties <- "http://geoportal1-ons.opendata.arcgis.com/datasets/89109c7ba29f496187e125b5c8a091b6_0.csv"
 counties <- read_csv(source_counties)[, c(1, 4)]
 
-source_population <- "./data/population-mid2019.xls"
+source_population <- "../data/population-mid2019.xls"
 population <- read_excel(
   source_population,
   sheet = "MYE2 - Persons",
@@ -45,11 +73,11 @@ colnames(raw) <- c(
 )
 ```
 
-This data is sourced from the [ONS](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland) website.  It is from mid 2019, but good enough for our use.
+## Tidy...
 
-Create an R tidy table.
+Create an R-tidy table for easier use within `ggplot`.
 
-```{r tidy, cache=TRUE}
+```{r tidy, dependson="source"}
 data <- raw %>%
   pivot_longer(c("cases", "deaths"), names_to = "type", values_to = "count")
 data
@@ -61,7 +89,7 @@ Add some helper columns to each dataset.
 
 Convert case and death counts to a rolling 7-day average.
 
-```{r}
+```{r cases-helpers, dependson="tidy"}
 cases <- subset(data, type == "cases")
 deaths <- subset(data, type == "deaths")
 
@@ -80,29 +108,46 @@ cases_heatmap <- cases %>%
   ) %>%
   ungroup()
 
-max(cases_heatmap$total_per_ht)
-View(cases_heatmap %>% arrange(desc(total)))
-View(cases_heatmap %>% filter(name == "Birmingham"))
+deaths_heatmap <- deaths %>%
+  arrange(code, date) %>%
+  na.omit() %>%
+  group_by(code) %>%
+  mutate(
+    max_count = max(count, na.rm = TRUE),
+    max_date = date[which(count == max_count)][1],
+    count7 = rollmean(count, 7, na.pad = TRUE),
+    prop_max = count / max_count,
+    per_ht = as.integer(count7 * 100000 / population),
+    total = sum(count, na.rm = TRUE),
+    total_per_ht = as.integer(total * 100000 / population)
+  ) %>%
+  ungroup()
+
 min_date <- min(cases$date)
 max_date <- max(cases$date)
 ```
 
+## Heatmap 7-day Rolling Average
+
+If you zoom in with your browser, you should just about be able to read the axes.
+
 Total cases for 7-day rolling average.
 
-```{r, fig.height=10}
-ggplot(cases_heatmap, aes(
-  x = date,
-  y = fct_reorder(name, desc(max_date)),
-  fill = prop_max
-)) +
+```{r cases-avg-heatmap, dependson="cases-helpers", echo=FALSE}
+cases_heatmap %>%
+  ggplot(aes(
+    x = date,
+    y = fct_reorder(name, max_date),
+    fill = prop_max * 100
+  )) +
   geom_tile(color = "white", show.legend = TRUE) +
-  scale_fill_distiller(palette = "Spectral") +
+  scale_fill_distiller(palette = "Spectral", name = "Avg Cases / Max (%)") +
   scale_x_date(
-    name = "Date",
     limits = as.Date(c(min_date, max_date)),
+    date_breaks = "2 months",
+    date_labels = "%b-%y",
     expand = c(0, 0)
   ) +
-  #  scale_y_reverse(name = "", expand = c(0, 0)) +
   scale_y_discrete(
     name = "",
     expand = c(0, 0)
@@ -110,35 +155,49 @@ ggplot(cases_heatmap, aes(
   theme_classic() +
   labs(
     title = "Timeline for COVID-19 Cases in UK Local Authorities",
-    subtitle = paste0("The heatmap represents the 7-day rolling average of the number of confirmed cases within each Local Authority (LA).
-To avoid imacting each area with outliers from other LAs, values are normalised to the maximum value within each LA.
-LAs are ordered by the date at which they recorded their maximum cases
+    subtitle = paste0("The heatmap represents the 7-day rolling average of the number of confirmed cases within each Local Authority (LA), values are normalised to the maximum value within each LA.
+LAs are ordered by the date at which they recorded their maximum number of cases.
 Data updated to ", max_date),
     caption = "Plot by @misstickles"
   ) +
   theme(
     axis.line.y = element_blank(),
-    #    plot.subtitle = element_text(size = rel(0.78)),
     plot.title.position = "plot",
-    #    axis.text.y = element_text(colour = "Black"),
-    #    plot.title = element_text(size = rel(2.3))
+    legend.position = "bottom"
   )
 ```
 
-Introduce population.
+Each LA has its number of cases normalised to its own maximum number of cases.  Therefore, each LA will have a red plot signifying the day of maximum cases.
 
-```{r cases-heatmap, fig.height=40, fig.width=30, echo=FALSE}
+This way, it is easy to spot the first, second, and the third waves (just beginning).
+
+Some (very brief) interesting things:
+
+- some of the LAs with later maximum case dates (at the top), are seeing very high rates in the 3rd wave (proportionally)
+- the early starters in the first wave are also starting early in the third
+- there are a number of LAs (those who saw the earliest cases) who had large waves in both October / November AND January
+
+I like this plot, as it aditionally shows clear information on where the cases began in the UK.
+
+## Introduce population
+
+This similar heatmap presents the number of cases per 100,000 population within each Local Authority.  As before, LAs are ordered by the date a which they recorded their maximum number of cases.
+
+On the right is a plot of the total number of cases recorded for that LA.
+
+```{r cases-heatmap, dependson="cases-helpers", echo=FALSE}
 case_tiles <- cases_heatmap %>%
   ggplot(aes(
     x = date,
-    y = fct_reorder(name, desc(max_date)),
+    y = fct_reorder(name, max_date),
     fill = per_ht
   )) +
-  geom_tile(color = "white", show.legend = FALSE) +
-  scale_fill_distiller(palette = "Spectral", name = "Cases") +
+  geom_tile(color = "white", show.legend = TRUE) +
+  scale_fill_distiller(palette = "Spectral", name = "Cases / day") +
   scale_x_date(
-    name = "Date",
     limits = as.Date(c(min_date, max_date)),
+    date_breaks = "2 months",
+    date_labels = "%b-%y",
     expand = c(0, 0)
   ) +
   scale_y_discrete(
@@ -148,28 +207,25 @@ case_tiles <- cases_heatmap %>%
   theme_classic() +
   labs(
     title = "Timeline for COVID-19 Cases in UK Local Authorities, per 100,000 population",
-    subtitle = paste0("The heatmap represents the 7-day rolling average of the number of confirmed cases per 100,000 within each Local Authority (LA).
-To avoid imacting each LA with outliers from other LAs, values are normalised to the maximum value within each.
-LAs are ordered by the date at which they recorded their maximum count of cases.
+    subtitle = paste0("The heatmap represents the number of confirmed cases per 100,000 within each Local Authority (LA).
+LAs are ordered by the date at which they recorded their maximum number of cases.
 Data updated to ", max_date),
     caption = "Plot by @misstickles"
   ) +
   theme(
     axis.line.y = element_blank(),
-    #    plot.subtitle = element_text(size = rel(0.78)),
     plot.title.position = "plot",
-    #    axis.text.y = element_text(colour = "Black"),
-    #    plot.title = element_text(size = rel(2.3)),
     legend.position = "bottom"
   )
 
 case_cols <- cases_heatmap %>%
-  ggplot(subset(cases_heatmap, date == max_date), aes(
+  filter(date == max_date) %>%
+  ggplot(aes(
     x = total_per_ht,
     y = fct_reorder(name, desc(max_date)),
     fill = total_per_ht
   )) +
-  geom_col(show.legend = FALSE) +
+  geom_col(show.legend = TRUE) +
   scale_fill_distiller(palette = "Spectral", name = "Total") +
   scale_x_continuous(
     name = "Total cases",
@@ -183,21 +239,31 @@ case_cols <- cases_heatmap %>%
     axis.text.y = element_blank(),
     axis.ticks.y = element_blank(),
     axis.line.y = element_blank(),
-    legend.position = "right"
+    legend.position = "bottom"
   )
 
 plot_grid(case_tiles, case_cols, align = "h", rel_widths = c(1, 0.2))
 ```
 
+The general pattern is the same as above.  It is less easy to see the first wave, but more easy to identify the regions with the higher number of cases.
 
+## Deaths
 
-```{r}
-ggplot(deaths_heatmap, aes(x = date, y = name, fill = count7)) +
-  geom_tile(color = "white", show.legend = FALSE) +
-  scale_fill_distiller(palette = "Spectral") +
+As for cases above, the number of deaths is normalised to the maximum of deaths recorded for each LA.
+
+```{r deaths-heatmap, dependson="cases-helpers", echo=FALSE}
+death_tiles <- deaths_heatmap %>%
+  ggplot(aes(
+    x = date,
+    y = fct_reorder(name, max_date),
+    fill = prop_max * 100
+  )) +
+  geom_tile(color = "white", show.legend = TRUE) +
+  scale_fill_distiller(palette = "Spectral", name = "Avg Deaths / Max (%)") +
   scale_x_date(
-    name = "Date",
     limits = as.Date(c(min_date, max_date)),
+    date_breaks = "2 months",
+    date_labels = "%b-%y",
     expand = c(0, 0)
   ) +
   scale_y_discrete(
@@ -207,14 +273,47 @@ ggplot(deaths_heatmap, aes(x = date, y = name, fill = count7)) +
   theme_classic() +
   labs(
     title = "Timeline for COVID-19 Deaths in UK Local Authorities",
-    subtitle = "The heatmap represents the 7-day rolling average of the number of confirmed deaths within each Local Authority.",
+    subtitle = paste0("The heatmap represents the 7-day rolling average of the number of deaths within each Local Authority (LA), values are normalised to the maximum value within each LA.
+LAs are ordered by the date at which they recorded their maximum number of cases.
+Data updated to ", max_date),
     caption = "Plot by @misstickles"
   ) +
   theme(
     axis.line.y = element_blank(),
-    plot.subtitle = element_text(size = rel(0.78)),
     plot.title.position = "plot",
-    axis.text.y = element_text(colour = "Black"),
-    plot.title = element_text(size = rel(2.3))
+    legend.position = "bottom"
   )
+
+death_cols <- deaths_heatmap %>%
+  filter(date == max_date) %>%
+  ggplot(aes(
+    x = total_per_ht,
+    y = fct_reorder(name, desc(max_date)),
+    fill = total_per_ht
+  )) +
+  geom_col(show.legend = TRUE) +
+  scale_fill_distiller(palette = "Spectral", name = "Total") +
+  scale_x_continuous(
+    name = "Total cases",
+    breaks = c(0, 100, 200, 300, 400),
+    expand = c(0, 0)
+  ) +
+  theme_classic() +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.line.y = element_blank(),
+    legend.position = "bottom"
+  )
+
+plot_grid(death_tiles, death_cols, align = "h", rel_widths = c(1, 0.2))
 ```
+
+The minimum plot date (and the max) is the same as for cases, so it is possible to see the delay in deaths since the cases.
+
+LAs are ordered differently as those of cases.  I am in no position to speculate why at this time!
+
+I can see an interesting split in this death data... LAs who had high daily deaths in the first wave, had lower in the second; but those with fewer in the first suffered badly in the second.  Ordering by date of highest daily count does not present any correlation with total number of deaths.
+
