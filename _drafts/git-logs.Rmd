@@ -1,0 +1,109 @@
+---
+title: GitHub logs
+description: Analysing GitHub logs
+output: html_document
+---
+
+<https://github.com/lorenzwalthert/gitsum>
+
+```{r setup}
+library(gitsum)
+library(tidyverse)
+library(forcats)
+```
+
+```{r}
+init_gitsum()
+
+df <- parse_log_detailed() %>%
+  select(short_hash, short_message, total_files_changed, nested)
+
+df
+
+df$nested[[1]]
+```
+
+```{r}
+log <- parse_log_detailed()
+log %>%
+  group_by(author_name) %>%
+  summarise(n = n())
+```
+
+```{r}
+lines <- log %>%
+  unnest_log() %>%
+  set_changed_file_to_latest_name() %>%
+  add_line_history()
+```
+
+```{r}
+
+log
+names(log)
+```
+
+```{r}
+log %>%
+  mutate(weekday = factor(weekday, c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"))) %>%
+  ggplot(aes(x = weekday)) +
+  geom_bar() +
+  theme_minimal()
+```
+
+
+
+```{r}
+report_git()
+
+parse_log_detailed_full_run()
+```
+
+```{r}
+names(log)
+summary(log)
+head(log)
+
+x <- log %>% filter(short_hash == "c152")
+View(x)
+
+y <- log %>% filter(is_merge == TRUE)
+View(y)
+
+View(log)
+```
+
+`git log --stat --parents --stat-width 99999`
+
+`git log --pretty=format:"%h %ad" --numstat`
+
+The unnested column names are:
+- short_hash      %h
+- author_name     %an
+- date            %ad
+- hash            %H
+- left_parent     %P  (then do the split for right parent)
+- right_parent    (%P)
+- author_email    %ae
+- message         %s (subject)
+- description     %b  (or %B?)
+- is_merge  ???  is_merge = ifelse(!is.na(.data$left_parent) & !is.na(.data$right_parent), TRUE, FALSE
+
+Calculate:
+- weekday
+- month
+- monthday
+- time
+- year
+- timezone
+
+The nested columns contain more information on each commit. The column names are:
+- changed_file
+- edits
+- insertions
+- deletions
+
+Calculate:
+- total_files_changed
+- total_insertions
+- total_deletions
