@@ -7,6 +7,7 @@ output: html_document
 <https://github.com/lorenzwalthert/gitsum>
 
 ```{r setup}
+rm(list = ls())
 library(gitsum)
 library(tidyverse)
 library(forcats)
@@ -82,12 +83,10 @@ The unnested column names are:
 - author_name     %an
 - date            %ad
 - hash            %H
-- left_parent     %P  (then do the split for right parent)
-- right_parent    (%P)
+- parent          %P  (then do the split for right parent)
 - author_email    %ae
 - message         %s (subject)
 - description     %b  (or %B?)
-- is_merge  ???  is_merge = ifelse(!is.na(.data$left_parent) & !is.na(.data$right_parent), TRUE, FALSE
 
 Calculate:
 - weekday
@@ -96,6 +95,9 @@ Calculate:
 - time
 - year
 - timezone
+- left_parent
+- right_parent
+- is_merge  ???  is_merge = ifelse(!is.na(.data$left_parent) & !is.na(.data$right_parent), TRUE, FALSE
 
 The nested columns contain more information on each commit. The column names are:
 - changed_file
@@ -107,3 +109,140 @@ Calculate:
 - total_files_changed
 - total_insertions
 - total_deletions
+
+
+# Wrangle the Logs
+
+Create a string to collect the logs in our required format.
+
+```{r}
+# https://www.r-bloggers.com/2018/03/guide-to-tidy-git-analysis/
+log_format_options <- c(
+  # description = "b", 
+  short_hash = "h", hash = "H",
+  author_name = "an", author_email = "ae",
+  datetime = "cd", parents = "P",
+  subject = "s")
+
+option_delim <- "~~~"
+log_format <- str_glue("%{log_format_options}") %>% str_c(collapse = option_delim)
+log_options <- str_glue('--pretty=format:"{log_format}" --date=format:"%Y-%m-%d %H:%M:%S" --branches --numstat')
+```
+
+```{r}
+git_cmd <- str_glue("git -C D:/git/updater --no-pager log {log_options}")
+
+print(git_cmd)
+
+git_log <-  system(git_cmd, intern = TRUE)
+  
+l <- git_log %>%
+  mutate(
+    commit_count = cumsum(grepl(option_delim, value))
+  ) %>%
+  str_split_fixed(option_delim, length(log_format_options)) %>%
+  as_tibble() %>%
+  setNames(names(log_format_options)) %>%
+  mutate(
+    parent_left = str_split(parents, " ")[1],
+    parent_right = str_split(parents, " ")[2]
+  )
+
+head(git_log)
+u %>%
+  group_by()
+View(l)
+View(u)
+```
+
+```{r}
+parse_commit <- function(commit) {
+
+}
+
+get_file_info <- function(commit) {
+
+}
+
+```
+
+
+```{r testing}
+sys_call <- str_glue("{git_cmd} > ", "jo.log.txt")
+shell(sys_call)
+
+t <- readr::read_lines("jo.log.txt", progress = TRUE) %>%
+  str_split_fixed(option_delim, length(log_format_options)) %>%
+  as_tibble() %>%
+  setNames(names(log_format_options)) %>%
+  mutate(
+    commit_count = cumsum(grepl(option_delim, value))
+  )
+
+View(t)
+
+v <- aggregate(lines ~ commit_count, t, I)
+View(v)
+head(v)
+
+```
+
+
+
+```{r}
+f <- t %>%
+#  filter(str_detect(lines, "~~~")) %>%
+  str_split_fixed(option_delim, length(log_format_options)) %>%
+  as_tibble(column_name = "raw") %>%
+  setNames(names(log_format_options)) %>%
+  mutate(
+    parent_left = str_split(parents, " ")[1],
+    parent_right = str_split(parents, " ")[2]
+  )
+
+View(f)
+
+```
+
+
+
+```{r}
+str_c("Letter: ", letters)
+str_c("Letter", letters, sep = ": ")
+str_c(letters, " is for", "...")
+str_c(letters[-26], " comes before ", letters[-1])
+
+str_c(letters, collapse = "")
+str_c(letters, collapse = ", ")
+
+# Missing inputs give missing outputs
+str_c(c("a", NA, "b"), "-d")
+# Use str_replace_NA to display literal NAs:
+str_c(str_replace_na(c("a", NA, "b")), "-d")
+
+
+
+fruits <- c(
+  "apples and oranges and pears and bananas",
+  "pineapples and mangos and guavas"
+)
+
+str_split(fruits, " and ")
+str_split(fruits, " and ", simplify = TRUE)
+
+# Specify n to restrict the number of possible matches
+str_split(fruits, " and ", n = 3)
+str_split(fruits, " and ", n = 2)
+# If n greater than number of pieces, no padding occurs
+str_split(fruits, " and ", n = 5)
+
+# Use fixed to return a character matrix
+str_split_fixed(fruits, " and ", 3)
+str_split_fixed(fruits, " and ", 4)
+
+
+df=data.frame(a=rep(c("x","y"),2),b=c("Rome", "Venice", "Barcelona", "Paris"))
+df %>%
+  group_by(a) %>%
+  summarise(b = paste(b, collapse = ", "))
+```

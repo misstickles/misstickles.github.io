@@ -1,0 +1,1508 @@
+edfdbbb~~~edfdbbb5cb0b44dd6646b3a9ee557448888c1b77~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-28 16:39:31~~~44595c46fa3503642a1579a78599f8a5da2a18ef~~~Introduce tests and refactoring into v3 API.
+17	0	src/Abstractions/Events/v3/PackageInstallFailedEvent.cs
+17	0	src/Abstractions/Events/v3/PackageInstallSuccessEvent.cs
+47	0	src/Api.Test.Unit/v3/ApiHandlers/InstallPackagesHandlerTests.cs
+1	0	src/Api/Api.csproj
+78	0	src/Api/Controllers/Handlers.v3/InstallPackagesHandler.cs
+14	0	src/Api/Controllers/PackagesController.v3.cs
+146	0	src/Domain.Test.Unit/Packages.v3/Services/InstallPackagesServiceShould.cs
+1	0	src/Domain/Packages/Extensions/ServiceCollectionExtensions.cs
+135	0	src/Domain/Packages/Services/InstallPackagesService.cs
+18	0	src/Domain/Packages/Services/Interfaces/IInstallPackagesService.cs
+5	0	src/PackageManager/Models/HelmPackage.cs
+12	4	src/PackageManager/PackageManager.cs
+38	0	src/Test.Integration/for_Controller/InstallPackagesShould.cs
+34	0	src/Test.Integration/for_PackageManager/QueryInstalledPackagesTests.cs
+
+ace7426~~~ace7426c68aa1aeda022f9fb0856d5e6ebacc9f6~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-25 09:42:13~~~9341eb9fd88eca8a01b6d4dbbea380392077a64d~~~Unit tests
+302	0	src/PackageManager.Test.Unit/Infrastructure/KubernetesClientRepositoryTests.cs
+28	194	src/PackageManager.Test.Unit/Services/Command/PackageManagerCommandTests.cs
+6	2	src/PackageManager.Test.Unit/Services/Query/PackageManagerQueryTests.cs
+14	11	src/PackageManager/Services/Command/PackageManagerCommand.cs
+
+9341eb9~~~9341eb9fd88eca8a01b6d4dbbea380392077a64d~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-24 18:24:29~~~44595c46fa3503642a1579a78599f8a5da2a18ef~~~Remove PackageManager dependency on KubernetesClient to a Infrastructure / Repo library.  Create Command and Query.  Test with same (but refactored) tests.
+0	1	src/Domain.Test.Unit/Licenses.v3/Services/LicensingServiceTests.cs
+6	6	src/Domain.Test.Unit/Packages.v3/Services/InstalledPackagesServiceTests.cs
+0	1	src/Domain/Licenses.v3/Services/LicensingService.cs
+5	5	src/Domain/Packages/Services/InstalledPackagesService.cs
+8	0	src/PackageManager.Test.Unit/Infrastructure/KubernetesClientRepositoryTests.cs
+421	0	src/PackageManager.Test.Unit/Services/Command/PackageManagerCommandTests.cs
+174	0	src/PackageManager.Test.Unit/Services/Query/PackageManagerQueryTests.cs
+53	0	src/PackageManager/DisposableBase.cs
+20	0	src/PackageManager/Guards/Guard.cs
+5	0	src/PackageManager/IPackageManager.cs
+45	0	src/PackageManager/Infrastructure/IPackageClientRepository.cs
+126	0	src/PackageManager/Infrastructure/KubernetesClientRepository.cs
+1	1	src/PackageManager/Models/Chart.cs
+1	1	src/PackageManager/Models/CustomResourceInstance.cs
+1	1	src/PackageManager/Models/CustomResourceInstanceMetadata.cs
+1	1	src/PackageManager/Models/CustomResourceInstanceSpec.cs
+1	1	src/PackageManager/Models/CustomResourceInstanceStatus.cs
+1	1	src/PackageManager/Models/CustomResourceInstances.cs
+1	1	src/PackageManager/Models/DeletePackageResponse.cs
+1	1	src/PackageManager/Models/Rollback.cs
+32	0	src/PackageManager/Services/Command/IPackageManagerCommand.cs
+250	0	src/PackageManager/Services/Command/PackageManagerCommand.cs
+17	0	src/PackageManager/Services/Query/IPackageManagerQuery.cs
+49	0	src/PackageManager/Services/Query/PackageManagerQuery.cs
+
+44595c4~~~44595c46fa3503642a1579a78599f8a5da2a18ef~~~Jo Faircloth~~~Jo.Faircloth@elekta.com~~~2021-06-23 14:00:18~~~9d6e3706a09c1fa04539fddb4eb55df00f528f3c~~~Merged PR 22570: US236033 Fix swagger for v3 APIs +semver: patch
+5	1	docs/documentation/release_notes.md
+17	2	src/Api/Controllers/PackagesController.v3.cs
+
+b8a4444~~~b8a4444efebe034c2d49e7b2307fe64292a8c6ce~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-23 14:37:01~~~073ded60a6367fb60f27a1b60ae681b2d97d92ee~~~Changed controller route to `pacakages`
+1	1	src/Api/Controllers/PackagesController.v3.cs
+
+073ded6~~~073ded60a6367fb60f27a1b60ae681b2d97d92ee~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-22 17:14:54~~~baecb684635429f5ff393c4e0d145610429fb00c~~~re-add line as (still) not part of this branch
+1	0	src/Api/Startup.cs
+
+baecb68~~~baecb684635429f5ff393c4e0d145610429fb00c~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-22 17:12:52~~~db67e10e3e41b9be6cd6b8f785c5f1c70a75f8ca~~~startup change not a part of this branch!
+6	2	src/Api/Startup.cs
+
+db67e10~~~db67e10e3e41b9be6cd6b8f785c5f1c70a75f8ca~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-22 17:10:46~~~7a260b7ca358c92f4d452ca93383f4ddf85bd1b3 9d6e3706a09c1fa04539fddb4eb55df00f528f3c~~~Merge from main
+7a260b7~~~7a260b7ca358c92f4d452ca93383f4ddf85bd1b3~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-22 16:58:32~~~ac68af2c0eccd2060644699bdf1afa314371c767~~~release notes
+14	2	docs/documentation/release_notes.md
+
+9d6e370~~~9d6e3706a09c1fa04539fddb4eb55df00f528f3c~~~Jo Faircloth~~~Jo.Faircloth@elekta.com~~~2021-06-22 15:43:22~~~5f918b8d98123632ad333348cc0b0161d7ca770f~~~Merged PR 22530: US236033 Added spec tests +semver: patch
+5	1	docs/documentation/release_notes.md
+4	2	src/Domain.Test.Unit/Licenses.v3/Services/LicensingServiceTests.cs
+8	1	src/Domain/Licenses.v3/Services/LicensingService.cs
+16	0	src/Test.Specification/Features/SmokeTestV3.feature
+2	0	src/Test.Specification/SpecEnvironmentSettings.cs
+3	1	src/Test.Specification/Steps/GetPackages/V2/SmokeTestV2Steps.cs
+35	0	src/Test.Specification/Steps/GetPackages/v3/SmokeTestV3Steps.cs
+
+4778f05~~~4778f05dbe5eb1abf1de5a2c5926f3ce063e3162~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-22 16:34:38~~~7f7f26fa926f792fcf548bd377bc5664b942a70b 5f918b8d98123632ad333348cc0b0161d7ca770f~~~Merge from main
+5f918b8~~~5f918b8d98123632ad333348cc0b0161d7ca770f~~~Jo Faircloth~~~Jo.Faircloth@elekta.com~~~2021-06-22 15:05:56~~~e7fa1375950faf6bd21d3d3d51d92fcb993f4dea~~~Merged PR 22568: US236033 Integration tests for refactored code +semver: minor
+6	2	docs/documentation/release_notes.md
+1	1	src/Api/Controllers/PackagesController.cs
+11	7	src/Api/Controllers/PackagesController.v3.cs
+6	1	src/Api/Startup.cs
+2	2	src/Domain/Packages/Services/AvailableUpdatesPackagesService.cs
+2	2	src/Test.Integration/TestEnvironmentSettings.cs
+64	0	src/Test.Integration/for_Controller/GetV3PackagesTests.cs
+
+ac68af2~~~ac68af2c0eccd2060644699bdf1afa314371c767~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-22 15:42:02~~~e7fa1375950faf6bd21d3d3d51d92fcb993f4dea~~~Moved packageController v3 to non-partial class :(
+13	2	src/Api/Controllers/PackagesController.v3.cs
+
+7f7f26f~~~7f7f26fa926f792fcf548bd377bc5664b942a70b~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-22 15:32:53~~~d0280b74d90a788103b0ca2869fee70a95ee29f0 77b03a7ef3fc53915938abdd93fbbae39e2d2f26~~~Merge from Int tests
+77b03a7~~~77b03a7ef3fc53915938abdd93fbbae39e2d2f26~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-22 15:29:05~~~12764ef53732835b48c64ed0539323bc78a383be~~~Missing Authorize
+1	1	src/Api/Controllers/PackagesController.cs
+
+d0280b7~~~d0280b74d90a788103b0ca2869fee70a95ee29f0~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-22 15:25:43~~~b9e20c2b4cd40e14ac773751af67ebf82dac8cce e7fa1375950faf6bd21d3d3d51d92fcb993f4dea~~~Merge from main
+12764ef~~~12764ef53732835b48c64ed0539323bc78a383be~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-22 15:15:24~~~5d1f37b0e52a45c319d5ee6050ed205058c2075c e7fa1375950faf6bd21d3d3d51d92fcb993f4dea~~~Merge from main
+5d1f37b~~~5d1f37b0e52a45c319d5ee6050ed205058c2075c~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-22 15:04:47~~~af220a3adea5a799339fde149252e693a822ed11 d7e1512bbfa898e7276f67c38352bd329ccfe5d6~~~Merge from refactor branch
+e7fa137~~~e7fa1375950faf6bd21d3d3d51d92fcb993f4dea~~~Jo Faircloth~~~Jo.Faircloth@elekta.com~~~2021-06-22 13:20:57~~~1dceaca069a0e1d6a8fdf0fc94371fcc81b6d622~~~Merged PR 22362: US236033 Refactor packages for new API package endpoints +semver: major
+91	11	docs/documentation/release_notes.md
+19	0	src/Abstractions/Events/v3/ExceptionEvent.cs
+2	2	src/Anticorruption/Anticorruption.csproj
+1	1	src/Api.Messaging/Api.Messaging.csproj
+8	1	src/Api.Test.Unit/Api.Test.Unit.csproj
+38	0	src/Api.Test.Unit/ApiHandlers/AvailableUpdatesPackagesHandlerTests.cs
+0	66	src/Api.Test.Unit/ApiHandlers/UpdatesHandlerTests.cs
+68	0	src/Api.Test.Unit/v3/ApiHandlers/AvailableUpdatesPackagesHandlerTests.cs
+41	0	src/Api.Test.Unit/v3/ApiHandlers/EntitledPackagesHandlerTests.cs
+41	0	src/Api.Test.Unit/v3/ApiHandlers/InstalledPackagesHandlerTests.cs
+124	0	src/Api.Test.Unit/v3/ApiHandlers/PackagesTestData.cs
+3	1	src/Api/Api.csproj
+59	0	src/Api/Controllers/Handlers.v3/AvailableUpdatesPackagesHandler.cs
+58	0	src/Api/Controllers/Handlers.v3/EntitledPackagesHandler.cs
+57	0	src/Api/Controllers/Handlers.v3/InstalledPackagesHandler.cs
+2	2	src/Api/Controllers/PackagesController.cs
+59	0	src/Api/Controllers/PackagesController.v3.cs
+11	0	src/Api/Enums/PackageQueryType.cs
+21	0	src/Api/Extensions/ControllerBaseExtensions.cs
+24	0	src/Api/Extensions/StringExtensions.cs
+20	0	src/Api/Guards/Guard.cs
+31	0	src/Api/Guards/ValidationCheck.cs
+18	0	src/Api/Models/v3/ApiError.cs
+49	0	src/Api/Models/v3/ApiMiddlewareOptions.cs
+34	0	src/Api/Models/v3/ApiResponse.cs
+40	0	src/Api/Models/v3/BadRequest.cs
+24	0	src/Api/Models/v3/ErrorDetails.cs
+10	6	src/Api/Startup.cs
+1	1	src/Client.Test.Unit/Client.Test.Unit.csproj
+6	2	src/Domain.Test.Unit/Domain.Test.Unit.csproj
+92	0	src/Domain.Test.Unit/Licenses.v3/Infrastructure/LicensingRepositoryTests.cs
+75	0	src/Domain.Test.Unit/Licenses.v3/Infrastructure/TestData.cs
+78	0	src/Domain.Test.Unit/Licenses.v3/Services/LicenseDtoTestData.cs
+53	0	src/Domain.Test.Unit/Licenses.v3/Services/LicensingServiceTests.cs
+99	0	src/Domain.Test.Unit/Packages.v3/CatalogManifestTestData.cs
+16	0	src/Domain.Test.Unit/Packages.v3/EntitlementsDtoTestData.cs
+43	0	src/Domain.Test.Unit/Packages.v3/Extensions/CatalogManifestExtensionsTests.cs
+48	0	src/Domain.Test.Unit/Packages.v3/Extensions/PackageDataExtensionsTests.cs
+98	0	src/Domain.Test.Unit/Packages.v3/Infrastructure/EntitlementsRepositoryTests.cs
+78	0	src/Domain.Test.Unit/Packages.v3/LicenseDtoTestData.cs
+21	0	src/Domain.Test.Unit/Packages.v3/LicenseTestData.cs
+117	0	src/Domain.Test.Unit/Packages.v3/PackagesTestData.cs
+110	0	src/Domain.Test.Unit/Packages.v3/Services/AvailableUpdatesPackagesServiceTests.cs
+90	0	src/Domain.Test.Unit/Packages.v3/Services/EntitledPackagesServiceTests.cs
+73	0	src/Domain.Test.Unit/Packages.v3/Services/InstalledPackagesServiceTests.cs
+8	0	src/Domain.Test.Unit/Packages.v3/Services/PackageUpdaterServiceTests.cs
+5	0	src/Domain.Test.Unit/Services/UpdaterServiceTest.cs
+3	0	src/Domain.Test.Unit/Services/for_UpdatesAvailableService/GetAvailablePackageUpdatesAsyncTests.cs
+5	0	src/Domain.Test.Unit/Services/for_UpdatesAvailableService/GetAvailablePackagesTests.cs
+3	6	src/Domain/{ => Domain}/Domain.csproj
+0	0	src/Domain/{ => Domain}/Entity.cs
+0	1	src/Domain/{ => Domain}/Events/V1/AuthorizedInstallationEvent.cs
+0	1	src/Domain/{ => Domain}/Events/V1/CheckUnauthorizedPackagesEvent.cs
+0	1	src/Domain/{ => Domain}/Events/V1/UnauthorizedInstallationEvent.cs
+0	0	src/Domain/{ => Domain}/Extensions/ServiceCollectionExtensions.cs
+0	0	src/Domain/{ => Domain}/Helpers/EntitlementPackagesHelper.cs
+0	0	src/Domain/{ => Domain}/IAggregateRoot.cs
+0	0	src/Domain/{ => Domain}/Messaging/PackagesEvent.cs
+0	0	src/Domain/{ => Domain}/Messaging/PackagesInstallationFailedEvent.cs
+0	0	src/Domain/{ => Domain}/Messaging/V2/PackagesEvent.cs
+0	0	src/Domain/{ => Domain}/Models/AuthorizationCheck.cs
+0	0	src/Domain/{ => Domain}/Models/AvailablePackage.cs
+0	0	src/Domain/{ => Domain}/Models/EntitlementAggregate/Entitlement.cs
+0	0	src/Domain/{ => Domain}/Models/EntitlementAggregate/EntitlementPackage.cs
+0	0	src/Domain/{ => Domain}/Models/EntitlementAggregate/IEntitlementRepository.cs
+0	0	src/Domain/{ => Domain}/Models/EntitlementAggregate/IEntitlementsAnticorruption.cs
+0	0	src/Domain/{ => Domain}/Models/EntitlementAggregate/NameAndVersionSpecification.cs
+0	0	src/Domain/{ => Domain}/Models/EntitlementAggregate/ThereIsNoInstalledEntitlementException.cs
+0	0	src/Domain/{ => Domain}/Models/ILicenseAnticorruption.cs
+0	0	src/Domain/{ => Domain}/Models/License.cs
+0	0	src/Domain/{ => Domain}/Models/Package.cs
+0	0	src/Domain/{ => Domain}/Models/Packages.cs
+0	0	src/Domain/{ => Domain}/Models/Specification.cs
+0	0	src/Domain/{ => Domain}/Properties/AssemblyInfo.cs
+0	0	src/Domain/{ => Domain}/Services/AuthorizationService.cs
+0	0	src/Domain/{ => Domain}/Services/IAuthorizationService.cs
+0	0	src/Domain/{ => Domain}/Services/ITimeProvider.cs
+0	0	src/Domain/{ => Domain}/Services/IUpdaterService.cs
+0	0	src/Domain/{ => Domain}/Services/IUpdatesAvailableService.cs
+11	0	src/Domain/Domain/Services/IUpdatesReviewedService.cs
+0	0	src/Domain/{ => Domain}/Services/TimeProvider.cs
+0	0	src/Domain/{ => Domain}/Services/UpdaterService.cs
+0	0	src/Domain/{ => Domain}/Services/UpdatesAvailableService.cs
+29	0	src/Domain/Domain/Services/UpdatesReviewedService.cs
+0	0	src/Domain/{ => Domain}/ValueObject.cs
+26	0	src/Domain/Licenses.v3/Dtos/Licensing.cs
+11	0	src/Domain/Licenses.v3/Dtos/LicensingDto.cs
+9	0	src/Domain/Licenses.v3/Dtos/LicensingSource.cs
+10	0	src/Domain/Licenses.v3/Dtos/LicensingType.cs
+18	0	src/Domain/Licenses.v3/Dtos/TrialLicense.cs
+11	0	src/Domain/Licenses.v3/Dtos/TrialStatus.cs
+21	0	src/Domain/Licenses.v3/Exceptions/UnableToQueryLicenseException.cs
+25	0	src/Domain/Licenses.v3/Extensions/ServiceCollectionExtensions.cs
+20	0	src/Domain/Licenses.v3/Guards/Guard.cs
+20	0	src/Domain/Licenses.v3/Infrastructure/ILicensingRepository.cs
+78	0	src/Domain/Licenses.v3/Infrastructure/LicensingRepository.cs
+14	0	src/Domain/Licenses.v3/LicenseSettings.cs
+26	0	src/Domain/Licenses.v3/Licenses.v3.csproj
+13	0	src/Domain/Licenses.v3/Models/License.cs
+11	0	src/Domain/Licenses.v3/Models/LicenseData.cs
+16	0	src/Domain/Licenses.v3/Services/ILicensingService.cs
+48	0	src/Domain/Licenses.v3/Services/LicensingService.cs
+18	0	src/Domain/Packages/Dtos/CatalogManifest.cs
+11	0	src/Domain/Packages/Dtos/CatalogPackage.cs
+14	0	src/Domain/Packages/EntitlementSettings.cs
+19	0	src/Domain/Packages/Exceptions/UnableToGetPackagesException.cs
+52	0	src/Domain/Packages/Extensions/CatalogManifestExtensions.cs
+49	0	src/Domain/Packages/Extensions/PackageDataExtensions.cs
+29	0	src/Domain/Packages/Extensions/ServiceCollectionExtensions.cs
+20	0	src/Domain/Packages/Guards/Guard.cs
+80	0	src/Domain/Packages/Infrastructure/CatalogManifestRepository.cs
+20	0	src/Domain/Packages/Infrastructure/ICatalogManifestRepository.cs
+28	0	src/Domain/Packages/Models/Package.cs
+13	0	src/Domain/Packages/Models/PackageData.cs
+32	0	src/Domain/Packages/Packages.v3.csproj
+123	0	src/Domain/Packages/Services/AvailableUpdatesPackagesService.cs
+81	0	src/Domain/Packages/Services/EntitledPackagesService.cs
+59	0	src/Domain/Packages/Services/InstalledPackagesService.cs
+22	0	src/Domain/Packages/Services/Interfaces/IAvailableUpdatesPackagesService.cs
+16	0	src/Domain/Packages/Services/Interfaces/IEntitledPackagesService.cs
+16	0	src/Domain/Packages/Services/Interfaces/IInstalledPackagesService.cs
+18	0	src/Domain/Packages/Services/Interfaces/IPackagesUpdaterService.cs
+1	1	src/Infrastructure.Test.Unit/Infrastructure.Test.Unit.csproj
+3	3	src/Infrastructure/Infrastructure.csproj
+0	6	src/Test.Specification/Steps/AuthenticationChecksSteps.cs
+0	3	src/Test.Specification/Steps/GetPackages/V2/SmokeTestV2Steps.cs
+3	3	src/Test.Specification/Test.Specification.csproj
+25	6	src/updater.sln
+
+d7e1512~~~d7e1512bbfa898e7276f67c38352bd329ccfe5d6~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-22 12:29:11~~~ce7fb482d9c214d534a905b8dd900629fd8ad87a~~~Changed TODO to NOTE;  fix for PR comments; adding missing code comments
+2	3	src/Api/Controllers/PackagesController.v3.cs
+1	2	src/Domain.Test.Unit/Packages.v3/Services/InstalledPackagesServiceTests.cs
+1	1	src/Domain/Licenses.v3/Services/LicensingService.cs
+1	1	src/Domain/Packages/Dtos/CatalogManifest.cs
+0	6	src/Domain/Packages/Enums/PackageRequestType.cs
+1	1	src/Domain/Packages/Extensions/CatalogManifestExtensions.cs
+10	1	src/Domain/Packages/Extensions/PackageDataExtensions.cs
+2	2	src/Domain/Packages/Infrastructure/CatalogManifestRepository.cs
+2	6	src/Domain/Packages/Services/InstalledPackagesService.cs
+0	9	src/Domain/Packages/UpdaterSettings.cs
+
+b9e20c2~~~b9e20c2b4cd40e14ac773751af67ebf82dac8cce~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-22 08:56:30~~~7f58fdad5c04a6254f487774cbb2a32ba7540e97~~~change to unit test (due now not throwing excpetion)
+4	2	src/Domain.Test.Unit/Licenses.v3/Services/LicensingServiceTests.cs
+
+7f58fda~~~7f58fdad5c04a6254f487774cbb2a32ba7540e97~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-22 08:44:50~~~fd1f2e97bd2e526392a5c814f6da7bec5297e969~~~release notes
+5	1	docs/documentation/release_notes.md
+
+fd1f2e9~~~fd1f2e97bd2e526392a5c814f6da7bec5297e969~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-22 08:42:46~~~e00467d51f8050b40ea7c7c2d1e6722211c3f64d~~~Added spec tests
+8	2	src/Domain/Licenses.v3/Services/LicensingService.cs
+16	0	src/Test.Specification/Features/SmokeTestV3.feature
+2	0	src/Test.Specification/SpecEnvironmentSettings.cs
+3	1	src/Test.Specification/Steps/GetPackages/V2/SmokeTestV2Steps.cs
+35	0	src/Test.Specification/Steps/GetPackages/v3/SmokeTestV3Steps.cs
+
+af220a3~~~af220a3adea5a799339fde149252e693a822ed11~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-21 17:04:10~~~e00467d51f8050b40ea7c7c2d1e6722211c3f64d~~~delete unused test
+0	39	src/Api.Test.Unit/v3/PackagesControllerTests.cs
+
+e00467d~~~e00467d51f8050b40ea7c7c2d1e6722211c3f64d~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-21 16:23:21~~~0bbecbdd459cba8b14dfad7dd3bd3e774ba2ab11~~~release notes
+6	2	docs/documentation/release_notes.md
+
+0bbecbd~~~0bbecbdd459cba8b14dfad7dd3bd3e774ba2ab11~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-21 16:19:06~~~9ce7e32fcaea80f0fff9eb852424aadf4a3ef7cf~~~add and fix int tests
+4	16	src/Api/Controllers/PackagesController.v3.cs
+2	2	src/Domain/Packages/Services/AvailableUpdatesPackagesService.cs
+7	2	src/Test.Integration/for_Controller/GetV3PackagesTests.cs
+
+9ce7e32~~~9ce7e32fcaea80f0fff9eb852424aadf4a3ef7cf~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-21 15:42:26~~~ce7fb482d9c214d534a905b8dd900629fd8ad87a~~~in progress...
+39	0	src/Api.Test.Unit/v3/PackagesControllerTests.cs
+2	2	src/Api/Controllers/PackagesController.cs
+24	9	src/Api/Controllers/PackagesController.v3.cs
+7	2	src/Api/Startup.cs
+2	2	src/Test.Integration/TestEnvironmentSettings.cs
+59	0	src/Test.Integration/for_Controller/GetV3PackagesTests.cs
+
+ce7fb48~~~ce7fb482d9c214d534a905b8dd900629fd8ad87a~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-18 10:39:13~~~11833a0f5e65b4608222f7ea1910f39b0246a3c1~~~Fixing SQ
+0	1	src/Domain/Licenses.v3/Dtos/LicensingDto.cs
+2	0	src/Domain/Licenses.v3/Infrastructure/ILicensingRepository.cs
+0	2	src/Domain/Licenses.v3/Services/ILicensingService.cs
+0	1	src/Domain/Licenses.v3/Services/LicensingService.cs
+
+11833a0~~~11833a0f5e65b4608222f7ea1910f39b0246a3c1~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-18 09:34:38~~~8511f5fb0fe609d355c275b3fcdf4ddd74d9708d~~~Added release notes
+91	11	docs/documentation/release_notes.md
+
+8511f5f~~~8511f5fb0fe609d355c275b3fcdf4ddd74d9708d~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-17 17:57:39~~~d7835261056b946efe5d5e9a2fe59cbb42179cd3~~~Pipeline SQ smells
+0	1	src/Domain/Domain/Events/V1/AuthorizedInstallationEvent.cs
+0	1	src/Domain/Domain/Events/V1/CheckUnauthorizedPackagesEvent.cs
+0	1	src/Domain/Domain/Events/V1/UnauthorizedInstallationEvent.cs
+4	2	src/Domain/Licenses.v3/Exceptions/UnableToQueryLicenseException.cs
+1	1	src/Domain/Licenses.v3/Infrastructure/LicensingRepository.cs
+1	1	src/Domain/Packages/Infrastructure/CatalogManifestRepository.cs
+0	3	src/Test.Specification/Steps/GetPackages/V2/SmokeTestV2Steps.cs
+
+d783526~~~d7835261056b946efe5d5e9a2fe59cbb42179cd3~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-17 17:41:54~~~dab97bd1df8eddcbe07e1dc82d965045d51a8f0e~~~Fix SQ warnings (except TODOs); snuck in new Licenses.v3 test
+3	1	src/Api/Controllers/PackagesController.v3.cs
+4	2	src/Api/Extensions/ControllerBaseExtensions.cs
+3	1	src/Api/Guards/ValidationCheck.cs
+1	1	src/Domain.Test.Unit/Licenses.v3/Infrastructure/TestData.cs
+1	1	src/Domain.Test.Unit/Licenses.v3/Services/LicensingServiceTests.cs
+2	2	src/Domain.Test.Unit/Packages.v3/EntitlementsDtoTestData.cs
+2	1	src/Domain.Test.Unit/Packages.v3/Infrastructure/EntitlementsRepositoryTests.cs
+21	430	src/Domain.Test.Unit/Packages.v3/Services/AvailableUpdatesPackagesServiceTests.cs
+0	46	src/Domain.Test.Unit/Packages.v3/Services/EntitledPackagesServiceTests.cs
+6	3	src/Domain/Packages/Services/AvailableUpdatesPackagesService.cs
+0	4	src/Domain/Packages/Services/InstalledPackagesService.cs
+1	2	src/Domain/Packages/UpdaterSettings.cs
+0	6	src/Test.Specification/Steps/AuthenticationChecksSteps.cs
+
+dab97bd~~~dab97bd1df8eddcbe07e1dc82d965045d51a8f0e~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-17 17:13:44~~~09bf4fa08e45b4d4d32b9c7f8957226f43ef1115~~~Moved RouteAttribute
+1	1	src/Api/Controllers/PackagesController.cs
+0	1	src/Api/Controllers/PackagesController.v3.cs
+
+09bf4fa~~~09bf4fa08e45b4d4d32b9c7f8957226f43ef1115~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-17 15:32:41~~~280bf3bb820ce171ff9618c7912dc2ab5f5de254~~~Rename method (as dupe)
+1	1	src/Api/Controllers/PackagesController.v3.cs
+
+280bf3b~~~280bf3bb820ce171ff9618c7912dc2ab5f5de254~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-17 14:48:56~~~ac12633d24cc70a4d9298f2019e2d24cc74f562d~~~Merge from main (part manually); plus fixes
+1	1	src/Api.Test.Unit/ApiHandlers/AvailableUpdatesPackagesHandlerTests.cs
+1	1	src/Api.Test.Unit/v3/ApiHandlers/AvailableUpdatesPackagesHandlerTests.cs
+1	1	src/Api.Test.Unit/v3/ApiHandlers/EntitledPackagesHandlerTests.cs
+1	1	src/Api.Test.Unit/v3/ApiHandlers/InstalledPackagesHandlerTests.cs
+1	1	src/Api/Controllers/{v3 => Handlers.v3}/AvailableUpdatesPackagesHandler.cs
+1	1	src/Api/Controllers/{v3 => Handlers.v3}/EntitledPackagesHandler.cs
+1	1	src/Api/Controllers/{v3 => Handlers.v3}/InstalledPackagesHandler.cs
+2	3	src/Api/Controllers/{v3 => }/PackagesController.v3.cs
+11	0	src/Domain/Domain/Services/IUpdatesReviewedService.cs
+29	0	src/Domain/Domain/Services/UpdatesReviewedService.cs
+9	0	src/Domain/Licenses.v3/Licenses.v3.csproj
+1	1	src/Domain/Packages/Packages.v3.csproj
+
+ac12633~~~ac12633d24cc70a4d9298f2019e2d24cc74f562d~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-17 13:02:16~~~45ed6a4a09b54e1ee5ed1d5d1e8b6f649d4d078c 1dceaca069a0e1d6a8fdf0fc94371fcc81b6d622~~~Merge branch 'main' into feature/US236033_RefactorForNewEndpoints
+45ed6a4~~~45ed6a4a09b54e1ee5ed1d5d1e8b6f649d4d078c~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-17 12:33:13~~~0e5deae1a360735e3d41d485812b6af3dffd7d88~~~Completed refactor; Added/updated UnitTests; Removed Middleware
+8	1	src/Api.Test.Unit/Api.Test.Unit.csproj
+38	0	src/Api.Test.Unit/ApiHandlers/AvailableUpdatesPackagesHandlerTests.cs
+0	66	src/Api.Test.Unit/ApiHandlers/UpdatesHandlerTests.cs
+68	0	src/Api.Test.Unit/v3/ApiHandlers/AvailableUpdatesPackagesHandlerTests.cs
+41	0	src/Api.Test.Unit/v3/ApiHandlers/EntitledPackagesHandlerTests.cs
+41	0	src/Api.Test.Unit/v3/ApiHandlers/InstalledPackagesHandlerTests.cs
+124	0	src/Api.Test.Unit/v3/ApiHandlers/PackagesTestData.cs
+2	3	src/Api/Api.csproj
+1	1	src/Api/Controllers/PackagesController.cs
+59	0	src/Api/Controllers/v3/AvailableUpdatesPackagesHandler.cs
+58	0	src/Api/Controllers/v3/EntitledPackagesHandler.cs
+57	0	src/Api/Controllers/v3/InstalledPackagesHandler.cs
+60	0	src/Api/Controllers/v3/PackagesController.v3.cs
+11	0	src/Api/Enums/PackageQueryType.cs
+19	0	src/Api/Extensions/ControllerBaseExtensions.cs
+1	1	src/Api/Extensions/StringExtensions.cs
+11	57	src/Api/Guards/ValidationCheck.cs
+0	30	src/Api/Middleware/CustomReponseFactory.cs
+0	83	src/Api/Middleware/DefaultCustomResponse.cs
+0	17	src/Api/Middleware/ICustomResponse.cs
+10	6	src/Api/Startup.cs
+8	14	src/Domain.Test.Unit/Licenses.v3/Infrastructure/LicensingRepositoryTests.cs
+1	1	src/Domain.Test.Unit/Licenses.v3/Infrastructure/TestData.cs
+0	2	src/Domain.Test.Unit/Licenses.v3/Services/LicensingServiceTests.cs
+0	4	src/Domain.Test.Unit/Packages.v3/Services/EntitledPackagesServiceTests.cs
+0	3	src/Domain/Domain/Domain.csproj
+25	0	src/Domain/Licenses.v3/Extensions/ServiceCollectionExtensions.cs
+2	2	src/Domain/Licenses.v3/Infrastructure/ILicensingRepository.cs
+4	2	src/Domain/Licenses.v3/Infrastructure/LicensingRepository.cs
+2	0	src/Domain/Licenses.v3/Services/LicensingService.cs
+52	0	src/Domain/Packages/Extensions/CatalogManifestExtensions.cs
+40	0	src/Domain/Packages/Extensions/PackageDataExtensions.cs
+29	0	src/Domain/Packages/Extensions/ServiceCollectionExtensions.cs
+0	1	src/Domain/Packages/Services/EntitledPackagesService.cs
+
+0e5deae~~~0e5deae1a360735e3d41d485812b6af3dffd7d88~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-16 14:53:29~~~ccdf38a06f8a9175fa600439a21652bbcc950e80~~~Services; Repositories; Unit Tests
+19	0	src/Abstractions/Events/v3/ExceptionEvent.cs
+1	1	src/Anticorruption/Anticorruption.csproj
+5	1	src/Domain.Test.Unit/Domain.Test.Unit.csproj
+98	0	src/Domain.Test.Unit/Licenses.v3/Infrastructure/LicensingRepositoryTests.cs
+75	0	src/Domain.Test.Unit/Licenses.v3/Infrastructure/TestData.cs
+78	0	src/Domain.Test.Unit/Licenses.v3/Services/LicenseDtoTestData.cs
+55	0	src/Domain.Test.Unit/Licenses.v3/Services/LicensingServiceTests.cs
+99	0	src/Domain.Test.Unit/Packages.v3/CatalogManifestTestData.cs
+16	0	src/Domain.Test.Unit/Packages.v3/EntitlementsDtoTestData.cs
+43	0	src/Domain.Test.Unit/Packages.v3/Extensions/CatalogManifestExtensionsTests.cs
+48	0	src/Domain.Test.Unit/Packages.v3/Extensions/PackageDataExtensionsTests.cs
+97	0	src/Domain.Test.Unit/Packages.v3/Infrastructure/EntitlementsRepositoryTests.cs
+78	0	src/Domain.Test.Unit/Packages.v3/LicenseDtoTestData.cs
+21	0	src/Domain.Test.Unit/Packages.v3/LicenseTestData.cs
+117	0	src/Domain.Test.Unit/Packages.v3/PackagesTestData.cs
+519	0	src/Domain.Test.Unit/Packages.v3/Services/AvailableUpdatesPackagesServiceTests.cs
+140	0	src/Domain.Test.Unit/Packages.v3/Services/EntitledPackagesServiceTests.cs
+74	0	src/Domain.Test.Unit/Packages.v3/Services/InstalledPackagesServiceTests.cs
+8	0	src/Domain.Test.Unit/Packages.v3/Services/PackageUpdaterServiceTests.cs
+5	0	src/Domain.Test.Unit/Services/UpdaterServiceTest.cs
+3	0	src/Domain.Test.Unit/Services/for_UpdatesAvailableService/GetAvailablePackageUpdatesAsyncTests.cs
+5	0	src/Domain.Test.Unit/Services/for_UpdatesAvailableService/GetAvailablePackagesTests.cs
+26	0	src/Domain/Licenses.v3/Dtos/Licensing.cs
+12	0	src/Domain/Licenses.v3/Dtos/LicensingDto.cs
+9	0	src/Domain/Licenses.v3/Dtos/LicensingSource.cs
+10	0	src/Domain/Licenses.v3/Dtos/LicensingType.cs
+18	0	src/Domain/Licenses.v3/Dtos/TrialLicense.cs
+11	0	src/Domain/Licenses.v3/Dtos/TrialStatus.cs
+19	0	src/Domain/Licenses.v3/Exceptions/UnableToQueryLicenseException.cs
+20	0	src/Domain/Licenses.v3/Guards/Guard.cs
+18	0	src/Domain/Licenses.v3/Infrastructure/ILicensingRepository.cs
+76	0	src/Domain/Licenses.v3/Infrastructure/LicensingRepository.cs
+14	0	src/Domain/Licenses.v3/LicenseSettings.cs
+17	0	src/Domain/Licenses.v3/Licenses.v3.csproj
+13	0	src/Domain/Licenses.v3/Models/License.cs
+11	0	src/Domain/Licenses.v3/Models/LicenseData.cs
+18	0	src/Domain/Licenses.v3/Services/ILicensingService.cs
+47	0	src/Domain/Licenses.v3/Services/LicensingService.cs
+18	0	src/Domain/Packages/Dtos/CatalogManifest.cs
+11	0	src/Domain/Packages/Dtos/CatalogPackage.cs
+14	0	src/Domain/Packages/EntitlementSettings.cs
+19	0	src/Domain/Packages/Exceptions/UnableToGetPackagesException.cs
+20	0	src/Domain/Packages/Guards/Guard.cs
+80	0	src/Domain/Packages/Infrastructure/CatalogManifestRepository.cs
+20	0	src/Domain/Packages/Infrastructure/ICatalogManifestRepository.cs
+0	11	src/Domain/Packages/Models/LicenseData.cs
+6	1	src/Domain/Packages/Models/Package.cs
+6	8	src/Domain/Packages/Packages.v3.csproj
+120	0	src/Domain/Packages/Services/AvailableUpdatesPackagesService.cs
+82	0	src/Domain/Packages/Services/EntitledPackagesService.cs
+67	0	src/Domain/Packages/Services/InstalledPackagesService.cs
+1	12	src/Domain/Packages/Services/Interfaces/IAvailableUpdatesPackagesService.cs
+0	12	src/Domain/Packages/Services/Interfaces/IEntitledPackagesService.cs
+10	0	src/Domain/Packages/UpdaterSettings.cs
+2	2	src/Infrastructure/Infrastructure.csproj
+2	2	src/Test.Specification/Test.Specification.csproj
+7	0	src/updater.sln
+
+1dceaca~~~1dceaca069a0e1d6a8fdf0fc94371fcc81b6d622~~~Roger Brooks~~~Roger.Brooks@elekta.com~~~2021-06-11 13:05:02~~~8cc6d0e775adeb25f4090957e1f1f9c67307d643~~~Merged PR 22123: US226708 Add Updates Reviewed endpoint +semver: minor
+10	2	docs/documentation/release_notes.md
+17	0	src/Abstractions/Events/V1/UpdatesReviewedEvent.cs
+25	0	src/Api.Test.Unit/ApiHandlers/UpdatesReviewedShould.cs
+13	0	src/Api/Controllers/PackagesController.Updates.cs
+33	0	src/Api/Controllers/UpdatesReviewedHandler.cs
+28	0	src/Domain.Test.Unit/Services/for_UpdatesReviewedService/UpdatesReviewedServiceShould.cs
+1	0	src/Domain/Extensions/ServiceCollectionExtensions.cs
+11	0	src/Domain/Services/IUpdatesReviewedService.cs
+29	0	src/Domain/Services/UpdatesReviewedService.cs
+64	0	src/Test.Integration/for_Controller/UpdatesReviewedShould.cs
+
+ccdf38a~~~ccdf38a06f8a9175fa600439a21652bbcc950e80~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-09 16:43:09~~~bafde27d0cd3d179b305feea473fad3e61fa964e~~~Adding Models and Interfaces
+1	12	src/Api/Api.csproj
+24	0	src/Api/Extensions/StringExtensions.cs
+20	0	src/Api/Guards/Guard.cs
+75	0	src/Api/Guards/ValidationCheck.cs
+30	0	src/Api/Middleware/CustomReponseFactory.cs
+83	0	src/Api/Middleware/DefaultCustomResponse.cs
+17	0	src/Api/Middleware/ICustomResponse.cs
+18	0	src/Api/Models/v3/ApiError.cs
+49	0	src/Api/Models/v3/ApiMiddlewareOptions.cs
+34	0	src/Api/Models/v3/ApiResponse.cs
+40	0	src/Api/Models/v3/BadRequest.cs
+24	0	src/Api/Models/v3/ErrorDetails.cs
+0	8	src/Domain/Packages/Class1.cs
+6	0	src/Domain/Packages/Enums/PackageRequestType.cs
+11	0	src/Domain/Packages/Models/LicenseData.cs
+23	0	src/Domain/Packages/Models/Package.cs
+13	0	src/Domain/Packages/Models/PackageData.cs
+15	5	src/Domain/Packages/{Packages.csproj => Packages.v3.csproj}
+33	0	src/Domain/Packages/Services/Interfaces/IAvailableUpdatesPackagesService.cs
+28	0	src/Domain/Packages/Services/Interfaces/IEntitledPackagesService.cs
+16	0	src/Domain/Packages/Services/Interfaces/IInstalledPackagesService.cs
+18	0	src/Domain/Packages/Services/Interfaces/IPackagesUpdaterService.cs
+1	1	src/updater.sln
+
+bafde27~~~bafde27d0cd3d179b305feea473fad3e61fa964e~~~Jo Faircloth~~~jo.faircloth@elekta.com~~~2021-06-09 15:47:12~~~8cc6d0e775adeb25f4090957e1f1f9c67307d643~~~Moved 'Domain' to a Domain folder;  created new 'Packages' project
+1	1	src/Anticorruption/Anticorruption.csproj
+1	1	src/Api.Messaging/Api.Messaging.csproj
+15	1	src/Api/Api.csproj
+1	1	src/Client.Test.Unit/Client.Test.Unit.csproj
+1	1	src/Domain.Test.Unit/Domain.Test.Unit.csproj
+3	3	src/Domain/{ => Domain}/Domain.csproj
+0	0	src/Domain/{ => Domain}/Entity.cs
+0	0	src/Domain/{ => Domain}/Events/V1/AuthorizedInstallationEvent.cs
+0	0	src/Domain/{ => Domain}/Events/V1/CheckUnauthorizedPackagesEvent.cs
+0	0	src/Domain/{ => Domain}/Events/V1/UnauthorizedInstallationEvent.cs
+0	0	src/Domain/{ => Domain}/Extensions/ServiceCollectionExtensions.cs
+0	0	src/Domain/{ => Domain}/Helpers/EntitlementPackagesHelper.cs
+0	0	src/Domain/{ => Domain}/IAggregateRoot.cs
+0	0	src/Domain/{ => Domain}/Messaging/PackagesEvent.cs
+0	0	src/Domain/{ => Domain}/Messaging/PackagesInstallationFailedEvent.cs
+0	0	src/Domain/{ => Domain}/Messaging/V2/PackagesEvent.cs
+0	0	src/Domain/{ => Domain}/Models/AuthorizationCheck.cs
+0	0	src/Domain/{ => Domain}/Models/AvailablePackage.cs
+0	0	src/Domain/{ => Domain}/Models/EntitlementAggregate/Entitlement.cs
+0	0	src/Domain/{ => Domain}/Models/EntitlementAggregate/EntitlementPackage.cs
+0	0	src/Domain/{ => Domain}/Models/EntitlementAggregate/IEntitlementRepository.cs
+0	0	src/Domain/{ => Domain}/Models/EntitlementAggregate/IEntitlementsAnticorruption.cs
+0	0	src/Domain/{ => Domain}/Models/EntitlementAggregate/NameAndVersionSpecification.cs
+0	0	src/Domain/{ => Domain}/Models/EntitlementAggregate/ThereIsNoInstalledEntitlementException.cs
+0	0	src/Domain/{ => Domain}/Models/ILicenseAnticorruption.cs
+0	0	src/Domain/{ => Domain}/Models/License.cs
+0	0	src/Domain/{ => Domain}/Models/Package.cs
+0	0	src/Domain/{ => Domain}/Models/Packages.cs
+0	0	src/Domain/{ => Domain}/Models/Specification.cs
+0	0	src/Domain/{ => Domain}/Properties/AssemblyInfo.cs
+0	0	src/Domain/{ => Domain}/Services/AuthorizationService.cs
+0	0	src/Domain/{ => Domain}/Services/IAuthorizationService.cs
+0	0	src/Domain/{ => Domain}/Services/ITimeProvider.cs
+0	0	src/Domain/{ => Domain}/Services/IUpdaterService.cs
+0	0	src/Domain/{ => Domain}/Services/IUpdatesAvailableService.cs
+0	0	src/Domain/{ => Domain}/Services/TimeProvider.cs
+0	0	src/Domain/{ => Domain}/Services/UpdaterService.cs
+0	0	src/Domain/{ => Domain}/Services/UpdatesAvailableService.cs
+0	0	src/Domain/{ => Domain}/ValueObject.cs
+8	0	src/Domain/Packages/Class1.cs
+24	0	src/Domain/Packages/Packages.csproj
+1	1	src/Infrastructure.Test.Unit/Infrastructure.Test.Unit.csproj
+1	1	src/Infrastructure/Infrastructure.csproj
+1	1	src/Test.Specification/Test.Specification.csproj
+18	6	src/updater.sln
+
+8cc6d0e~~~8cc6d0e775adeb25f4090957e1f1f9c67307d643~~~Waqas Bajwa~~~Waqas.Bajwa@elekta.com~~~2021-06-08 16:55:05~~~1f4a39653758fde9588ec7b9fba2021c9a760c03~~~Merged PR 22019: US245875 SpecTests further improvements +semver: patch
+16	25	src/Test.Specification/Features/AuthenticationCheck.feature
+17	29	src/Test.Specification/Features/GetPackages-V2.feature
+5	8	src/Test.Specification/Features/GetPackages.feature
+11	20	src/Test.Specification/Features/LicenseUpdateCheck.feature
+3	6	src/Test.Specification/Features/SmokeTest.feature
+2	5	src/Test.Specification/Features/SmokeTestV2.feature
+
+1f4a396~~~1f4a39653758fde9588ec7b9fba2021c9a760c03~~~Roger Brooks~~~Roger.Brooks@elekta.com~~~2021-06-08 12:11:25~~~e30d05fc0305a2b0285e5e0693b2ccd97b37ded9~~~Merged PR 21899: US245837 Fixes for multi namespaces +semver: patch
+29	2	docs/documentation/release_notes.md
+1	1	src/.config/dotnet-tools.json
+7	7	src/Api/appsettings.json
+12	10	src/Test.Helpers/Extensions/KubernetesHelperExtensions.cs
+2	2	src/Test.Integration/TestEnvironmentSettings.cs
+4	1	src/Test.Integration/deploy.ps1
+4	4	src/Test.Integration/devctl.d/{ => elekta-platform-elements}/entitlements.yaml
+7	7	src/Test.Integration/devctl.d/{ => elekta-platform-elements}/iam.yaml
+0	0	src/Test.Integration/devctl.d/{ => elekta-platform-elements}/license-manager-sentinel.yaml
+4	4	src/Test.Integration/devctl.d/{ => elekta-platform-elements}/licensing.yaml
+4	4	src/{Test.Specification/devctl.d => Test.Integration/devctl.d/elekta-platform-elements}/logging-support.yaml
+1	1	src/Test.Integration/devctl.d/{ => elekta-platform-elements}/messaging.yaml
+37	0	src/Test.Integration/devctl.d/elekta-platform-elements/updater.yaml
+0	0	src/Test.Integration/devctl.d/{ => elekta-platform-storage}/sql-server.yaml
+0	37	src/Test.Integration/devctl.d/updater.yaml
+5	3	src/Test.Integration/for_Anticorruption/EntitlementsManager.cs
+1	1	src/Test.Integration/for_Anticorruption/LicenseManager.cs
+1	1	src/Test.Specification/Features/SmokeTestV2.feature
+2	1	src/Test.Specification/Hooks/CleanStartHook.cs
+1	0	src/Test.Specification/SpecEnvironmentSettings.cs
+1	1	src/Test.Specification/Steps/AuthenticationChecksSteps.cs
+1	1	src/Test.Specification/UpdaterTestRunContext.cs
+5	1	src/Test.Specification/appsettings.json
+4	2	src/Test.Specification/deploy.ps1
+4	4	src/Test.Specification/devctl.d/{ => elekta-platform-elements}/entitlements.yaml
+7	7	src/Test.Specification/devctl.d/{ => elekta-platform-elements}/iam.yaml
+0	0	src/Test.Specification/devctl.d/{ => elekta-platform-elements}/license-manager-sentinel.yaml
+4	4	src/Test.Specification/devctl.d/{ => elekta-platform-elements}/licensing.yaml
+4	4	src/{Test.Integration/devctl.d => Test.Specification/devctl.d/elekta-platform-elements}/logging-support.yaml
+1	1	src/Test.Specification/devctl.d/{ => elekta-platform-elements}/messaging.yaml
+37	0	src/Test.Specification/devctl.d/elekta-platform-elements/updater.yaml
+0	0	src/Test.Specification/devctl.d/{ => elekta-platform-storage}/sql-server.yaml
+0	37	src/Test.Specification/devctl.d/updater.yaml
+12	12	src/azure-pipeline.yml
+18	0	src/charts/updater/templates/_helpers.tpl
+5	0	src/charts/updater/templates/deployment.yaml
+15	2	src/charts/updater/values.yaml
+2	1	src/updater.sln
+
+e30d05f~~~e30d05fc0305a2b0285e5e0693b2ccd97b37ded9~~~Waqas Bajwa~~~Waqas.Bajwa@elekta.com~~~2021-05-26 09:06:11~~~83d176ef9556657c8585176051bd7ab21aeb687b~~~Merged PR 21399: US236891 Improving Updater existing SpecTests +semver: patch
+124	110	src/Test.Specification/Features/AuthenticationCheck.feature
+172	156	src/Test.Specification/Features/GetPackages-V2.feature
+38	33	src/Test.Specification/Features/GetPackages.feature
+122	107	src/Test.Specification/Features/LicenseUpdateCheck.feature
+19	14	src/Test.Specification/Features/SmokeTest.feature
+15	11	src/Test.Specification/Features/SmokeTestV2.feature
+12	13	src/Test.Specification/Steps/AuthenticationChecksSteps.cs
+1	1	src/Test.Specification/Steps/CommonSteps.cs
+1	1	src/Test.Specification/Steps/GetPackages/V2/SmokeTestV2Steps.cs
+4	3	src/Test.Specification/Steps/GetPackages/V2/Steps.cs
+3	3	src/Test.Specification/Steps/IamSteps.cs
+4	4	src/Test.Specification/Steps/LicenseUpdateCheckSteps.cs
+3	2	src/Test.Specification/Steps/PackagesSteps.cs
+2	2	src/Test.Specification/Steps/SmokeTestSteps.cs
+
+83d176e~~~83d176ef9556657c8585176051bd7ab21aeb687b~~~Tony Joanes~~~Tony.Joanes@elekta.com~~~2021-05-19 11:15:38~~~f4bff2618fc030e9477d810df432170e999d93e9~~~Merged PR 21300: US238168 Simplify the env vars setting and consolidate into one settings class +semver: patch
+1	1	src/Test.Specification/Helpers/MessagingHelper.cs
+6	6	src/Test.Specification/Helpers/TokenClientHelper.cs
+5	5	src/Test.Specification/Hooks/CleanStartHook.cs
+6	16	src/Test.Specification/Hooks/ScenarioContextHooks.cs
+16	15	src/Test.Specification/Hooks/TestRunHooks.cs
+0	15	src/Test.Specification/Settings/AuthenticationSettings.cs
+0	21	src/Test.Specification/Settings/IamSettings.cs
+0	17	src/Test.Specification/Settings/KubernetesSettings.cs
+0	16	src/Test.Specification/Settings/MessageBusSettings.cs
+0	29	src/Test.Specification/Settings/SpecEnvironmentSettings.cs
+67	0	src/Test.Specification/SpecEnvironmentSettings.cs
+17	14	src/Test.Specification/Steps/AuthenticationChecksSteps.cs
+4	4	src/Test.Specification/Steps/CommonSteps.cs
+1	1	src/Test.Specification/Steps/GetPackages/V2/SmokeTestV2Steps.cs
+1	1	src/Test.Specification/Steps/GetPackages/V2/Steps.cs
+2	3	src/Test.Specification/Steps/IamSteps.cs
+3	3	src/Test.Specification/Steps/LicenseUpdateCheckSteps.cs
+1	1	src/Test.Specification/Steps/PackagesSteps.cs
+2	2	src/Test.Specification/Steps/SmokeTestSteps.cs
+0	31	src/Test.Specification/UpdaterScenarioContext.cs
+12	12	src/Test.Specification/UpdaterTestRunContext.cs
+7	8	src/Test.Specification/UserManagementHelper.cs
+3	20	src/Test.Specification/appsettings.int.json
+26	42	src/Test.Specification/appsettings.json
+2	4	src/Test.Specification/appsettings.spec.json
+
+f4bff26~~~f4bff2618fc030e9477d810df432170e999d93e9~~~Roger Brooks~~~Roger.Brooks@elekta.com~~~2021-05-14 11:45:28~~~118210a19be79de9f0bf294f927a33ce1f5cb596~~~Merged PR 21094: US236153 Prevent K8s deployment helper being created until needed +semver: patch
+5	0	src/Test.Specification/Steps/CommonSteps.cs
+0	6	src/Test.Specification/Steps/GetPackages/V2/SmokeTestV2Steps.cs
+0	1	src/Test.Specification/UpdaterScenarioContext.cs
+13	8	src/Test.Specification/UpdaterTestRunContext.cs
+
+118210a~~~118210a19be79de9f0bf294f927a33ce1f5cb596~~~Roger Brooks~~~Roger.Brooks@elekta.com~~~2021-05-14 10:25:05~~~6fa0e8215b1fe1e6fd7b7cb9b457c149aada587e~~~Merged PR 21086: US236153 Fix failing Epg Int smoke tests +semver: patch
+1	11	src/Test.Specification/Test.Specification.csproj
+2	5	src/Test.Specification/appsettings.int.json
+0	0	src/Test.Specification/{appsettings.pipeline.json => appsettings.spec.json}
+0	26	src/Test.Specification/local.Designer.cs
+0	11	src/Test.Specification/local.runsettings
+0	26	src/Test.Specification/pipeline.Designer.cs
+0	10	src/Test.Specification/pipeline.runsettings
+2	1	src/azure-pipeline.yml
+
+6fa0e82~~~6fa0e8215b1fe1e6fd7b7cb9b457c149aada587e~~~Tony Joanes~~~Tony.Joanes@elekta.com~~~2021-05-14 07:26:43~~~816122b25f4dcf4e2bc2a087d61759d39278f95c~~~Merged PR 21054: US236066 Add Smoke Tests without side effects +semver: patch
+3	2	src/Api.Test.Unit/Assemblers/PackageAssemblerShould.cs
+7	2	src/Api/Assemblers/PackageAssembler.cs
+1	2	src/Domain/Services/UpdaterService.cs
+6	0	src/Domain/Services/UpdatesAvailableService.cs
+0	4	src/Test.Specification/Features/GetPackages-V2.feature
+0	1	src/Test.Specification/Features/GetPackages.feature
+19	0	src/Test.Specification/Features/SmokeTest.feature
+16	0	src/Test.Specification/Features/SmokeTestV2.feature
+9	3	src/Test.Specification/Hooks/ScenarioContextHooks.cs
+3	0	src/Test.Specification/RunSmokeTests.ps1
+0	5	src/Test.Specification/Steps/CommonSteps.cs
+32	0	src/Test.Specification/Steps/GetPackages/V2/SmokeTestV2Steps.cs
+7	0	src/Test.Specification/Steps/GetPackages/V2/Steps.cs
+26	0	src/Test.Specification/Steps/SmokeTestSteps.cs
+1	0	src/Test.Specification/UpdaterScenarioContext.cs
+
+816122b~~~816122b25f4dcf4e2bc2a087d61759d39278f95c~~~Jo Faircloth~~~Jo.Faircloth@elekta.com~~~2021-05-10 14:46:59~~~9d2b541ef92260bfaaaf2fba2786317c553ed6d6~~~Merged PR 20854: US236161 Update feed to EPG +semver: patch
+6	1	docs/documentation/release_notes.md
+2	2	src/Anticorruption/Anticorruption.csproj
+3	3	src/Api.Messaging/Api.Messaging.csproj
+8	8	src/Api/Api.csproj
+1	1	src/Client.Test.Unit/Client.Test.Unit.csproj
+2	2	src/Client/Client.csproj
+1	1	src/Domain.Test.Unit/Domain.Test.Unit.csproj
+1	1	src/Domain/Domain.csproj
+1	1	src/Infrastructure.Test.Unit/Infrastructure.Test.Unit.csproj
+2	2	src/Infrastructure/Infrastructure.csproj
+1	1	src/Messaging/Core.Messaging.csproj
+1	1	src/PackageManager.Test.Unit/PackageManager.Test.Unit.csproj
+7	7	src/Test.Helpers/Test.Helpers.csproj
+1	1	src/Test.Integration/Test.Integration.csproj
+3	3	src/Test.Specification/Test.Specification.csproj
+6	6	src/azure-pipeline.yml
+
+9d2b541~~~9d2b541ef92260bfaaaf2fba2786317c553ed6d6~~~Roger Brooks~~~Roger.Brooks@elekta.com~~~2021-05-07 14:42:18~~~262dff29e26975e1a0df37644fb8d9d2c14de6f4~~~Merged PR 20720: US236656 Implement License Update Check specification test +semver: minor
+6	2	docs/documentation/release_notes.md
+36	53	src/Test.Specification/Features/LicenseUpdateCheck.feature
+3	1	src/Test.Specification/Helpers/MessagingHelper.cs
+5	0	src/Test.Specification/Hooks/TestRunHooks.cs
+12	0	src/Test.Specification/Models/UpdateAvailableTableRow.cs
+1	0	src/Test.Specification/Settings/SpecEnvironmentSettings.cs
+8	0	src/Test.Specification/Steps/CommonSteps.cs
+0	9	src/Test.Specification/Steps/GetPackages/V2/Steps.cs
+58	30	src/Test.Specification/Steps/LicenseUpdateCheckSteps.cs
+9	0	src/Test.Specification/Test.Specification.csproj
+9	0	src/Test.Specification/UpdaterScenarioContext.cs
+1	0	src/Test.Specification/appsettings.int.json
+1	0	src/Test.Specification/appsettings.json
+55	0	src/Test.Specification/entitlements/licence-check-new-and-updates-available.json
+55	0	src/Test.Specification/entitlements/licence-check-new-available.json
+51	0	src/Test.Specification/entitlements/licence-check-updates-available.json
+
+262dff2~~~262dff29e26975e1a0df37644fb8d9d2c14de6f4~~~Jo Faircloth~~~Jo.Faircloth@elekta.com~~~2021-05-04 16:30:18~~~78ce3fc31a25a80ac5ffc196670351348dac491b~~~Merged PR 20552: US226686 Update check for packages; update API/Event response +semver: minor
+29	0	docs/documentation/release_notes.md
+2	1	src/Abstractions/Events/V1/UpdatesAvailableEvent.cs
+5	1	src/Abstractions/Models/V1/{Feature.cs => EventPackage.cs}
+0	11	src/Abstractions/Models/V1/Product.cs
+1	0	src/Api.Test.Unit/Api.Test.Unit.csproj
+66	0	src/Api.Test.Unit/ApiHandlers/UpdatesHandlerTests.cs
+1	1	src/Api/Controllers/PackagesController.Updates.cs
+28	3	src/Api/Controllers/UpdatesHandler.cs
+25	8	src/Domain.Test.Unit/Services/for_UpdatesAvailableService/GetAvailablePackageUpdatesAsyncTests.cs
+3	0	src/Domain/Domain.csproj
+9	3	src/Domain/Models/AvailablePackage.cs
+2	4	src/Domain/Models/Package.cs
+3	3	src/Domain/Models/Packages.cs
+12	4	src/Domain/Services/IUpdatesAvailableService.cs
+42	24	src/Domain/Services/UpdatesAvailableService.cs
+
+78ce3fc~~~78ce3fc31a25a80ac5ffc196670351348dac491b~~~Erdem Ozdemir~~~erdem.ozdemir@elekta.com~~~2021-05-04 08:39:34~~~37c856ed8cf7390f7f26ffaa57c576749e365e4c~~~Merged PR 20551: US226686 Fix API Doc +semver: patch
+0	1	src/Api/nswag.json
+
+37c856e~~~37c856ed8cf7390f7f26ffaa57c576749e365e4c~~~Roger Brooks~~~Roger.Brooks@elekta.com~~~2021-04-30 07:57:43~~~1c87dd8e46ba53c5958f779bfdcd69a245613f04~~~Merged PR 20530: US232290 Remove EPG int variables +semver: patch
+0	8	src/azure-pipeline.yml
+
+1c87dd8~~~1c87dd8e46ba53c5958f779bfdcd69a245613f04~~~Roger Brooks~~~Roger.Brooks@elekta.com~~~2021-04-29 08:51:19~~~feaded73eb342debb7fd69500d0e12cd57ab165d~~~Merged PR 20422: US233914 Use variable group for int cluster variable substitutions +semver: patch
+6	1	src/Test.Specification/appsettings.int.json
+7	0	src/azure-pipeline.yml
+
+feaded7~~~feaded73eb342debb7fd69500d0e12cd57ab165d~~~Roger Brooks~~~Roger.Brooks@elekta.com~~~2021-04-27 11:53:45~~~608aaf5ffa818caada0e744dc7da71aa26175076~~~Merged PR 20310: US232290 Investigate using RunSettings file for local env variable and pipeline +semver: patch
+21	0	src/Test.Specification/Test.Specification.csproj
+26	0	src/Test.Specification/local.Designer.cs
+11	0	src/Test.Specification/local.runsettings
+26	0	src/Test.Specification/pipeline.Designer.cs
+10	0	src/Test.Specification/pipeline.runsettings
+1	0	src/azure-pipeline.yml
+
+608aaf5~~~608aaf5ffa818caada0e744dc7da71aa26175076~~~Roger Brooks~~~Roger.Brooks@elekta.com~~~2021-04-26 16:06:21~~~a7f455b424ef4e81a1350cc314fbffbeb702bd20~~~Merged PR 20307: US233914 Fix int test config +semver: patch
+7	7	src/Test.Specification/appsettings.int.json
+
+a7f455b~~~a7f455b424ef4e81a1350cc314fbffbeb702bd20~~~Roger Brooks~~~Roger.Brooks@elekta.com~~~2021-04-26 14:04:26~~~06c1135467b8c3bbe7f4bb16372178df53399bb7~~~Merged PR 20281: US23229 Add Epg int app settings +semver: patch
+3	0	src/Test.Specification/Test.Specification.csproj
+19	0	src/Test.Specification/appsettings.int.json
+1	7	src/Test.Specification/appsettings.pipeline.json
+
+06c1135~~~06c1135467b8c3bbe7f4bb16372178df53399bb7~~~Roger Brooks~~~Roger.Brooks@elekta.com~~~2021-04-26 08:56:23~~~b664eed1a2eabd561e54b8087ccb8d15464b603f~~~Merged PR 20176: US232290 Automate smoke tests +semver: minor
+9	0	docs/documentation/release_notes.md
+1	1	src/Abstractions/Events/V1/UpdatesAvailableEvent.cs
+1	1	src/Anticorruption/InvalidQueryException.cs
+2	2	src/Api.Test.Unit/Api.Test.Unit.csproj
+1	1	src/Api/Controllers/PackagesController.Updates.cs
+1	1	src/Api/Controllers/UpdatesHandler.cs
+2	2	src/Client.Test.Unit/Client.Test.Unit.csproj
+2	2	src/Domain.Test.Unit/Domain.Test.Unit.csproj
+1	1	src/Domain/Services/IUpdatesAvailableService.cs
+2	2	src/Infrastructure.Test.Unit/Infrastructure.Test.Unit.csproj
+2	2	src/PackageManager.Test.Unit/PackageManager.Test.Unit.csproj
+2	2	src/Test.Integration/Test.Integration.csproj
+4	0	src/Test.Specification/Features/GetPackages-V2.feature
+1	0	src/Test.Specification/Features/GetPackages.feature
+3	0	src/Test.Specification/Features/LicenseUpdateCheck.feature
+1	1	src/Test.Specification/Helpers/MessagingHelper.cs
+10	10	src/Test.Specification/Helpers/TokenClientHelper.cs
+8	5	src/Test.Specification/Hooks/CleanStartHook.cs
+18	4	src/Test.Specification/Hooks/ScenarioContextHooks.cs
+21	20	src/Test.Specification/Hooks/TestRunHooks.cs
+15	0	src/Test.Specification/Settings/AuthenticationSettings.cs
+21	0	src/Test.Specification/Settings/IamSettings.cs
+17	0	src/Test.Specification/Settings/KubernetesSettings.cs
+16	0	src/Test.Specification/Settings/MessageBusSettings.cs
+28	0	src/Test.Specification/Settings/SpecEnvironmentSettings.cs
+0	88	src/Test.Specification/SpecEnvironmentSettings.cs
+63	56	src/Test.Specification/Steps/AuthenticationChecksSteps.cs
+5	5	src/Test.Specification/Steps/CommonSteps.cs
+1	1	src/Test.Specification/Steps/GetPackages/V2/Steps.cs
+3	2	src/Test.Specification/Steps/IamSteps.cs
+1	1	src/Test.Specification/Steps/PackagesSteps.cs
+16	5	src/Test.Specification/Test.Specification.csproj
+31	0	src/Test.Specification/UpdaterScenarioContext.cs
+13	13	src/Test.Specification/UpdaterTestRunContext.cs
+12	6	src/Test.Specification/UserManagementHelper.cs
+45	0	src/Test.Specification/appsettings.json
+11	0	src/Test.Specification/appsettings.pipeline.json
+11	1	src/azure-pipeline.yml
+
+b664eed~~~b664eed1a2eabd561e54b8087ccb8d15464b603f~~~Erdem Ozdemir~~~erdem.ozdemir@elekta.com~~~2021-04-21 13:55:29~~~ca9de4c85f2ebe82b6dd54131065cd31bce065da~~~Merged PR 20021: US226681 Get Available Packages +semver: major
+2	0	src/Abstractions/Events/V1/UpdatesAvailableEvent.cs
+3	1	src/Anticorruption/EntitlementsAnticorruption.cs
+6	4	src/Anticorruption/InvalidQueryException.cs
+39	0	src/Api/Assemblers/AvailablePackageAssembler.cs
+13	0	src/Api/Assemblers/IAvailablePackageAssembler.cs
+3	1	src/Api/Controllers/PackagesController.Updates.cs
+1	1	src/Api/Controllers/PackagesController.cs
+59	0	src/Api/Controllers/PackagesControllerV2.cs
+4	2	src/Api/Controllers/UpdatesHandler.cs
+1	0	src/Api/Extensions/ServiceCollectionExtensions.cs
+26	0	src/Api/Models/V2/LicenseRepresentation.cs
+23	0	src/Api/Models/V2/PackageRepresentation.cs
+2	1	src/Api/Program.cs
+2	1	src/Api/Startup.cs
+0	1	src/Domain.Test.Unit/Domain.Test.Unit.csproj
+3	3	src/Domain.Test.Unit/Services/{UpdatesAvailableServiceTests.cs => for_UpdatesAvailableService/GetAvailablePackageUpdatesAsyncTests.cs}
+475	0	src/Domain.Test.Unit/Services/for_UpdatesAvailableService/GetAvailablePackagesTests.cs
+1	1	src/Domain/Helpers/EntitlementPackagesHelper.cs
+21	0	src/Domain/Messaging/V2/PackagesEvent.cs
+22	0	src/Domain/Models/AvailablePackage.cs
+8	1	src/Domain/Models/License.cs
+6	1	src/Domain/Models/Package.cs
+2	0	src/Domain/Services/IUpdaterService.cs
+5	1	src/Domain/Services/IUpdatesAvailableService.cs
+39	24	src/Domain/Services/UpdaterService.cs
+74	21	src/Domain/Services/UpdatesAvailableService.cs
+1	1	src/Infrastructure/Extensions/ServiceCollectionExtensions.cs
+0	1	src/Infrastructure/Messaging/ExceptionEvent.cs
+1	0	src/Infrastructure/Repositories/EntitlementConfiguration.cs
+2	0	src/PackageManager/Models/HelmPackage.cs
+1	1	src/Test.Integration/devctl.d/entitlements.yaml
+1	1	src/Test.Integration/devctl.d/license-manager-sentinel.yaml
+7	7	src/Test.Specification/Features/AuthenticationCheck.feature
+183	0	src/Test.Specification/Features/GetPackages-V2.feature
+0	10	src/Test.Specification/Hooks/FeatureHooks.cs
+10	0	src/Test.Specification/Hooks/ScenarioContextHooks.cs
+3	2	src/Test.Specification/SpecEnvironmentSettings.cs
+8	16	src/Test.Specification/Steps/AuthenticationChecksSteps.cs
+3	4	src/Test.Specification/Steps/CommonSteps.cs
+87	0	src/Test.Specification/Steps/GetPackages/V2/Steps.cs
+1	1	src/Test.Specification/Steps/PackagesSteps.cs
+12	0	src/Test.Specification/Test.Specification.csproj
+9	3	src/Test.Specification/UpdaterScenarioContext.cs
+1	1	src/Test.Specification/devctl.d/license-manager-sentinel.yaml
+1	1	src/Test.Specification/entitlements/authorized.json
+51	0	src/Test.Specification/entitlements/get-packages-v2-available-for-existing.json
+66	0	src/Test.Specification/entitlements/get-packages-v2-new-package-and-new-version-for-existing.json
+66	0	src/Test.Specification/entitlements/get-packages-v2-new-package-available.json
+51	0	src/Test.Specification/entitlements/get-packages-v2-no-available.json
+1	1	src/Test.Specification/entitlements/unauthorized-different-version.json
+2	1	src/updater.sln.DotSettings
+
+ca9de4c~~~ca9de4c85f2ebe82b6dd54131065cd31bce065da~~~Waqas Bajwa~~~Waqas.Bajwa@elekta.com~~~2021-04-21 11:31:44~~~d7149c8a654480f1b431c105f6da317de29fbac4~~~Merged PR 19926: US218267 License Update Check SpecTests +semver: patch
+133	0	src/Test.Specification/Features/LicenseUpdateCheck.feature
+53	0	src/Test.Specification/Steps/LicenseUpdateCheckSteps.cs
+
+d7149c8~~~d7149c8a654480f1b431c105f6da317de29fbac4~~~Roger Brooks~~~Roger.Brooks@elekta.com~~~2021-04-19 08:41:45~~~f00fd7658e3fcc620693224f57e87bc51f7cd3b3~~~Merged PR 19935: US218267 Add message version and logging +semver: patch
+1	1	docs/documentation/GettingStarted.md
+5	1	src/Abstractions/Events/V1/UpdatesAvailableEvent.cs
+8	1	src/Domain/Models/Package.cs
+9	4	src/Domain/Services/UpdatesAvailableService.cs
+
+f00fd76~~~f00fd7658e3fcc620693224f57e87bc51f7cd3b3~~~Jo Faircloth~~~Jo.Faircloth@elekta.com~~~2021-04-15 15:41:04~~~c13cf0b5535abd8014e3ff82871aafd42bad8e65~~~Merged PR 19875: US218267 Add integration test for updates +semver: patch
+2	0	src/Domain/Extensions/ServiceCollectionExtensions.cs
+38	0	src/Test.Integration/for_Controller/CheckForUpdatesTests.cs
+
+c13cf0b~~~c13cf0b5535abd8014e3ff82871aafd42bad8e65~~~Jo Faircloth~~~Jo.Faircloth@elekta.com~~~2021-04-15 11:32:11~~~0142f2c26d19d9302b942b7bf913e3b3ace24a21~~~Merged PR 19810: US218267 Update documentation for update check +semver: patch
+148	0	docs/documentation/.postman/Updater.postman_collection.json
+33	19	docs/documentation/Updater-API-specification.md
+28	8	docs/documentation/smoke-tests.md
+7	1	src/Api/Controllers/PackagesController.Updates.cs
+
+0142f2c~~~0142f2c26d19d9302b942b7bf913e3b3ace24a21~~~Jo Faircloth~~~Jo.Faircloth@elekta.com~~~2021-04-15 09:35:01~~~d26f1b0ba85b5c53e1e12d041e96537a8be0854f~~~Merged PR 19816: US218267 Update devctl version +semver: patch
+1	1	src/.config/dotnet-tools.json
+
+d26f1b0~~~d26f1b0ba85b5c53e1e12d041e96537a8be0854f~~~Jo Faircloth~~~Jo.Faircloth@elekta.com~~~2021-04-14 10:35:11~~~e338b28e500ae5d3cf7f0f2a5842330c473ffe1b~~~Merged PR 19722: US218267 Check for feature updates +semver: minor
+4	2	src/Abstractions/Abstractions.csproj
+20	0	src/Abstractions/Events/V1/UpdatesAvailableEvent.cs
+11	0	src/Abstractions/Models/V1/Feature.cs
+11	0	src/Abstractions/Models/V1/Product.cs
+1	0	src/Anticorruption/Anticorruption.csproj
+1	1	src/Anticorruption/EntitlementsAnticorruption.cs
+19	0	src/Anticorruption/InvalidQueryException.cs
+1	1	src/Anticorruption/LicenseAnticorruption.cs
+1	1	src/Api.Test.Unit/Controllers/PackagesControllerTest.cs
+2	0	src/Api/Api.csproj
+16	0	src/Api/Controllers/PackagesController.Updates.cs
+9	4	src/Api/Controllers/PackagesController.cs
+41	0	src/Api/Controllers/UpdatesHandler.cs
+3	1	src/Api/Startup.cs
+3	0	src/Domain.Test.Unit/Domain.Test.Unit.csproj
+1	1	src/Domain.Test.Unit/Services/UpdaterServiceTest.cs
+104	0	src/Domain.Test.Unit/Services/UpdatesAvailableServiceTests.cs
+1	1	src/Domain.Test.Unit/Services/for_AuthorizationService/CheckTests.cs
+2	0	src/Domain/Domain.csproj
+1	0	src/Domain/Events/V1/AuthorizedInstallationEvent.cs
+1	0	src/Domain/Events/V1/CheckUnauthorizedPackagesEvent.cs
+1	0	src/Domain/Events/V1/UnauthorizedInstallationEvent.cs
+1	0	src/Domain/Messaging/PackagesEvent.cs
+2	0	src/Domain/Messaging/PackagesInstallationFailedEvent.cs
+1	1	src/Domain/Services/AuthorizationService.cs
+22	0	src/Domain/Services/IUpdatesAvailableService.cs
+1	0	src/Domain/Services/UpdaterService.cs
+73	0	src/Domain/Services/UpdatesAvailableService.cs
+1	2	src/Infrastructure.Test.Unit/Extensions/ServiceCollectionExtensionsShould.cs
+1	0	src/Infrastructure.Test.Unit/Infrastructure.Test.Unit.csproj
+1	2	src/Infrastructure/Extensions/ServiceCollectionExtensions.cs
+1	0	src/Infrastructure/Infrastructure.csproj
+1	0	src/Infrastructure/Messaging/ExceptionEvent.cs
+12	0	src/Messaging/Core.Messaging.csproj
+1	1	src/{Infrastructure/Messaging => Messaging/Exceptions}/ExchangeNameNotProvidedException.cs
+1	1	src/{Domain => }/Messaging/IMessageEvent.cs
+1	1	src/{Domain => }/Messaging/IPublisher.cs
+3	3	src/{Infrastructure => }/Messaging/RabbitMQPublisher.cs
+1	1	src/{Infrastructure => }/Messaging/UpdaterSettings.cs
+1	1	src/Test.Integration/for_Anticorruption/EntitlementsAnticorruptionBuilder.cs
+1	1	src/Test.Integration/for_Anticorruption/LicenseAnticorruptionBuilder.cs
+1	1	src/azure-pipeline.yml
+6	0	src/updater.sln
+
+e338b28~~~e338b28e500ae5d3cf7f0f2a5842330c473ffe1b~~~Erdem Ozdemir~~~erdem.ozdemir@elekta.com~~~2021-04-09 13:44:00~~~ac84389ab7b8fcd8371fb36fdb3b9879d1013cdd~~~Merged PR 19539: US225761 Helm Chart Fix +semver: minor
+2	2	src/Anticorruption/Anticorruption.csproj
+2	3	src/Anticorruption/EntitlementsAnticorruption.cs
+2	3	src/Anticorruption/LicenseAnticorruption.cs
+3	3	src/Api.Messaging/Api.Messaging.csproj
+3	3	src/Api.Messaging/CheckUnauthorizedPackagesMessageHandler.cs
+13	12	src/Api.Messaging/CheckUnauthorizedPackagesMessageHandlerRegistration.cs
+3	3	src/Api.Test.Unit/Api.Test.Unit.csproj
+8	7	src/Api/Api.csproj
+13	12	src/Api/Program.cs
+31	21	src/Api/Startup.cs
+4	4	src/Client.Test.Unit/Client.Test.Unit.csproj
+2	2	src/Client/Client.csproj
+4	4	src/Domain.Test.Unit/Domain.Test.Unit.csproj
+0	44	src/Domain.Test.Unit/Extensions/ServiceCollectionExtensionsTest.cs
+3	6	src/Domain.Test.Unit/Services/UpdaterServiceTest.cs
+38	43	src/Domain.Test.Unit/Services/for_AuthorizationService/CheckTests.cs
+1	0	src/Domain/Domain.csproj
+6	2	src/Domain/Events/V1/AuthorizedInstallationEvent.cs
+5	0	src/Domain/Events/V1/CheckUnauthorizedPackagesEvent.cs
+5	2	src/Domain/Events/V1/UnauthorizedInstallationEvent.cs
+4	0	src/Domain/Messaging/PackagesEvent.cs
+5	0	src/Domain/Messaging/PackagesInstallationFailedEvent.cs
+3	5	src/Domain/Models/EntitlementAggregate/ThereIsNoInstalledEntitlementException.cs
+2	4	src/Domain/Services/AuthorizationService.cs
+8	12	src/Domain/Services/UpdaterService.cs
+4	4	src/Infrastructure.Test.Unit/Infrastructure.Test.Unit.csproj
+1	4	src/Infrastructure/Extensions/ServiceCollectionExtensions.cs
+2	2	src/Infrastructure/Infrastructure.csproj
+4	0	src/Infrastructure/Messaging/ExceptionEvent.cs
+4	8	src/Infrastructure/Messaging/RabbitMQPublisher.cs
+33	34	src/PackageManager.Test.Unit/PackageHelperTest.cs
+4	4	src/PackageManager.Test.Unit/PackageManager.Test.Unit.csproj
+3	5	src/PackageManager/Extensions/PackageManagerExtensions.cs
+46	68	src/PackageManager/PackageManager.cs
+15	0	src/Test.Helpers/Extensions/HttpClientExtensions.cs
+7	14	src/Test.Helpers/Extensions/KubernetesHelperExtensions.cs
+55	0	src/Test.Helpers/Factories/ConfigurationManagerFactory.cs
+28	0	src/Test.Helpers/Factories/HttpClientFactory.cs
+21	0	src/Test.Helpers/Factories/RestClientFactory.cs
+44	0	src/Test.Helpers/Factories/TokenClientFactory.cs
+17	0	src/Test.Helpers/Helpers/Models/UserAccountAuthenticationOptions.cs
+19	0	src/Test.Helpers/Helpers/Models/UserAccountTokenClientOptions.cs
+59	0	src/Test.Helpers/Helpers/ServiceAccountHelper.cs
+251	0	src/Test.Helpers/Helpers/UserAccountTokenClient.cs
+4	14	src/Test.Helpers/KubectlCommandHelper.cs
+2	4	src/Test.Helpers/LicensingHelper.cs
+0	46	src/Test.Helpers/MessageBusHelper.cs
+42	0	src/Test.Helpers/Messaging/MessagebusHelper.cs
+2	2	src/Test.Helpers/MessagingHelper.cs
+36	0	src/Test.Helpers/Stubs/HttpClientFactoryStub.cs
+28	0	src/Test.Helpers/Stubs/OptionsMonitorStub.cs
+5	3	src/Test.Helpers/Test.Helpers.csproj
+152	0	src/Test.Integration/AssemblyEvents.cs
+27	0	src/Test.Integration/Helpers/TokenClientHelper.cs
+0	118	src/Test.Integration/IamHelper.cs
+1	2	src/Test.Integration/MessageBusExtensions.cs
+7	8	src/Test.Integration/MessagingHelper.cs
+15	0	src/Test.Integration/Model/Entitlement.cs
+6	13	src/Test.Integration/Test.Integration.csproj
+27	77	src/Test.Integration/TestBase.cs
+42	12	src/Test.Integration/TestEnvironmentSettings.cs
+0	38	src/Test.Integration/appsettings_fail.json
+0	48	src/Test.Integration/appsettings_success.json
+14	1	src/Test.Integration/devctl.d/entitlements.yaml
+9	11	src/Test.Integration/devctl.d/iam.yaml
+1	0	src/Test.Integration/devctl.d/license-manager-sentinel.yaml
+9	2	src/Test.Integration/devctl.d/licensing.yaml
+32	0	src/Test.Integration/devctl.d/logging-support.yaml
+20	5	src/Test.Integration/devctl.d/messaging.yaml
+2	1	src/Test.Integration/devctl.d/sql-server.yaml
+6	5	src/Test.Integration/devctl.d/updater.yaml
+51	0	src/Test.Integration/entitlements/get-packages.json
+0	54	src/Test.Integration/for_Anticorruption/DependencyInjector.cs
+0	59	src/Test.Integration/for_Anticorruption/DependencyInjectorFail.cs
+31	36	src/Test.Integration/for_Anticorruption/EntitlementAnticorruptionTests.cs
+55	0	src/Test.Integration/for_Anticorruption/EntitlementsAnticorruptionBuilder.cs
+56	0	src/Test.Integration/for_Anticorruption/EntitlementsManager.cs
+52	0	src/Test.Integration/for_Anticorruption/LicenseAnticorruptionBuilder.cs
+16	18	src/Test.Integration/for_Anticorruption/LicenseAnticorruptionTests.cs
+45	0	src/Test.Integration/for_Anticorruption/LicenseManager.cs
+6	12	src/Test.Integration/for_Anticorruption/UpdaterServiceTests.cs
+6	9	src/Test.Integration/{ => for_Controller}/GetPackagesTests.cs
+35	28	src/Test.Specification/Features/AuthenticationCheck.feature
+5	10	src/Test.Specification/{ => Helpers}/MessagingHelper.cs
+45	0	src/Test.Specification/Helpers/TokenClientHelper.cs
+4	6	src/Test.Specification/Hooks/CleanStartHook.cs
+1	3	src/Test.Specification/Hooks/FeatureHooks.cs
+12	12	src/Test.Specification/Hooks/TestRunHooks.cs
+37	27	src/Test.Specification/SpecEnvironmentSettings.cs
+3	4	src/Test.Specification/Steps/AuthenticationChecksSteps.cs
+7	9	src/Test.Specification/Steps/IamSteps.cs
+2	4	src/Test.Specification/Steps/PackagesSteps.cs
+5	5	src/Test.Specification/Test.Specification.csproj
+7	8	src/Test.Specification/UpdaterTestRunContext.cs
+15	2	src/Test.Specification/devctl.d/entitlements.yaml
+9	11	src/Test.Specification/devctl.d/iam.yaml
+1	0	src/Test.Specification/devctl.d/license-manager-sentinel.yaml
+9	2	src/Test.Specification/devctl.d/licensing.yaml
+32	0	src/Test.Specification/devctl.d/logging-support.yaml
+20	5	src/Test.Specification/devctl.d/messaging.yaml
+2	1	src/Test.Specification/devctl.d/sql-server.yaml
+6	5	src/Test.Specification/devctl.d/updater.yaml
+8	4	src/Test.Specification/entitlements/authorized.json
+7	3	src/Test.Specification/entitlements/unauthorized-different-version.json
+78	57	src/azure-pipeline.yml
+0	11	src/charts/updater/templates/_helpers.tpl
+8	3	src/charts/updater/templates/client.yaml
+1	1	src/charts/updater/templates/clusterrole-rolebinding.yaml
+15	3	src/charts/updater/templates/deployment.yaml
+2	2	src/charts/updater/templates/role.yaml
+3	3	src/charts/updater/templates/rolebinding.yaml
+3	1	src/charts/updater/templates/serviceaccount.yaml
+17	16	src/charts/updater/values.yaml
+2	2	src/global.json
+1	0	src/updater.sln.DotSettings
+
+ac84389~~~ac84389ab7b8fcd8371fb36fdb3b9879d1013cdd~~~Roger Brooks~~~Roger.Brooks@elekta.com~~~2021-03-01 13:10:19~~~848e25a18e7e26e82ef08d6956879a2dcecbb49d~~~Merged PR 18460: US220332 Improve Swagger docs +semver: patch
+8	1	src/Api/Controllers/AuthorizationController.cs
+29	3	src/Api/Controllers/PackagesController.cs
+
+848e25a~~~848e25a18e7e26e82ef08d6956879a2dcecbb49d~~~Erdem Ozdemir~~~erdem.ozdemir@elekta.com~~~2021-02-10 16:58:40~~~98cb5615eed2d12223dcf6ecbc18989936e14157~~~Merged PR 17863: US219472 Try out SonarQube unit test coverage +semver: patch
+8	0	docs/index.md
+4	0	src/Api.Test.Unit/Api.Test.Unit.csproj
+4	0	src/Client.Test.Unit/Client.Test.Unit.csproj
+5	1	src/Domain.Test.Unit/Domain.Test.Unit.csproj
+5	1	src/Infrastructure.Test.Unit/Infrastructure.Test.Unit.csproj
+8	5	src/PackageManager.Test.Unit/PackageManager.Test.Unit.csproj
+7	3	src/Test.Integration/Test.Integration.csproj
+7	3	src/Test.Specification/Test.Specification.csproj
+30	1	src/azure-pipeline.yml
+
+98cb561~~~98cb5615eed2d12223dcf6ecbc18989936e14157~~~Erdem Ozdemir~~~erdem.ozdemir@elekta.com~~~2021-02-05 15:23:41~~~b9306aba9cabb1e927d284327213f4b8a4cecb8b~~~Merged PR 17507: US184190  Add acceptance tests +semver: major
+2	2	src/.sonarlint/updater.slconfig
+3	1	src/.sonarlint/updatercsharp.ruleset
+23	0	src/Abstractions/Abstractions.csproj
+1	1	src/Anticorruption/Anticorruption.csproj
+26	24	src/Anticorruption/EntitlementsAnticorruption.cs
+17	10	src/Anticorruption/Extensions/ServiceCollectionExtensions.cs
+29	27	src/Anticorruption/LicenseAnticorruption.cs
+1	1	src/Anticorruption/UnableToGetPackagesException.cs
+30	0	src/Api.Messaging/Api.Messaging.csproj
+50	0	src/Api.Messaging/CheckUnauthorizedPackagesMessageHandler.cs
+74	0	src/Api.Messaging/CheckUnauthorizedPackagesMessageHandlerRegistration.cs
+26	0	src/Api.Messaging/Extensions/ServiceCollectionExtensions.cs
+3	3	src/Api.Test.Unit/Api.Test.Unit.csproj
+13	14	src/Api.Test.Unit/Assemblers/PackageAssemblerShould.cs
+55	55	src/Api.Test.Unit/Controllers/PackagesControllerTest.cs
+5	3	src/Api.Test.Unit/Extensions/ServiceCollectionExtensionsShould.cs
+2	1	src/Api/Api.csproj
+2	2	src/Api/Assemblers/IPackageAssembler.cs
+15	15	src/Api/Assemblers/PackageAssembler.cs
+46	0	src/Api/Controllers/AuthorizationController.cs
+19	19	src/Api/Controllers/PackagesController.cs
+1	1	src/Api/Extensions/ServiceCollectionExtensions.cs
+7	7	src/Api/Infrastructure/UpdaterExceptionStatusCodeHandler.cs
+1	1	src/Api/Program.cs
+1	1	src/Api/Properties/AssemblyInfo.cs
+23	15	src/Api/Startup.cs
+13	1	src/Api/appsettings.json
+3	3	src/Client.Test.Unit/Client.Test.Unit.csproj
+1	1	src/Client.Test.Unit/Helpers/InterceptingHttpMessageHandler.cs
+4	4	src/Domain.Test.Unit/Domain.Test.Unit.csproj
+6	6	src/Domain.Test.Unit/Extensions/ServiceCollectionExtensionsTest.cs
+37	37	src/Domain.Test.Unit/Helpers/EntitlementPackagesHelperTests.cs
+7	2	src/Domain.Test.Unit/Helpers/{UpdaterRepositoryStub.cs => EntitlementRepositoryStub.cs}
+11	11	src/Domain.Test.Unit/Models/EntitlementAggregate/EntitlementShould.cs
+215	217	src/Domain.Test.Unit/Services/UpdaterServiceTest.cs
+189	0	src/Domain.Test.Unit/Services/for_AuthorizationService/CheckTests.cs
+2	2	src/Domain/Domain.csproj
+18	6	src/Domain/Entity.cs
+24	0	src/Domain/Events/V1/AuthorizedInstallationEvent.cs
+21	0	src/Domain/Events/V1/CheckUnauthorizedPackagesEvent.cs
+23	0	src/Domain/Events/V1/UnauthorizedInstallationEvent.cs
+6	2	src/Domain/Extensions/ServiceCollectionExtensions.cs
+18	8	src/Domain/Helpers/EntitlementPackagesHelper.cs
+3	1	src/Domain/Messaging/PackagesEvent.cs
+18	0	src/Domain/Models/AuthorizationCheck.cs
+11	6	src/Domain/Models/EntitlementAggregate/Entitlement.cs
+4	4	src/Domain/Models/EntitlementAggregate/EntitlementPackage.cs
+13	0	src/Domain/Models/EntitlementAggregate/IEntitlementRepository.cs
+1	1	src/Domain/Models/{ => EntitlementAggregate}/IEntitlementsAnticorruption.cs
+24	0	src/Domain/Models/EntitlementAggregate/NameAndVersionSpecification.cs
+22	0	src/Domain/Models/EntitlementAggregate/ThereIsNoInstalledEntitlementException.cs
+0	14	src/Domain/Models/IUpdaterRepository.cs
+4	5	src/Domain/Models/Package.cs
+5	5	src/Domain/Models/Packages.cs
+12	0	src/Domain/Models/Specification.cs
+1	1	src/Domain/Properties/AssemblyInfo.cs
+111	0	src/Domain/Services/AuthorizationService.cs
+13	0	src/Domain/Services/IAuthorizationService.cs
+11	0	src/Domain/Services/ITimeProvider.cs
+11	0	src/Domain/Services/TimeProvider.cs
+52	46	src/Domain/Services/UpdaterService.cs
+3	3	src/Domain/ValueObject.cs
+9	5	src/Infrastructure.Test.Unit/Extensions/ServiceCollectionExtensionsShould.cs
+4	4	src/Infrastructure.Test.Unit/Infrastructure.Test.Unit.csproj
+4	4	src/Infrastructure/DatabaseInitializer.cs
+10	7	src/Infrastructure/Extensions/ServiceCollectionExtensions.cs
+3	3	src/Infrastructure/IUpdaterDbContext.cs
+6	8	src/Infrastructure/Infrastructure.csproj
+33	29	src/Infrastructure/Messaging/RabbitMQPublisher.cs
+1	1	src/Infrastructure/Properties/AssemblyInfo.cs
+3	2	src/Infrastructure/Repositories/EntitlementConfiguration.cs
+53	0	src/Infrastructure/Repositories/EntitlementRepository.cs
+0	42	src/Infrastructure/Repositories/UpdaterRepository.cs
+7	4	src/Infrastructure/UpdaterDbContext.cs
+72	69	src/PackageManager.Test.Unit/PackageHelperTest.cs
+5	5	src/PackageManager.Test.Unit/PackageManager.Test.Unit.csproj
+25	19	src/PackageManager.Test.Unit/PackageManagerExtensionsTest.cs
+314	310	src/PackageManager.Test.Unit/PackageManagerTest.cs
+26	26	src/PackageManager.Test.Unit/TestHelpers/PackageManagerSettingsBuilder.cs
+10	13	src/PackageManager/Extensions/PackageManagerExtensions.cs
+46	45	src/PackageManager/Helpers/PackageBuilder.cs
+3	2	src/PackageManager/IPackageManager.cs
+2	2	src/PackageManager/Models/Chart.cs
+1	1	src/PackageManager/Models/CustomResourceInstanceMetadata.cs
+1	1	src/PackageManager/Models/CustomResourceInstances.cs
+16	1	src/PackageManager/Models/HelmPackage.cs
+1	1	src/PackageManager/Models/Rollback.cs
+134	113	src/PackageManager/PackageManager.cs
+3	3	src/PackageManager/PackageManager.csproj
+1	1	src/PackageManager/Properties/AssemblyInfo.cs
+0	9	src/Test.Helpers/Constants.cs
+98	0	src/Test.Helpers/Extensions/KubernetesHelperExtensions.cs
+31	0	src/Test.Helpers/Extensions/MessageBusExtensions.cs
+89	0	src/Test.Helpers/Extensions/UpdaterDeploymentHelper.cs
+18	9	src/Test.Helpers/KubectlCommandHelper.cs
+1	0	src/Test.Helpers/Licenses/F1-0.1.0.txt
+1	0	src/Test.Helpers/Licenses/F2-0.1.0.txt
+1	0	src/Test.Helpers/Licenses/F3-0.1.0.txt
+1	0	src/Test.Helpers/Licenses/LM-on-Santana-Test-1.0.0.txt
+23	9	src/Test.Helpers/{KubernetesHelper.cs => LicensingHelper.cs}
+46	0	src/Test.Helpers/MessageBusHelper.cs
+8	7	src/Test.Helpers/MessagingHelper.cs
+5	5	src/Test.Helpers/PolicyUtilities.cs
+3	2	src/Test.Helpers/ShellCommandHelper.cs
+20	3	src/Test.Helpers/Test.Helpers.csproj
+22	28	src/Test.Integration/GetPackagesTests.cs
+30	26	src/Test.Integration/IamHelper.cs
+3	3	src/Test.Integration/MessageBusExtensions.cs
+7	6	src/Test.Integration/MessagingHelper.cs
+14	8	src/Test.Integration/PollyUtilities.cs
+3	3	src/Test.Integration/Test.Integration.csproj
+50	49	src/Test.Integration/TestBase.cs
+15	8	src/Test.Integration/TestEnvironmentSettings.cs
+5	5	src/Test.Integration/appsettings_fail.json
+6	6	src/Test.Integration/appsettings_success.json
+4	4	src/Test.Integration/deploy.ps1
+3	3	src/Test.Integration/deploy.sh
+7	4	src/Test.Integration/devctl.d/iam.yaml
+2	1	src/{Test.Specification/devctl.d/sentinel.yaml => Test.Integration/devctl.d/license-manager-sentinel.yaml}
+1	1	src/Test.Integration/devctl.d/licensing.yaml
+1	1	src/Test.Integration/devctl.d/updater.yaml
+9	6	src/Test.Integration/for_Anticorruption/DependencyInjector.cs
+11	9	src/Test.Integration/for_Anticorruption/DependencyInjectorFail.cs
+24	15	src/Test.Integration/for_Anticorruption/EntitlementAnticorruptionTests.cs
+16	12	src/Test.Integration/for_Anticorruption/LicenseAnticorruptionTests.cs
+12	9	src/Test.Integration/for_Anticorruption/UpdaterServiceTests.cs
+3	3	src/Test.Integration/undeploy.ps1
+1	1	src/Test.Integration/undeploy.sh
+114	0	src/Test.Specification/Features/AuthenticationCheck.feature
+25	31	src/Test.Specification/Features/GetPackages.feature
+10	1	src/Test.Specification/Hooks/CleanStartHook.cs
+13	1	src/Test.Specification/Hooks/FeatureHooks.cs
+30	26	src/Test.Specification/Hooks/TestRunHooks.cs
+39	0	src/Test.Specification/MessagingHelper.cs
+14	0	src/Test.Specification/Models/Entitlement.cs
+10	0	src/Test.Specification/Models/Package.cs
+1	1	src/Test.Specification/Models/PackageTableRow.cs
+1	1	src/Test.Specification/Models/UserTableRow.cs
+40	7	src/Test.Specification/SpecEnvironmentSettings.cs
+213	0	src/Test.Specification/Steps/AuthenticationChecksSteps.cs
+20	14	src/Test.Specification/Steps/CommonSteps.cs
+22	13	src/Test.Specification/Steps/IamSteps.cs
+16	9	src/Test.Specification/Steps/PackagesSteps.cs
+2	2	src/Test.Specification/Steps/StepBase.cs
+17	4	src/Test.Specification/Test.Specification.csproj
+9	9	src/Test.Specification/UpdaterFeatureContext.cs
+77	10	src/Test.Specification/UpdaterScenarioContext.cs
+84	15	src/Test.Specification/UpdaterTestRunContext.cs
+13	10	src/Test.Specification/UserManagementHelper.cs
+7	5	src/Test.Specification/deploy.ps1
+3	3	src/Test.Specification/deploy.sh
+1	1	src/Test.Specification/devctl.d/entitlements.yaml
+9	6	src/Test.Specification/devctl.d/iam.yaml
+2	1	src/{Test.Integration/devctl.d/sentinel.yaml => Test.Specification/devctl.d/license-manager-sentinel.yaml}
+1	1	src/Test.Specification/devctl.d/licensing.yaml
+1	1	src/Test.Specification/devctl.d/updater.yaml
+47	0	src/Test.Specification/entitlements/authorized.json
+51	0	src/Test.Specification/entitlements/get-packages.json
+47	0	src/Test.Specification/entitlements/unauthorized-different-version.json
+2	2	src/Test.Specification/undeploy.ps1
+1	1	src/Test.Specification/undeploy.sh
+94	80	src/azure-pipeline.yml
+2	0	src/charts/updater/templates/client.yaml
+17	5	src/updater.sln
+7	6	src/updater.sln.DotSettings
+
+b9306ab~~~b9306aba9cabb1e927d284327213f4b8a4cecb8b~~~Chikkabasavarajaiah Veeregowda~~~Chikkabasavarajaiah.Veeregowda@elekta.com~~~2021-02-05 13:43:04~~~60a28b18b59ee1c089926616f95c4fc6f961ba17~~~Merged PR 17515: US184190 Updated the Documentation  +semver: major
+22	0	docs/documentation/Updater-API-specification.md
+75	7	docs/documentation/architecture/software_detailed_design.md
+
+60a28b1~~~60a28b18b59ee1c089926616f95c4fc6f961ba17~~~Jo Faircloth~~~Jo.Faircloth@elekta.com~~~2021-01-22 09:26:05~~~25cae684fc5a79b42db26400675b4e0db265a340~~~Merged PR 17151: US215308 Added details of API use for smoke test +semver: patch
+128	0	docs/documentation/.postman/Updater.postman_collection.json
+46	0	docs/documentation/smoke-tests.md
+
+25cae68~~~25cae684fc5a79b42db26400675b4e0db265a340~~~Jo Faircloth~~~Jo.Faircloth@elekta.com~~~2021-01-15 11:57:30~~~4132d2f1e5d254641fba055b7786e02dd71f6907~~~Merged PR 16962: DE19346 Added NotFound for UnableToGetPackagesException +semver: patch
+1	1	src/.config/dotnet-tools.json
+6	4	src/Api/Infrastructure/UpdaterExceptionStatusCodeHandler.cs
+1	0	src/Domain.Test.Unit/Domain.Test.Unit.csproj
+23	1	src/Domain.Test.Unit/Services/UpdaterServiceTest.cs
+10	0	src/Test.Integration/for_Anticorruption/EntitlementAnticorruptionTests.cs
+2	2	src/azure-pipeline.yml
+
+4132d2f~~~4132d2f1e5d254641fba055b7786e02dd71f6907~~~Chikkabasavarajaiah Veeregowda~~~Chikkabasavarajaiah.Veeregowda@elekta.com~~~2020-11-17 13:27:30~~~63d03a8c357a09eff4db2540a21ac675d191f3a4~~~Merged PR 15230: US200222  Updated Documents to Updater Api +semver: major
+-	-	docs/documentation/.img/add_user.png
+-	-	docs/documentation/.img/client.png
+-	-	docs/documentation/.img/roles.png
+-	-	docs/documentation/.img/updater_role_mappings.png
+-	-	docs/documentation/.img/users.png
+69	58	docs/documentation/GettingStarted.md
+1	0	docs/documentation/architecture/software_detailed_design.md
+
+63d03a8~~~63d03a8c357a09eff4db2540a21ac675d191f3a4~~~Roger Brooks~~~Roger.Brooks@elekta.com~~~2020-11-17 11:16:17~~~af11bef918466fe142d70bb5957fec385fce9e93~~~Merged PR 15244: US200222 - Fix incorrect service account bindings in cluster role +semver: patch
+1	1	src/Api/appsettings.json
+21	2	src/Test.Integration/GetPackagesTests.cs
+1	1	src/Test.Integration/TestBase.cs
+2	2	src/Test.Integration/TestEnvironmentSettings.cs
+2	1	src/Test.Integration/deploy.ps1
+1	1	src/Test.Integration/for_Anticorruption/UpdaterServiceTests.cs
+3	3	src/Test.Specification/Features/GetPackages.feature
+1	1	src/Test.Specification/SpecEnvironmentSettings.cs
+2	1	src/Test.Specification/deploy.ps1
+1	1	src/charts/updater/templates/client.yaml
+1	1	src/charts/updater/templates/clusterrole-rolebinding.yaml
+1	1	src/charts/updater/values.yaml
+
+af11bef~~~af11bef918466fe142d70bb5957fec385fce9e93~~~Roger Brooks~~~Roger.Brooks@elekta.com~~~2020-11-16 13:40:45~~~10fc5b803d16dbae5a916e5013411951e3371998~~~Merged PR 15008: US200222  Add authorisation to Updater Api +semver: major
+1	1	src/.config/dotnet-tools.json
+1	0	src/Anticorruption/Anticorruption.csproj
+4	1	src/Api/Api.csproj
+4	0	src/Api/Controllers/PackagesController.cs
+16	1	src/Api/Startup.cs
+21	1	src/Api/appsettings.json
+12	0	src/Test.Integration/GetPackagesTests.cs
+114	0	src/Test.Integration/IamHelper.cs
+1	1	src/Test.Integration/Test.Integration.csproj
+38	9	src/Test.Integration/TestBase.cs
+15	0	src/Test.Integration/TestEnvironmentSettings.cs
+8	9	src/Test.Integration/deploy.ps1
+22	0	src/Test.Integration/devctl.d/entitlements.yaml
+43	0	src/Test.Integration/devctl.d/iam.yaml
+27	0	src/Test.Integration/devctl.d/licensing.yaml
+20	0	src/Test.Integration/devctl.d/messaging.yaml
+16	0	src/Test.Integration/devctl.d/sentinel.yaml
+26	0	src/Test.Integration/devctl.d/sql-server.yaml
+36	0	src/Test.Integration/devctl.d/updater.yaml
+0	72	src/Test.Integration/helmfile.d/01-dependencies.yaml
+0	31	src/Test.Integration/helmfile.d/02-updater.yaml
+11	0	src/Test.Specification/Features/GetPackages.feature
+1	1	src/Test.Specification/Hooks/CleanStartHook.cs
+23	0	src/Test.Specification/Hooks/FeatureHooks.cs
+10	6	src/Test.Specification/Hooks/ScenarioContextHooks.cs
+71	0	src/Test.Specification/Hooks/TestRunHooks.cs
+26	0	src/Test.Specification/Models/UserTableRow.cs
+18	0	src/Test.Specification/SpecEnvironmentSettings.cs
+3	1	src/Test.Specification/Steps/CommonSteps.cs
+83	0	src/Test.Specification/Steps/IamSteps.cs
+1	2	src/Test.Specification/Steps/PackagesSteps.cs
+4	1	src/Test.Specification/Steps/StepBase.cs
+1	0	src/Test.Specification/Test.Specification.csproj
+44	0	src/Test.Specification/UpdaterFeatureContext.cs
+13	11	src/Test.Specification/UpdaterScenarioContext.cs
+27	1	src/Test.Specification/UpdaterTestRunContext.cs
+60	0	src/Test.Specification/UserManagementHelper.cs
+7	9	src/Test.Specification/deploy.ps1
+22	0	src/Test.Specification/devctl.d/entitlements.yaml
+43	0	src/Test.Specification/devctl.d/iam.yaml
+27	0	src/Test.Specification/devctl.d/licensing.yaml
+20	0	src/Test.Specification/devctl.d/messaging.yaml
+16	0	src/Test.Specification/devctl.d/sentinel.yaml
+26	0	src/Test.Specification/devctl.d/sql-server.yaml
+36	0	src/Test.Specification/devctl.d/updater.yaml
+0	72	src/Test.Specification/helmfile.d/01-dependencies.yaml
+0	31	src/Test.Specification/helmfile.d/02-updater.yaml
+4	18	src/azure-pipeline.yml
+32	0	src/charts/updater/templates/client.yaml
+12	0	src/charts/updater/templates/clusterrole-rolebinding.yaml
+19	0	src/charts/updater/templates/clusterrole.yaml
+13	1	src/charts/updater/templates/deployment.yaml
+6	12	src/charts/updater/templates/role.yaml
+6	7	src/charts/updater/templates/rolebinding.yaml
+1	1	src/charts/updater/templates/serviceaccount.yaml
+8	0	src/charts/updater/values.yaml
+
+10fc5b8~~~10fc5b803d16dbae5a916e5013411951e3371998~~~Erdem Ozdemir~~~erdem.ozdemir@elekta.com~~~2020-11-10 11:33:18~~~0e8582c71d59cd99c2bed6c59ea7bf64e24b7c9a~~~Merged PR 14915: US201944 Update build pipeline (enforcement and versioning) +semver: patch
+336	340	src/azure-pipeline.yml
+
+0e8582c~~~0e8582c71d59cd99c2bed6c59ea7bf64e24b7c9a~~~Roger Brooks~~~rogbrooks@gmail.com~~~2020-10-14 08:46:01~~~4d57815e2c6e0d681311a47f7efada574ccbe88a~~~Changes to support main development
+3	2	GitVersion.yml
+3	3	src/azure-pipeline.yml
+
+4d57815~~~4d57815e2c6e0d681311a47f7efada574ccbe88a~~~Roger Brooks~~~Roger.Brooks@elekta.com~~~2020-10-13 14:05:20~~~83c30a4f583dd1825af0d9f790cbbe6ccabb5192~~~Merged PR 13999: US198955 Merge to master ahead of rename to main
+25	5	docs/SOUP-Items/Microsoft.EntityFrameworkCore.Sqlite.md
+67	38	docs/documentation/architecture/software_architecture_design.md
+44	24	docs/documentation/architecture/software_detailed_design.md
+2	2	docs/index.md
+
+83c30a4~~~83c30a4f583dd1825af0d9f790cbbe6ccabb5192~~~Chris Davis~~~Chris.Davis@elekta.com~~~2020-10-09 09:35:04~~~d3469e07abd731b1641a75f6e93dd7776a9312a4~~~Merged PR 13943: US197500 Merge release 1.0.0 fixes +semver:patch
+2	10	docs/index.md
+1	1	src/.config/dotnet-tools.json
+2	2	src/Anticorruption/Anticorruption.csproj
+3	3	src/Anticorruption/EntitlementsAnticorruption.cs
+1	1	src/Anticorruption/Extensions/ServiceCollectionExtensions.cs
+2	2	src/Anticorruption/LicenseAnticorruption.cs
+79	0	src/Api.Test.Unit/Assemblers/PackageAssemblerShould.cs
+1	0	src/Api.Test.Unit/Controllers/PackagesControllerTest.cs
+31	0	src/Api.Test.Unit/Extensions/ServiceCollectionExtensionsShould.cs
+10	14	src/Api/Assemblers/PackageAssembler.cs
+4	1	src/Api/Extensions/ServiceCollectionExtensions.cs
+3	5	src/Api/Models/InstallPackagesCommand.cs
+3	5	src/Api/Models/PackagesRepresentation.cs
+1	1	src/Api/Startup.cs
+1	1	src/Domain.Test.Unit/Extensions/ServiceCollectionExtensionsTest.cs
+3	3	src/Domain.Test.Unit/Helpers/EntitlementPackagesHelperTests.cs
+2	2	src/Domain.Test.Unit/Helpers/UpdaterRepositoryStub.cs
+36	0	src/Domain.Test.Unit/Models/EntitlementAggregate/EntitlementShould.cs
+48	1	src/Domain.Test.Unit/Services/UpdaterServiceTest.cs
+2	2	src/Domain/Helpers/EntitlementPackagesHelper.cs
+1	1	src/Domain/Models/Packages.cs
+10	27	src/Domain/Services/UpdaterService.cs
+46	0	src/Infrastructure.Test.Unit/Extensions/ServiceCollectionExtensionsShould.cs
+11	9	src/Infrastructure/Extensions/ServiceCollectionExtensions.cs
+2	1	src/Infrastructure/Messaging/RabbitMQPublisher.cs
+0	3	src/PackageManager.Test.Unit/PackageHelperTest.cs
+7	0	src/PackageManager.Test.Unit/PackageManagerExtensionsTest.cs
+6	0	src/PackageManager.Test.Unit/PackageManagerTest.cs
+2	1	src/PackageManager/Extensions/PackageManagerExtensions.cs
+7	10	src/PackageManager/PackageManager.cs
+6	0	src/PackageManager/PackageManager.csproj
+70	0	src/Test.Helpers/MessagingHelper.cs
+1	1	src/Test.Helpers/PolicyUtilities.cs
+1	0	src/Test.Helpers/Test.Helpers.csproj
+1	0	src/Test.Integration/MessageBusExtensions.cs
+1	1	src/Test.Integration/TestBase.cs
+4	4	src/Test.Integration/TestEnvironmentSettings.cs
+3	2	src/Test.Integration/for_Anticorruption/EntitlementAnticorruptionTests.cs
+4	3	src/Test.Integration/for_Anticorruption/LicenseAnticorruptionTests.cs
+3	2	src/Test.Integration/for_Anticorruption/UpdaterServiceTests.cs
+3	3	src/Test.Integration/helmfile.d/01-dependencies.yaml
+4	4	src/Test.Specification/SpecEnvironmentSettings.cs
+1	2	src/Test.Specification/Steps/CommonSteps.cs
+0	1	src/Test.Specification/Steps/PackagesSteps.cs
+3	3	src/Test.Specification/helmfile.d/01-dependencies.yaml
+4	2	src/charts/updater/templates/role.yaml
+3	0	src/charts/updater/values.yaml
+
+d3469e0~~~d3469e07abd731b1641a75f6e93dd7776a9312a4~~~Jo Faircloth~~~Jo.Faircloth@elekta.com~~~2020-09-24 08:47:46~~~ace9001f9cc506e4bb13a258c9f8308b8a487ee8~~~Merged PR 13468: US197500 Merge develop to master
+21	0	.azuredevops/pull_request_template.md
+12	0	.gitignore
+5	0	GitVersion.yml
+0	20	README.md
+80	0	docs/SOUP-Items/Microsoft.EntityFrameworkCore.Sqlite.md
+-	-	docs/documentation/.img/anti-corruption-layer.png
+-	-	docs/documentation/.img/command-packages.png
+-	-	docs/documentation/.img/models.png
+-	-	docs/documentation/.img/query-package-name-version.png
+-	-	docs/documentation/.img/query-packages.png
+158	0	docs/documentation/.specs/updater-api.json
+111	0	docs/documentation/GettingStarted.md
+113	0	docs/documentation/Updater-API-specification.md
+192	0	docs/documentation/architecture/software_architecture_design.md
+260	0	docs/documentation/architecture/software_detailed_design.md
+11	0	docs/index.md
+12	0	src/.config/dotnet-tools.json
+12	0	src/.sonarlint/updater.slconfig
+174	0	src/.sonarlint/updater/CSharp/SonarLint.xml
+366	0	src/.sonarlint/updatercsharp.ruleset
+28	0	src/Anticorruption/Anticorruption.csproj
+64	0	src/Anticorruption/EntitlementsAnticorruption.cs
+12	0	src/Anticorruption/EntitlementsServiceSettings.cs
+37	0	src/Anticorruption/Extensions/ServiceCollectionExtensions.cs
+63	0	src/Anticorruption/LicenseAnticorruption.cs
+12	0	src/Anticorruption/LicensingServiceSettings.cs
+23	0	src/Anticorruption/UnableToGetPackagesException.cs
+23	0	src/Anticorruption/UnableToQueryLicencesException.cs
+27	0	src/Api.Test.Unit/Api.Test.Unit.csproj
+142	0	src/Api.Test.Unit/Controllers/PackagesControllerTest.cs
+50	0	src/Api/Api.csproj
+15	0	src/Api/Assemblers/IPackageAssembler.cs
+79	0	src/Api/Assemblers/PackageAssembler.cs
+23	0	src/Api/Assemblers/ThereIsNoInstalledPackageException.cs
+23	0	src/Api/Assemblers/ThereIsNoPackageToInstallException.cs
+78	0	src/Api/Controllers/PackagesController.cs
+6	0	src/Api/Dockerfile
+20	0	src/Api/Extensions/ServiceCollectionExtensions.cs
+32	0	src/Api/Infrastructure/UpdaterExceptionStatusCodeHandler.cs
+10	0	src/Api/Models/InstallPackageCommand.cs
+23	0	src/Api/Models/InstallPackagesCommand.cs
+10	0	src/Api/Models/PackageRepresentation.cs
+23	0	src/Api/Models/PackagesRepresentation.cs
+45	0	src/Api/Program.cs
+6	0	src/Api/Properties/AssemblyInfo.cs
+112	0	src/Api/Startup.cs
+49	0	src/Api/appsettings.json
+62	0	src/Api/nswag.json
+23	0	src/Client.Test.Unit/Client.Test.Unit.csproj
+22	0	src/Client.Test.Unit/Helpers/InterceptingHttpMessageHandler.cs
+40	0	src/Client/Client.csproj
+64	0	src/Client/README.md
+93	0	src/Client/nswag.json
+26	0	src/Domain.Test.Unit/Domain.Test.Unit.csproj
+44	0	src/Domain.Test.Unit/Extensions/ServiceCollectionExtensionsTest.cs
+105	0	src/Domain.Test.Unit/Helpers/EntitlementPackagesHelperTests.cs
+23	0	src/Domain.Test.Unit/Helpers/UpdaterRepositoryStub.cs
+266	0	src/Domain.Test.Unit/Services/UpdaterServiceTest.cs
+26	0	src/Domain/Domain.csproj
+42	0	src/Domain/Entity.cs
+21	0	src/Domain/Extensions/ServiceCollectionExtensions.cs
+33	0	src/Domain/Helpers/EntitlementPackagesHelper.cs
+6	0	src/Domain/IAggregateRoot.cs
+9	0	src/Domain/Messaging/IMessageEvent.cs
+15	0	src/Domain/Messaging/IPublisher.cs
+13	0	src/Domain/Messaging/PackagesEvent.cs
+11	0	src/Domain/Messaging/PackagesInstallationFailedEvent.cs
+24	0	src/Domain/Models/EntitlementAggregate/Entitlement.cs
+14	0	src/Domain/Models/EntitlementAggregate/EntitlementPackage.cs
+12	0	src/Domain/Models/IEntitlementsAnticorruption.cs
+12	0	src/Domain/Models/ILicenseAnticorruption.cs
+14	0	src/Domain/Models/IUpdaterRepository.cs
+10	0	src/Domain/Models/License.cs
+27	0	src/Domain/Models/Package.cs
+23	0	src/Domain/Models/Packages.cs
+6	0	src/Domain/Properties/AssemblyInfo.cs
+15	0	src/Domain/Services/IUpdaterService.cs
+140	0	src/Domain/Services/UpdaterService.cs
+60	0	src/Domain/ValueObject.cs
+29	0	src/Infrastructure.Test.Unit/Infrastructure.Test.Unit.csproj
+45	0	src/Infrastructure/DatabaseInitializer.cs
+47	0	src/Infrastructure/Extensions/ServiceCollectionExtensions.cs
+16	0	src/Infrastructure/IUpdaterDbContext.cs
+32	0	src/Infrastructure/Infrastructure.csproj
+15	0	src/Infrastructure/Messaging/ExceptionEvent.cs
+23	0	src/Infrastructure/Messaging/ExchangeNameNotProvidedException.cs
+74	0	src/Infrastructure/Messaging/RabbitMQPublisher.cs
+9	0	src/Infrastructure/Messaging/UpdaterSettings.cs
+6	0	src/Infrastructure/Properties/AssemblyInfo.cs
+31	0	src/Infrastructure/Repositories/EntitlementConfiguration.cs
+42	0	src/Infrastructure/Repositories/UpdaterRepository.cs
+23	0	src/Infrastructure/UpdaterDbContext.cs
+113	0	src/PackageManager.Test.Unit/PackageHelperTest.cs
+28	0	src/PackageManager.Test.Unit/PackageManager.Test.Unit.csproj
+84	0	src/PackageManager.Test.Unit/PackageManagerExtensionsTest.cs
+716	0	src/PackageManager.Test.Unit/PackageManagerTest.cs
+79	0	src/PackageManager.Test.Unit/TestHelpers/PackageManagerSettingsBuilder.cs
+58	0	src/PackageManager/Extensions/PackageManagerExtensions.cs
+61	0	src/PackageManager/Helpers/PackageBuilder.cs
+34	0	src/PackageManager/IPackageManager.cs
+18	0	src/PackageManager/Models/Chart.cs
+24	0	src/PackageManager/Models/CustomResourceInstance.cs
+25	0	src/PackageManager/Models/CustomResourceInstanceMetadata.cs
+15	0	src/PackageManager/Models/CustomResourceInstanceSpec.cs
+15	0	src/PackageManager/Models/CustomResourceInstanceStatus.cs
+16	0	src/PackageManager/Models/CustomResourceInstances.cs
+18	0	src/PackageManager/Models/DeletePackageResponse.cs
+10	0	src/PackageManager/Models/HelmPackage.cs
+12	0	src/PackageManager/Models/Rollback.cs
+286	0	src/PackageManager/PackageManager.cs
+13	0	src/PackageManager/PackageManager.csproj
+16	0	src/PackageManager/PackageManagerSettings.cs
+6	0	src/PackageManager/Properties/AssemblyInfo.cs
+9	0	src/Test.Helpers/Constants.cs
+16	0	src/Test.Helpers/Extensions/SerializationExtensions.cs
+30	0	src/Test.Helpers/KubectlCommandHelper.cs
+45	0	src/Test.Helpers/KubernetesHelper.cs
+1	0	src/Test.Helpers/Licenses/A-Base-1.0.0.txt
+1	0	src/Test.Helpers/Licenses/A-F1-1.0.0.txt
+1	0	src/Test.Helpers/Licenses/B-Base-1.0.0.txt
+7	0	src/Test.Helpers/Licenses/Index.md
+43	0	src/Test.Helpers/PolicyUtilities.cs
+36	0	src/Test.Helpers/ShellCommandHelper.cs
+28	0	src/Test.Helpers/Test.Helpers.csproj
+43	0	src/Test.Integration/GetPackagesTests.cs
+19	0	src/Test.Integration/MessageBusExtensions.cs
+42	0	src/Test.Integration/MessagingHelper.cs
+39	0	src/Test.Integration/PollyUtilities.cs
+36	0	src/Test.Integration/Test.Integration.csproj
+113	0	src/Test.Integration/TestBase.cs
+29	0	src/Test.Integration/TestEnvironmentSettings.cs
+38	0	src/Test.Integration/appsettings_fail.json
+48	0	src/Test.Integration/appsettings_success.json
+50	0	src/Test.Integration/deploy.ps1
+23	0	src/Test.Integration/deploy.sh
+51	0	src/Test.Integration/for_Anticorruption/DependencyInjector.cs
+57	0	src/Test.Integration/for_Anticorruption/DependencyInjectorFail.cs
+98	0	src/Test.Integration/for_Anticorruption/EntitlementAnticorruptionTests.cs
+91	0	src/Test.Integration/for_Anticorruption/LicenseAnticorruptionTests.cs
+64	0	src/Test.Integration/for_Anticorruption/UpdaterServiceTests.cs
+72	0	src/Test.Integration/helmfile.d/01-dependencies.yaml
+31	0	src/Test.Integration/helmfile.d/02-updater.yaml
+21	0	src/Test.Integration/undeploy.ps1
+5	0	src/Test.Integration/undeploy.sh
+47	0	src/Test.Specification/Features/GetPackages.feature
+17	0	src/Test.Specification/Hooks/CleanStartHook.cs
+23	0	src/Test.Specification/Hooks/ScenarioContextHooks.cs
+10	0	src/Test.Specification/Models/LicenseTableRow.cs
+10	0	src/Test.Specification/Models/PackageTableRow.cs
+26	0	src/Test.Specification/SpecEnvironmentSettings.cs
+78	0	src/Test.Specification/Steps/CommonSteps.cs
+46	0	src/Test.Specification/Steps/PackagesSteps.cs
+10	0	src/Test.Specification/Steps/StepBase.cs
+30	0	src/Test.Specification/Test.Specification.csproj
+37	0	src/Test.Specification/UpdaterScenarioContext.cs
+11	0	src/Test.Specification/UpdaterTestRunContext.cs
+51	0	src/Test.Specification/deploy.ps1
+23	0	src/Test.Specification/deploy.sh
+72	0	src/Test.Specification/helmfile.d/01-dependencies.yaml
+31	0	src/Test.Specification/helmfile.d/02-updater.yaml
+20	0	src/Test.Specification/undeploy.ps1
+5	0	src/Test.Specification/undeploy.sh
+355	0	src/azure-pipeline.yml
+6	0	src/charts/updater/Chart.yaml
+19	0	src/charts/updater/templates/NOTES.txt
+63	0	src/charts/updater/templates/_helpers.tpl
+6	0	src/charts/updater/templates/configmaps.yaml
+100	0	src/charts/updater/templates/deployment.yaml
+36	0	src/charts/updater/templates/ingress.yaml
+25	0	src/charts/updater/templates/pvc.yaml
+17	0	src/charts/updater/templates/role.yaml
+12	0	src/charts/updater/templates/rolebinding.yaml
+12	0	src/charts/updater/templates/secrets.yaml
+15	0	src/charts/updater/templates/service.yaml
+4	0	src/charts/updater/templates/serviceaccount.yaml
+111	0	src/charts/updater/values.yaml
+5	0	src/global.json
+114	0	src/updater.sln
+12	0	src/updater.sln.DotSettings
+
+ace9001~~~ace9001f9cc506e4bb13a258c9f8308b8a487ee8~~~Chris Davis~~~Chris.Davis@elekta.com~~~2020-07-13 13:50:13~~~~~~Added README.md, .gitignore (VisualStudio) files
+330	0	.gitignore
+20	0	README.md
