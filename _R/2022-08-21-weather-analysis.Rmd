@@ -1,0 +1,271 @@
+---
+title: "Analysing Historical Weather"
+description: "Understanding a little historical weather"
+output: html_document
+category: weather
+tags: [r, weather]
+---
+
+```{r echo = FALSE, include=FALSE, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+library(ggthemes)
+```
+
+```{r knit_options, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, include = TRUE, message = FALSE, warning = FALSE, cache = TRUE)
+```
+
+## Collecting Data
+
+To start with, we can use the MetOffice's <a href="https://www.metoffice.gov.uk/research/climate/maps-and-data/historic-station-data" targe="_blank">Historic station data</a>.
+
+There aren't too many stations offering data, so _Eastbourne_ is closest to me (known as the "Sunshine Coast", so I expect data to be a bit different to what I perceive north of the downs!).
+
+The data is a text file, located here, <https://www.metoffice.gov.uk/pub/data/weather/uk/climate/stationdata/eastbournedata.txt>.
+
+All comments relate to the Eastbourne data only.
+
+### Understanding the Data
+
+First import the data.  A quick visual on the data shows that we have some introductory text - which we are unable to import (hence using `skip`).  `fill` is required to cater for missing values.
+
+It turned out that there are 2 rows of headers, and the 2nd row starting with blanks confused the import - therefore we read it for the headers then add those to the main data.
+
+We also have to deal with the 'Provisional' text in a column that is not labelled.
+
+```{r fetch, echo = TRUE, cache = TRUE}
+.fetch <- function(url) {
+  headers <- scan(
+    file = url,
+    skip = 5,
+    nlines = 1,
+    what = character()
+  )
+
+  data <- read.table(
+  #  file = "_drafts/ebn.txt",
+    url(url),
+    header = FALSE,
+    fill = TRUE,
+    skip = 7,
+    col.names = c(headers, "isProvisional")
+  )
+
+  return(data)
+}
+
+rawEbn <- .fetch( "https://www.metoffice.gov.uk/pub/data/weather/uk/climate/stationdata/eastbournedata.txt") #nolint
+
+str(rawEbn)
+```
+
+Cool.  We have `r nrow(rawEbn)` observations and `r ncol(rawEbn)` variables.
+
+The docs detail some additional characters, that we don't need.  The following characters are removed from the data:
+
+- `#`, use of a different sensor
+- `*`, 'estimated'
+- `---`, more than 2 days missing data in the month
+
+```{r tidy_dataset, echo = TRUE}
+.tidyData <- function(rawData) {
+  d <- rawData %>%
+    select(
+      year = yyyy,
+      month = mm,
+      maxTemp = tmax,
+      minTemp = tmin,
+      airFrost = af,
+      rain = rain,
+      sun = sun
+    ) %>%
+    mutate(
+      across(
+        !c(year, month),
+        ~ stringr::str_replace_all(.x, c("\\*" = "", "#" = "", "---" = ""))
+      ),
+      across(
+        !c(year, month),
+        ~ as.double(.x)
+      ),
+      across(
+        c(year, month),
+        ~ as.integer(.x)
+      )
+    )
+
+  # only get years with 12 months of data
+  minYear <- d %>%
+    filter(month == 1) %>%
+    slice_min(year)
+
+  maxYear <- d %>%
+    filter(month == 12) %>%
+    slice_max(year)
+
+  d <- d %>% filter(between(year, minYear$year, maxYear$year))
+
+  return(d)
+}
+
+ebn <- .tidyData(rawEbn)
+```
+
+Now we have our tidy data, we can ask some questions...
+
+### Asking questions
+
+#### Is there a trend in annual rainfall?
+
+```{r rainfall_total_plot}
+.plotTotalRain <- function(data) {
+  data %>%
+    group_by(year) %>%
+    summarise(
+      totalRain = sum(rain)
+    ) %>%
+    ggplot(aes(year, totalRain)) +
+    geom_point() +
+    geom_smooth(method = "lm") +
+    labs(
+      x = "",
+      y = "Annual Rain /mm",
+      caption = "Source: MetOffice Historic Station Data"
+    ) +
+    theme_economist_white()
+}
+
+plotly::ggplotly(.plotTotalRain(ebn))
+```
+
+Annual rainfall is pretty random, but there is a notable trend downwards.
+
+#### Which month has maximum and minimum rainfall?
+
+```{r rainfall_max_min}
+max_rainfall <- ebn %>% slice_max(rain)
+min_rainfall <- ebn %>% slice_min(rain)
+```
+
+- Minimum rainfall month was in `r month.name[min_rainfall$month]` `r min_rainfall$year`, and measured `r min_rainfall$rain`mm.
+- Maximum rainfall month was in `r month.name[max_rainfall$month]` `r max_rainfall$year`, and measured `r max_rainfall$rain`mm.
+
+Annual rainfall is trending down, but the month with least rainfall was in the first year of data, and the most in a recent year.
+
+#### How does monthly rainfall vary?
+
+```{r monthly_rainfall_box}
+.plotMonthlyRain <- function(data) {
+  data %>%
+    mutate(monthAbb = month.abb[month]) %>%
+    ggplot(aes(reorder(monthAbb, month), rain, group = monthAbb)) +
+    geom_boxplot(fill = "deepskyblue3") +
+    labs(
+      x = "",
+      y = "Monthly Rainfall /mm",
+      caption = "Source: MetOffice Historic station data"
+    ) +
+    theme_economist_white()
+}
+
+plotly::ggplotly(.plotMonthlyRain(ebn))
+```
+
+Almost all months have had near zero rainfall.  October has the biggest range, from `2.3mm` to `246.9mm` (excluding the outlier).
+
+#### How does monthly sunshine vary?
+
+```{r monthly_sun_box}
+.plotMonthlySun <- function(data) {
+  data %>%
+    mutate(monthAbb = month.abb[month]) %>%
+    ggplot(aes(reorder(monthAbb, month), sun, group = monthAbb)) +
+    geom_boxplot(fill = "gold3") +
+    labs(
+      x = "",
+      y = "Monthly Sunshine /hrs",
+      caption = "Source: MetOffice Historic station data"
+    ) +
+    theme_economist_white()
+}
+
+plotly::ggplotly(.plotMonthlySun(ebn))
+```
+
+#### Are max / min temperatures 'related'?
+
+```{r max_min_temp}
+.maxMinTemp <- function(data) {
+  data %>%
+    mutate(monthAbb = month.abb[month]) %>%
+    ggplot(aes(reorder(monthAbb, month), group = monthAbb)) +
+    geom_boxplot(aes(y = minTemp), colour = "darkblue") +
+    geom_boxplot(aes(y = maxTemp), colour = "darkred") +
+    labs(
+      x = "",
+      y = "Temperature (\u00B0C)",
+      caption = "Source: MetOffice Historic station data"
+    ) +
+    theme_economist_white()
+}
+
+plotly::ggplotly(.maxMinTemp(ebn))
+```
+
+## Create a Play-Thing
+
+### All Weather
+
+Remember that temperatures are the main daily maximum/minimum for the month.  Rain, sun and frost are the sum of mm, hours, days (resp).
+
+```{r all_weather}
+.allWeather <- function(data) {
+  totals <- crosstalk::SharedData$new(
+    data %>%
+      group_by(year) %>%
+      summarise(
+        minTempYear = min(minTemp),
+        maxTempYear = max(maxTemp),
+        totalRain = sum(rain),
+        totalSun = sum(sun),
+        totalDaysFrost = sum(airFrost)
+      ),
+    key = ~year
+  )
+  
+  .totalsPlot <- function(column, colour) {
+    totals %>%
+      ggplot(aes(year, .data[[column]])) +
+      geom_point(colour = colour) +
+      geom_smooth(method = "loess") +
+      scale_x_continuous(expand = expansion(c(0, 0))) +
+      labs(
+        x = "",
+        caption = "Source: MetOffice Historic station data") +
+      theme_economist_white()
+  }
+  
+  totalRain <- .totalsPlot("totalRain", "deepskyblue3") +
+    labs(y = "Total Rain (mm)")
+  minTemp <- .totalsPlot("minTempYear", "darkblue") +
+    labs(y = "Min Temp (\u00B0C)")
+  maxTemp <- .totalsPlot("maxTempYear", "darkred") +
+    labs(y = "Max Temp (\u00B0C)")
+  totalSun <- .totalsPlot("totalSun", "gold3") +
+    labs(y = "Total Hours Sun")
+  totalDaysFrost <- .totalsPlot("totalDaysFrost", "steelblue2") +
+    labs(y = "Total Days Frost")
+  
+  crosstalk::bscols(
+    plotly::ggplotly(totalRain),
+    plotly::ggplotly(minTemp),
+    plotly::ggplotly(maxTemp),
+    plotly::ggplotly(totalSun),
+    plotly::ggplotly(totalDaysFrost),
+    widths = 12
+  )
+}
+
+.allWeather(ebn)
+```
