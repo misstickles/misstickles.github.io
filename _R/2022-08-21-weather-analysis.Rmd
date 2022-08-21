@@ -44,7 +44,6 @@ We also have to deal with the 'Provisional' text in a column that is not labelle
   )
 
   data <- read.table(
-  #  file = "_drafts/ebn.txt",
     url(url),
     header = FALSE,
     fill = TRUE,
@@ -61,6 +60,8 @@ str(rawEbn)
 ```
 
 Cool.  We have `r nrow(rawEbn)` observations and `r ncol(rawEbn)` variables.
+
+### Getting Tidy Data
 
 The docs detail some additional characters, that we don't need.  The following characters are removed from the data:
 
@@ -85,17 +86,11 @@ The docs detail some additional characters, that we don't need.  The following c
         !c(year, month),
         ~ stringr::str_replace_all(.x, c("\\*" = "", "#" = "", "---" = ""))
       ),
-      across(
-        !c(year, month),
-        ~ as.double(.x)
-      ),
-      across(
-        c(year, month),
-        ~ as.integer(.x)
-      )
+      across(!c(year, month), ~ as.double(.x)),
+      across(c(year, month), ~ as.integer(.x))
     )
 
-  # only get years with 12 months of data
+  # only get years with 12 months of data (to prevent totals being skew)
   minYear <- d %>%
     filter(month == 1) %>%
     slice_min(year)
@@ -148,16 +143,16 @@ max_rainfall <- ebn %>% slice_max(rain)
 min_rainfall <- ebn %>% slice_min(rain)
 ```
 
-- Minimum rainfall month was in `r month.name[min_rainfall$month]` `r min_rainfall$year`, and measured `r min_rainfall$rain`mm.
-- Maximum rainfall month was in `r month.name[max_rainfall$month]` `r max_rainfall$year`, and measured `r max_rainfall$rain`mm.
-
-Annual rainfall is trending down, but the month with least rainfall was in the first year of data, and the most in a recent year.
+- Minimum rainfall month was in `r paste0(month.name[min_rainfall$month], " ", min_rainfall$year)`, and measured `r min_rainfall$rain`mm.
+- Maximum rainfall month was in `r paste0(month.name[max_rainfall$month], " ", max_rainfall$year)`, and measured `r max_rainfall$rain`mm.
 
 #### How does monthly rainfall vary?
 
+Whisker and box plots show median values (for each month) alongside upper and lower quartiles (50%, 25% and 75% respectively).  90% of data is covered between the whiskers.  So at a median, 50% of values appear above the line and 50% below.
+
 ```{r monthly_rainfall_box}
-.plotMonthlyRain <- function(data) {
-  data %>%
+.monthlyRain <- function(data) {
+  gg <- data %>%
     mutate(monthAbb = month.abb[month]) %>%
     ggplot(aes(reorder(monthAbb, month), rain, group = monthAbb)) +
     geom_boxplot(fill = "deepskyblue3") +
@@ -167,12 +162,25 @@ Annual rainfall is trending down, but the month with least rainfall was in the f
       caption = "Source: MetOffice Historic station data"
     ) +
     theme_economist_white()
+
+  rainRange <- ebn %>%
+    group_by(month) %>%
+    summarise(
+      min = min(rain),
+      max = max(rain),
+      range = max(rain) - min(rain)) %>% 
+    slice_max(range)
+
+  return(list(range = rainRange, plot = gg))
 }
 
-plotly::ggplotly(.plotMonthlyRain(ebn))
+rain <- .monthlyRain(ebn)
+
+plotly::ggplotly(rain$plot)
+rainRange <- rain$range
 ```
 
-Almost all months have had near zero rainfall.  October has the biggest range, from `2.3mm` to `246.9mm` (excluding the outlier).
+Almost all months have had near zero rainfall.  `r month.name[rainRange$month]` has the greatest range, from ``r rainRange$min`mm` to ``r rainRange$max`mm` (excluding the outlier).
 
 #### How does monthly sunshine vary?
 
@@ -193,15 +201,15 @@ Almost all months have had near zero rainfall.  October has the biggest range, f
 plotly::ggplotly(.plotMonthlySun(ebn))
 ```
 
-#### Are max / min temperatures 'related'?
+#### Are maximum / minimum temperatures 'related'?
 
 ```{r max_min_temp}
 .maxMinTemp <- function(data) {
   data %>%
     mutate(monthAbb = month.abb[month]) %>%
     ggplot(aes(reorder(monthAbb, month), group = monthAbb)) +
-    geom_boxplot(aes(y = minTemp), colour = "darkblue") +
-    geom_boxplot(aes(y = maxTemp), colour = "darkred") +
+    geom_boxplot(aes(y = minTemp), fill = "darkblue") +
+    geom_boxplot(aes(y = maxTemp), fill = "darkred") +
     labs(
       x = "",
       y = "Temperature (\u00B0C)",
@@ -213,11 +221,67 @@ plotly::ggplotly(.plotMonthlySun(ebn))
 plotly::ggplotly(.maxMinTemp(ebn))
 ```
 
+Yes.
+
+##### Do years have varying temperature range?
+
+The minimum minimum to the maximum maximum of each year.
+
+```{r temp_range, fig.height=10, units="in"}
+.tempRange <- function(data) {
+  d <- data %>%
+    group_by(year) %>%
+    summarise(
+      min = min(minTemp),
+      max = max(maxTemp),
+      diff = max - min
+    )
+  
+  gg <- d %>%
+    ggplot(aes(y = year, colour = diff)) +
+    geom_segment(aes(x = min, xend = max, yend = year), size = 3) +
+    geom_vline(aes(xintercept = mean((max + min) / 2), linetype = "Mean"), size = 1.2) +
+    scale_x_continuous(
+      breaks = as.integer(c(
+        seq(floor(min(data$min)), 0, by = 5),
+        seq(0, max(data$max), by = 5)))
+    ) +
+    scale_y_reverse() +
+    scale_colour_gradient(
+      low = "darkblue",
+      high = "darkred"
+    ) +
+    scale_linetype_manual(values = c("Mean" = "dotdash")) +
+    labs(
+      x = "Temperature (\u00B0C)",
+      y = "",
+      colour = "Temp\nDifference",
+      linetype = ""
+    ) +
+    theme_economist_white() +
+    theme(
+    )
+  
+  return(list(plot = gg, data = d))
+}
+
+temps <- .tempRange(ebn)
+
+plotly::ggplotly(temps$plot)
+
+tempsData <- temps$data
+min <- tempsData %>% slice_min(diff)
+max <- tempsData %>% slice_max(diff)
+```
+
+- Minimum temperature range is `r min$diff`°C in `r min$year`, with a minimum of `r min$min`°C and maximum of `r min$max`°C.
+- Maximum temperature range is `r max$diff`°C in `r max$year`, with a minimum of `r max$min`°C and a maximum of `r max$max`°C.
+
 ## Create a Play-Thing
 
 ### All Weather
 
-Remember that temperatures are the main daily maximum/minimum for the month.  Rain, sun and frost are the sum of mm, hours, days (resp).
+Remember that temperatures are the mean daily maximum/minimum for the month.  Rain, sun and frost are the sum of mm, hours, days (resp).
 
 ```{r all_weather}
 .allWeather <- function(data) {
@@ -248,9 +312,9 @@ Remember that temperatures are the main daily maximum/minimum for the month.  Ra
   
   totalRain <- .totalsPlot("totalRain", "deepskyblue3") +
     labs(y = "Total Rain (mm)")
-  minTemp <- .totalsPlot("minTempYear", "darkblue") +
+  minTemps <- .totalsPlot("minTempYear", "darkblue") +
     labs(y = "Min Temp (\u00B0C)")
-  maxTemp <- .totalsPlot("maxTempYear", "darkred") +
+  maxTemps <- .totalsPlot("maxTempYear", "darkred") +
     labs(y = "Max Temp (\u00B0C)")
   totalSun <- .totalsPlot("totalSun", "gold3") +
     labs(y = "Total Hours Sun")
@@ -259,8 +323,8 @@ Remember that temperatures are the main daily maximum/minimum for the month.  Ra
   
   crosstalk::bscols(
     plotly::ggplotly(totalRain),
-    plotly::ggplotly(minTemp),
-    plotly::ggplotly(maxTemp),
+    plotly::ggplotly(minTemps),
+    plotly::ggplotly(maxTemps),
     plotly::ggplotly(totalSun),
     plotly::ggplotly(totalDaysFrost),
     widths = 12
