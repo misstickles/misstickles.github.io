@@ -24,11 +24,9 @@ There aren't too many stations offering data, so _Eastbourne_ is closest to me (
 
 The data is a text file, located here, <https://www.metoffice.gov.uk/pub/data/weather/uk/climate/stationdata/eastbournedata.txt>.
 
-All comments relate to the Eastbourne data only.
-
 ### Understanding the Data
 
-First import the data.  A quick visual on the data shows that we have some introductory text - which we are unable to import (hence using `skip`).  `fill` is required to cater for missing values.
+First import the data. A quick visual on the data shows that we have some introductory text - which we are unable to import (hence using `skip`). `fill` is required to cater for missing values.
 
 It turned out that there are 2 rows of headers, and the 2nd row starting with blanks confused the import - therefore we read it for the headers then add those to the main data.
 
@@ -59,11 +57,11 @@ rawEbn <- .fetch( "https://www.metoffice.gov.uk/pub/data/weather/uk/climate/stat
 str(rawEbn)
 ```
 
-Cool.  We have `r nrow(rawEbn)` observations and `r ncol(rawEbn)` variables.
+Cool. We have `r nrow(rawEbn)` observations and `r ncol(rawEbn)` variables.
 
 ### Getting Tidy Data
 
-The docs detail some additional characters, that we don't need.  The following characters are removed from the data:
+The docs detail some additional characters, that we don't need. The following characters are removed from the data:
 
 - `#`, use of a different sensor
 - `*`, 'estimated'
@@ -148,7 +146,7 @@ min_rainfall <- ebn %>% slice_min(rain)
 
 #### How does monthly rainfall vary?
 
-Whisker and box plots show median values (for each month) alongside upper and lower quartiles (50%, 25% and 75% respectively).  90% of data is covered between the whiskers.  So at a median, 50% of values appear above the line and 50% below.
+Whisker and box plots show median values (for each month) alongside upper and lower quartiles (50%, 25% and 75% respectively). 90% of data is covered between the whiskers. So at a median, 50% of values appear above the line and 50% below.
 
 ```{r monthly_rainfall_box}
 .monthlyRain <- function(data) {
@@ -168,7 +166,7 @@ Whisker and box plots show median values (for each month) alongside upper and lo
     summarise(
       min = min(rain),
       max = max(rain),
-      range = max(rain) - min(rain)) %>% 
+      range = max(rain) - min(rain)) %>%
     slice_max(range)
 
   return(list(range = rainRange, plot = gg))
@@ -180,7 +178,7 @@ plotly::ggplotly(rain$plot)
 rainRange <- rain$range
 ```
 
-Almost all months have had near zero rainfall.  `r month.name[rainRange$month]` has the greatest range, from ``r rainRange$min`mm` to ``r rainRange$max`mm` (excluding the outlier).
+Almost all months have had near zero rainfall. `r month.name[rainRange$month]` has the greatest range, from ``r rainRange$min`mm` to  ``r rainRange$max`mm` (excluding the outlier).
 
 #### How does monthly sunshine vary?
 
@@ -236,7 +234,7 @@ The minimum minimum to the maximum maximum of each year.
       max = max(maxTemp),
       diff = max - min
     )
-  
+
   gg <- d %>%
     ggplot(aes(y = year, colour = diff)) +
     geom_segment(aes(x = min, xend = max, yend = year), size = 3) +
@@ -261,7 +259,7 @@ The minimum minimum to the maximum maximum of each year.
     theme_economist_white() +
     theme(
     )
-  
+
   return(list(plot = gg, data = d))
 }
 
@@ -281,7 +279,7 @@ max <- tempsData %>% slice_max(diff)
 
 ### All Weather
 
-Remember that temperatures are the mean daily maximum/minimum for the month.  Rain, sun and frost are the sum of mm, hours, days (resp).
+Remember that temperatures are the mean daily maximum/minimum for the month. Rain, sun and frost are the sum of mm, hours, days (resp).
 
 ```{r all_weather}
 .allWeather <- function(data) {
@@ -297,7 +295,7 @@ Remember that temperatures are the mean daily maximum/minimum for the month.  Ra
       ),
     key = ~year
   )
-  
+
   .totalsPlot <- function(column, colour) {
     totals %>%
       ggplot(aes(year, .data[[column]])) +
@@ -309,7 +307,7 @@ Remember that temperatures are the mean daily maximum/minimum for the month.  Ra
         caption = "Source: MetOffice Historic station data") +
       theme_economist_white()
   }
-  
+
   totalRain <- .totalsPlot("totalRain", "deepskyblue3") +
     labs(y = "Total Rain (mm)")
   minTemps <- .totalsPlot("minTempYear", "darkblue") +
@@ -320,7 +318,7 @@ Remember that temperatures are the mean daily maximum/minimum for the month.  Ra
     labs(y = "Total Hours Sun")
   totalDaysFrost <- .totalsPlot("totalDaysFrost", "steelblue2") +
     labs(y = "Total Days Frost")
-  
+
   crosstalk::bscols(
     plotly::ggplotly(totalRain),
     plotly::ggplotly(minTemps),
