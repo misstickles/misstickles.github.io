@@ -4,6 +4,7 @@ description: "Understanding a little historical weather"
 output: html_document
 category: weather
 tags: [r, weather]
+layout: post
 ---
 
 ```{r echo = FALSE, include=FALSE, warning=FALSE}
@@ -178,7 +179,7 @@ plotly::ggplotly(rain$plot)
 rainRange <- rain$range
 ```
 
-Almost all months have had near zero rainfall. `r month.name[rainRange$month]` has the greatest range, from ``r rainRange$min`mm` to  ``r rainRange$max`mm` (excluding the outlier).
+Almost all months have had near zero rainfall. `r month.name[rainRange$month]` has the greatest range, from `` r rainRange$min`mm` to  ``r rainRange$max`mm` (excluding the outlier).
 
 #### How does monthly sunshine vary?
 
@@ -221,7 +222,7 @@ plotly::ggplotly(.maxMinTemp(ebn))
 
 Yes.
 
-##### Do years have varying temperature range?
+#### Do years have varying temperature range?
 
 The minimum minimum to the maximum maximum of each year.
 
@@ -254,7 +255,7 @@ The minimum minimum to the maximum maximum of each year.
       x = "Temperature (\u00B0C)",
       y = "",
       colour = "Temp\nDifference",
-      linetype = ""
+      caption = "Source: MetOffice Historic station data"
     ) +
     theme_economist_white() +
     theme(

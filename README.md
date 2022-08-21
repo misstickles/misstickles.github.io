@@ -13,6 +13,14 @@ Theme turned into Jekyll by me and based on a Bootstrap 4 theme by [Xiaoying Ril
 
 ## Jekyll / Bundle Commands
 
+### Scripts
+
+Use scripts in `_scripts` to run locally.
+
+Ie, `Rscript.exe ./_scripts/serveRmd.R`
+
+### Local Jekyll
+
 Live reload
 
 `bundle exec jekyll serve --livereload --incremental`

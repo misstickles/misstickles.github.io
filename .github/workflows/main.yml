@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: GitHub Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Bundler Cache
         uses: actions/cache@v2
         with:
@@ -19,12 +19,13 @@ jobs:
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
+
       - name: Build and Deploy to GitHub Pages
-        uses: jeffreytse/jekyll-deploy-action@v0.2.1
+        uses: jeffreytse/jekyll-deploy-action@v0.4.0
         with:
           provider: "github"
           token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ secrets.GITHUB_REPOSITORY }}
+          repository: ""
           branch: "gh-pages"
           jekyll_src: "./"
           jekyll_cfg: "_config.yml"
@@ -32,3 +33,4 @@ jobs:
           bundler_ver: ">=0"
           cname: ""
           actor: ""
+          pre_build_commands: ""
