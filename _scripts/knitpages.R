@@ -25,9 +25,9 @@ knit_folder <- function(infolder, outfolder, figsfolder, cachefolder) {
     outfile <- paste0(outfolder, "/", sub(".Rmd$", ".md", basename(infile)))
 
     # knit only if the input file is the last one modified
-    if (!file.exists(outfile) |
+    if (!file.exists(outfile) ||
       file.info(infile)$mtime > file.info(outfile)$mtime) {
-      KnitPost(infile, outfile, figsfolder, cachefolder)
+        KnitPost(infile, outfile, figsfolder, cachefolder)
     }
   }
 }
