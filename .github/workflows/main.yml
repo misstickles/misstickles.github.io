@@ -21,7 +21,7 @@ jobs:
             ${{ runner.os }}-gems-
 
       - name: Build and Deploy to GitHub Pages
-        uses: jeffreytse/jekyll-deploy-action@v0.4.0
+        uses: jeffreytse/jekyll-deploy-action@master # https://github.com/jeffreytse/jekyll-deploy-action/issues/25 (if followed readme)
         with:
           provider: "github"
           token: ${{ secrets.GITHUB_TOKEN }}
