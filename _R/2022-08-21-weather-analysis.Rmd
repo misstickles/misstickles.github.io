@@ -11,7 +11,6 @@ layout: post
 library(dplyr)
 library(ggplot2)
 library(ggthemes)
-library(patchwork)
 ```
 
 ```{r knit_options, include = FALSE}
@@ -131,7 +130,7 @@ Now we have our tidy data, we can ask some questions...
     theme_economist_white()
 }
 
-(.plotTotalRain(ebn))
+.plotTotalRain(ebn)
 ```
 
 Annual rainfall is pretty random, but there is a notable trend downwards.
@@ -145,6 +144,7 @@ minRainfall <- ebn %>% slice_min(rain)
 
 - Minimum rainfall month was in _`r paste0(month.name[minRainfall$month], " ", minRainfall$year)`_, and measured _`r minRainfall$rain`mm_.
 - Maximum rainfall month was in _`r paste0(month.name[maxRainfall$month], " ", maxRainfall$year)`_, and measured _`r maxRainfall$rain`mm_.
+```
 
 #### How does monthly rainfall vary?
 
@@ -195,7 +195,7 @@ Almost all months have had near zero rainfall. _`r month.name[rainData$range$mon
       caption = "Source: MetOffice Historic station data"
     ) +
     theme_economist_white()
-  
+
   range <- data %>%
     group_by(month) %>%
     summarise(
@@ -257,7 +257,7 @@ Yes.
 
 The minimum minimum to the maximum maximum of each year.
 
-```{r temp_range, fig.height=11, units="in"}
+```{r temp_range, fig.height=10, units="in"}
 .tempRange <- function(data) {
   d <- data %>%
     group_by(year) %>%
