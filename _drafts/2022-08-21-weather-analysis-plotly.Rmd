@@ -7,11 +7,12 @@ tags: [r, weather]
 layout: post
 ---
 
+> TODO: Plotly errors when generated to md with `## Error in path.expand(path): invalid 'path' argument` - fix this :( It recommended to install `webshot::install_phantomjs()` - which I did (error message sometimes gone, but no graph)
+
 ```{r echo = FALSE, include=FALSE, warning=FALSE}
 library(dplyr)
 library(ggplot2)
 library(ggthemes)
-library(patchwork)
 ```
 
 ```{r knit_options, include = FALSE}
@@ -28,7 +29,7 @@ The data is a text file, located here, <https://www.metoffice.gov.uk/pub/data/we
 
 ### Understanding the Data
 
-First import the data. A quick visual shows that we have some introductory text - which we are unable to import (hence using `skip`). `fill` is required to cater for missing values.
+First import the data. A quick visual on the data shows that we have some introductory text - which we are unable to import (hence using `skip`). `fill` is required to cater for missing values.
 
 It turned out that there are 2 rows of headers, and the 2nd row starting with blanks confused the import - therefore we read it for the headers then add those to the main data.
 
@@ -59,7 +60,7 @@ rawEbn <- .fetch( "https://www.metoffice.gov.uk/pub/data/weather/uk/climate/stat
 str(rawEbn)
 ```
 
-Cool. We have _`r nrow(rawEbn)`_ observations and _`r ncol(rawEbn)`_ variables.
+Cool. We have `r nrow(rawEbn)` observations and `r ncol(rawEbn)` variables.
 
 ### Getting Tidy Data
 
@@ -113,7 +114,7 @@ Now we have our tidy data, we can ask some questions...
 
 #### Is there a trend in annual rainfall?
 
-```{r rainfall_total_plot}
+```{r rainfall_total_plot, eval=knitr::is_html_output()}
 .plotTotalRain <- function(data) {
   data %>%
     group_by(year) %>%
@@ -131,7 +132,7 @@ Now we have our tidy data, we can ask some questions...
     theme_economist_white()
 }
 
-(.plotTotalRain(ebn))
+plotly::ggplotly(.plotTotalRain(ebn))
 ```
 
 Annual rainfall is pretty random, but there is a notable trend downwards.
@@ -139,18 +140,18 @@ Annual rainfall is pretty random, but there is a notable trend downwards.
 #### Which month has maximum and minimum rainfall?
 
 ```{r rainfall_max_min}
-maxRainfall <- ebn %>% slice_max(rain)
-minRainfall <- ebn %>% slice_min(rain)
+max_rainfall <- ebn %>% slice_max(rain)
+min_rainfall <- ebn %>% slice_min(rain)
 ```
 
-- Minimum rainfall month was in _`r paste0(month.name[minRainfall$month], " ", minRainfall$year)`_, and measured _`r minRainfall$rain`mm_.
-- Maximum rainfall month was in _`r paste0(month.name[maxRainfall$month], " ", maxRainfall$year)`_, and measured _`r maxRainfall$rain`mm_.
+- Minimum rainfall month was in `r paste0(month.name[min_rainfall$month], " ", min_rainfall$year)`, and measured `r min_rainfall$rain`mm.
+- Maximum rainfall month was in `r paste0(month.name[max_rainfall$month], " ", max_rainfall$year)`, and measured `r max_rainfall$rain`mm.
 
 #### How does monthly rainfall vary?
 
 Whisker and box plots show median values (for each month) alongside upper and lower quartiles (50%, 25% and 75% respectively). 90% of data is covered between the whiskers. So at a median, 50% of values appear above the line and 50% below.
 
-```{r monthly_rainfall_box}
+```{r monthly_rainfall_box, eval=knitr::is_html_output()}
 .monthlyRain <- function(data) {
   gg <- data %>%
     mutate(monthAbb = month.abb[month]) %>%
@@ -166,26 +167,27 @@ Whisker and box plots show median values (for each month) alongside upper and lo
   rainExtreme <- data %>%
     group_by(month) %>%
     summarise(
-      minRain = min(rain),
-      maxRain = max(rain),
+      min = min(rain),
+      max = max(rain),
       range = max(rain) - min(rain)) %>%
     slice_max(range)
 
   return(list(range = rainExtreme, plot = gg))
 }
 
-rainData <- .monthlyRain(ebn)
+rain <- .monthlyRain(ebn)
 
-rainData$plot
+plotly::ggplotly(rain$plot)
+rainRange <- rain$range
 ```
 
-Almost all months have had near zero rainfall. _`r month.name[rainData$range$month]`_ has the greatest range, from _`r rainData$range$minRain`mm_ to  _`r rainData$range$maxRain`mm_.
+Almost all months have had near zero rainfall. `r month.name[rainRange$month]` has the greatest range, from `` r rainRange$min`mm` to  ``r rainRange$max`mm`.
 
 #### How does monthly sunshine vary?
 
-```{r monthly_sun_box}
+```{r monthly_sun_box, eval=knitr::is_html_output()}
 .plotMonthlySun <- function(data) {
-  gg <- data %>%
+  data %>%
     mutate(monthAbb = month.abb[month]) %>%
     ggplot(aes(reorder(monthAbb, month), sun, group = monthAbb)) +
     geom_boxplot(fill = "gold3") +
@@ -195,45 +197,14 @@ Almost all months have had near zero rainfall. _`r month.name[rainData$range$mon
       caption = "Source: MetOffice Historic station data"
     ) +
     theme_economist_white()
-  
-  range <- data %>%
-    group_by(month) %>%
-    summarise(
-      minSun = min(sun),
-      maxSun = max(sun),
-      range = max(sun) - min(sun)) %>%
-    slice_max(range)
-  
-  minMax <- data %>%
-    group_by(year, month) %>%
-    summarise(
-      min = min(sun),
-      max = max(sun)
-    )
-
-  return(list(
-    range = range, 
-    min = data %>% slice_min(sun),
-    max = data %>% slice_max(sun),
-    plot = gg))
 }
 
-sunData <- .plotMonthlySun(ebn)
-
-sunData$plot
+plotly::ggplotly(.plotMonthlySun(ebn))
 ```
-
-- The least amount of sun in a WHOLE month was in _`r month.name[sunData$min$month]` `r sunData$min$year`_ with just _`r sunData$min$sun`hrs_.
-- The most amount of sun was in _`r month.name[sunData$max$month]` `r sunData$max$year`_ with _`r sunData$max$sun`hrs_.
-- _`r month.name[sunData$range$month]`_ has the greatest range of sun, which has had between _`r sunData$range$minSun`hrs_ and _`r sunData$range$maxSun`hrs_.
-
-> These values include 'outlier' data (outside of the 90% likleyhood).  Although I am not presenting actual quartile data here, you can see from the boxplot above which month is most LIKELY to have a wide range of sun hours.
->
-> For Eastbourne, this is _June_.
 
 #### Are maximum / minimum temperatures 'related'?
 
-```{r max_min_temp}
+```{r max_min_temp, eval=knitr::is_html_output()}
 .maxMinTemp <- function(data) {
   data %>%
     mutate(monthAbb = month.abb[month]) %>%
@@ -248,7 +219,7 @@ sunData$plot
     theme_economist_white()
 }
 
-(.maxMinTemp(ebn))
+plotly::ggplotly(.maxMinTemp(ebn))
 ```
 
 Yes.
@@ -257,24 +228,24 @@ Yes.
 
 The minimum minimum to the maximum maximum of each year.
 
-```{r temp_range, fig.height=11, units="in"}
+```{r temp_range, fig.height=10, units="in", eval=knitr::is_html_output()}
 .tempRange <- function(data) {
   d <- data %>%
     group_by(year) %>%
     summarise(
-      minT = min(minTemp),
-      maxT = max(maxTemp),
-      diff = maxT - minT
+      min = min(minTemp),
+      max = max(maxTemp),
+      diff = max - min
     )
 
   gg <- d %>%
     ggplot(aes(y = year, colour = diff)) +
-    geom_segment(aes(x = minT, xend = maxT, yend = year), size = 3) +
-    geom_vline(aes(xintercept = mean((maxT + minT) / 2), linetype = "Mean"), size = 1.2) +
+    geom_segment(aes(x = min, xend = max, yend = year), size = 3) +
+    geom_vline(aes(xintercept = mean((max + min) / 2), linetype = "Mean"), size = 1.2) +
     scale_x_continuous(
       breaks = as.integer(c(
-        seq(floor(min(data$minT)), 0, by = 5),
-        seq(0, max(data$maxT), by = 5)))
+        seq(floor(min(data$min)), 0, by = 5),
+        seq(0, max(data$max), by = 5)))
     ) +
     scale_y_reverse() +
     scale_colour_gradient(
@@ -290,7 +261,6 @@ The minimum minimum to the maximum maximum of each year.
     ) +
     theme_economist_white() +
     theme(
-      legend.position = "bottom"
     )
 
   return(list(plot = gg, data = d))
@@ -298,16 +268,15 @@ The minimum minimum to the maximum maximum of each year.
 
 temps <- .tempRange(ebn)
 
-(temps$plot)
+plotly::ggplotly(temps$plot)
 
 tempsData <- temps$data
-
-minTemps <- tempsData %>% slice_min(diff)
-maxTemps <- tempsData %>% slice_max(diff)
+min <- tempsData %>% slice_min(diff)
+max <- tempsData %>% slice_max(diff)
 ```
 
-- Minimum temperature range is _`r minTemps$diff`°C_ in _`r minTemps$year`_, with a minimum of _`r minTemps$minT`°C_ and maximum of _`r minTemps$maxT`°C_.
-- Maximum temperature range is _`r maxTemps$diff`°C_ in _`r maxTemps$year`_, with a minimum of _`r maxTemps$minT`°C_ and a maximum of _`r maxTemps$maxT`°C_.
+- Minimum temperature range is `r min$diff`°C in `r min$year`, with a minimum of `r min$min`°C and maximum of `r min$max`°C.
+- Maximum temperature range is `r max$diff`°C in `r max$year`, with a minimum of `r max$min`°C and a maximum of `r max$max`°C.
 
 ## Create a Play-Thing
 
@@ -315,11 +284,9 @@ maxTemps <- tempsData %>% slice_max(diff)
 
 Remember that temperatures are the mean daily maximum/minimum for the month. Rain, sun and frost are the sum of mm, hours, days (resp).
 
-> UPDATE: It seems that I cannot render to HTML if I connect them all and make them interactive :o(  So here they all are static...
-
-```{r all_weather, warning=FALSE, fig.height=12}
+```{r all_weather, eval=knitr::is_html_output()}
 .allWeather <- function(data) {
-  totals <- #crosstalk::SharedData$new(
+  totals <- crosstalk::SharedData$new(
     data %>%
       group_by(year) %>%
       summarise(
@@ -328,8 +295,8 @@ Remember that temperatures are the mean daily maximum/minimum for the month. Rai
         totalRain = sum(rain),
         totalSun = sum(sun),
         totalDaysFrost = sum(airFrost)
-#      ),
-#    key = ~year
+      ),
+    key = ~year
   )
 
   .totalsPlot <- function(column, colour) {
@@ -355,16 +322,14 @@ Remember that temperatures are the mean daily maximum/minimum for the month. Rai
   totalDaysFrost <- .totalsPlot("totalDaysFrost", "steelblue2") +
     labs(y = "Total Days Frost")
 
-#  crosstalk::bscols(
-  gridExtra::grid.arrange(
-    (minTemps),
-    (maxTemps),
-    (totalRain),
-    (totalSun),
-    (totalDaysFrost),
-    nrow = 5)
-#    widths = 12
-#  )
+  crosstalk::bscols(
+    plotly::ggplotly(totalRain),
+    plotly::ggplotly(minTemps),
+    plotly::ggplotly(maxTemps),
+    plotly::ggplotly(totalSun),
+    plotly::ggplotly(totalDaysFrost),
+    widths = 12
+  )
 }
 
 .allWeather(ebn)
