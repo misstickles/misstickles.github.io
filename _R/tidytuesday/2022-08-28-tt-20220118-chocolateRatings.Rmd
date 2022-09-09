@@ -1,0 +1,192 @@
+---
+title: "Chocolate Ratings"
+description: "Tidy Tuesday from 2022-01-18, chocolate ratings."
+output: html_document
+category: tidytuesday
+tags: [r, tidytuesday]
+layout: post
+
+# This file is also first use of `|>` pipe (over dplyr's `%>%`).  Expect mishaps.
+---
+
+`tidytuesday's` _Chocolate Ratings_ from 18th January 2022, <https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-01-18>.
+
+Using the data provided, we can investigate a few attributes of chocolate, including its rating vs characteristics; source location and manufacturer.
+
+```{r knit_options, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, include = TRUE, message = FALSE, warning = FALSE, cache = TRUE)
+```
+
+```{r setup}
+library(dplyr)
+library(ggplot2)
+library(ggthemes)
+
+theme_set(theme_minimal())
+#theme_update(
+#  text = element_text(size = 10)
+#)
+```
+
+First, we import the data and visualise the type of data that we have.
+
+```{r get-data}
+# https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-01-18/readme.md
+
+choco_raw <- readr::read_csv(
+  'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-01-18/chocolate.csv')
+
+summary(choco_raw)
+```
+
+## Which characteristics are used to describe the chocolate?
+
+```{r characteristics}
+memorable_words <- choco_raw |>
+  select(memorable = most_memorable_characteristics) |>
+  tidytext::unnest_tokens(word, memorable) |>
+  count(word, sort = TRUE)
+
+total_memorable <- sum(memorable_words$n)
+total_chocolates <- nrow(choco_raw)
+
+memorable_words |>
+  slice_head(n = 20) |>
+  mutate(word = stringr::str_to_title(word)) |>
+  mutate(word = reorder(word, n)) |>
+  ggplot(aes(n, word)) +
+  geom_col(fill = "chocolate4") +
+  labs(
+    title = "Top 20 memorable characteristics of the chocolate",
+    subtitle = paste0("Total characteristics: ", total_memorable, " for ", total_chocolates, " chocolates"),
+    x = "Number of Mentions", 
+    y = NULL,
+    caption = "#tidytuesday (2022-01-08) | Graph by @yukkybananas"
+) +
+  ggthemes::theme_hc()
+```
+
+## Are these characteristics related to the review given?
+
+```{r char_review}
+# wrangle the data for the plot
+choc_reviews <- choco_raw |> 
+  select(rating, memorable = most_memorable_characteristics) |>
+  mutate(memorable = strsplit(memorable, ",")) |>
+  tidyr::unnest(memorable) |>
+  count(memorable, rating, sort = TRUE) |>
+  slice_head(n = 30) |>
+  mutate(memorable = factor(stringr::str_to_title(memorable))) |>
+  mutate(memorable = reorder(memorable, n))
+
+# to provide our labels
+tally <- choc_reviews |>
+  group_by(rating) |>
+  summarise(n = sum(n)) |>
+  arrange(rating)
+  
+choc_reviews |>
+  ggplot(aes(x = rating, y = memorable)) +
+  geom_hline(aes(yintercept = memorable), colour = "grey") +
+  geom_point(aes(fill = n, size = n), colour = "white", stroke = 2, shape = 21) +
+  colorspace::scale_fill_continuous_sequential(
+    palette = "BrwnYl"
+  ) +
+  scale_x_continuous(
+    breaks = seq(2.75, 4, by = 0.25),
+    labels = paste0(
+      c("2.75\n(n = ", "3.0\n(n = ", "3.25\n(n = ", "3.5\n(n = ", "3.75\n(n = ", "4.0\n(n = "),
+      tally$n,
+      rep(")", 6)
+    )
+  ) +
+  scale_size(guide = "none") + # could also use `guides`
+  labs(
+    title = "Top 30 ratings for memorable characteristics",
+    subtitle = "Sweet chocolate is lower rated than chocolate with cocoa",
+    x = "Rating (n = Number of mentions)",
+    y = NULL,
+    fill = "Number\nof times\nmentioned",
+    caption = "#tidytuesday (2022-01-08) | Graph by @yukkybananas"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.title.x = element_text(
+      margin = margin(t = 10)
+    ),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.x = element_blank()
+  )
+
+rtings <- choco_raw %>% count(rating, sort = TRUE)
+```
+
+This plot suggestst that `3.0` is the most common rating (`r rtings |> filter(rating == 3.0) |> dplyr::select(n)` ratings), but `3.5` is most rated overall (`r rtings |> filter(rating == 3.5) |> select(n)` ratings).  It is likely that a lot of other characteristics have few ratings each at `3.5`.  People seem a bit indifferent to their chocolate!
+
+## Is the mention of `cocoa` preferred high % or low %?
+
+```{r popular_cocoa}
+choco_percent <-
+  choco_raw |>
+  select(cocoa_percent) |>
+  count(cocoa_percent, name = "All Bars")
+
+choco_percent_cocoa <- 
+  choco_raw |>
+  select(cocoa_percent, memorable = most_memorable_characteristics) |>
+  tidytext::unnest_tokens(word, memorable) |>
+  filter(word == "cocoa") |>
+  count(cocoa_percent, name = "Mentions Cocoa")
+
+coef <- max(choco_percent$`All Bars`)
+
+joined <- choco_percent |>
+  full_join(choco_percent_cocoa, by = c("cocoa_percent")) |>
+  mutate(
+    cocoa_percent = as.integer(stringr::str_remove(cocoa_percent, "%")),
+    pc = `Mentions Cocoa` / `All Bars`) |>
+  tidyr::pivot_longer(!c(cocoa_percent, pc),  names_to = "type", values_to = "value") |>
+  mutate(type = factor(type)) |>
+  arrange(cocoa_percent, type)
+
+joined |>
+  ggplot(aes(x = cocoa_percent, y = value)) +
+  geom_line(aes(colour = type), alpha = 0.6) +
+  geom_point(data = joined |> filter(type == "Mentions Cocoa"), aes(y = pc * coef, shape = "% mentioning\n'cocoa'"), colour = "orange3", stroke = 3, shape = "-") +
+  scale_x_continuous(
+    breaks = seq(10, 100, by = 10),
+    labels = scales::percent_format(scale = 1)
+  ) +
+  scale_shape_manual(values = c("% mentioning\n'cocoa'" = "-")) +
+  scale_y_continuous(
+    trans = "log10",
+    sec.axis = sec_axis(
+#      name = "Percent bars mentioning 'cocoa'",
+      trans = ~ . / coef,
+      labels = scales::percent_format(scale = 100)
+    )
+  ) +
+  labs(
+    title = "Cocoa content per bar",
+    subtitle = "Mentions of cocoa tracks the number of bars\nwith that percentage of cocoa",
+    x = "Cocoa %",
+    y = "Number of bars",
+    caption = "#tidytuesday (2022-01-08) | Graph by @yukkybananas",
+    shape = NULL,
+    colour = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "right"
+  )
+```
+
+This is a strange plot - I agree!  Area just wasn't working, and line seems to be missing a few points...  `¯\_(ツ)_/¯`
+
+- The percentage of cocoa in a bar, where _cocoa_ is a memorable characteristic, seems to follow the total number of available with that percentage of cocoa.
+- `70%` cocoa is both the most available, and the most memorable with _cocoa_.
+- There is even a bar with 100% cocoa (seriously??), but _cocoa_ was only memorable in `4.8%` of them!
+- It's interesting that in general, percentage tends to peak when divisible by 5 (eg, 70%, 75%, 80%).  Perhaps this is rounded on behalf of consumers; or because (eg) 73% suggests accuracy that cannot be achieved; or because round numbers are actually more tasty; or something else...
+- The highest proportion of memorable _cocoa_ to the number of bars available is `50%` at `56%`, `71%`, `73%` cocoa percent.
+
+So - cocoa seems to be preferred around 70% - 75%.  Sounds a lot.  Testers may have been chocolate "connoisseurs"!  More chart(s) would be needed to discover if these are well rated. 
