@@ -131,7 +131,7 @@ Now we have our tidy data, we can ask some questions...
     theme_economist_white()
 }
 
-(.plotTotalRain(ebn))
+.plotTotalRain(ebn)
 ```
 
 Annual rainfall is pretty random, but there is a notable trend downwards.
@@ -195,7 +195,7 @@ Almost all months have had near zero rainfall. _`r month.name[rainData$range$mon
       caption = "Source: MetOffice Historic station data"
     ) +
     theme_economist_white()
-  
+
   range <- data %>%
     group_by(month) %>%
     summarise(
