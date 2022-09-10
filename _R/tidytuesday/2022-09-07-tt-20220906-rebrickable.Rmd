@@ -1,0 +1,172 @@
+---
+title: "Lego Sets"
+author: "Jo Faircloth"
+output: html_document
+category: tidytuesday
+tags: [r, tidytuesday]
+layout: post
+---
+
+`tidytuesday"s` _Lego Sets_ from 6th September 2022, <https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-09-06>.
+
+```{r knit_options, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, include = TRUE, message = FALSE, warning = FALSE, cache = TRUE)
+```
+
+```{r setup}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(ggthemes)
+library(patchwork)
+```
+
+```{r data}
+#colours <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-09-06/colors.csv.gz")
+#elements <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-09-06/elements.csv.gz")
+#inventories <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-09-06/inventories.csv.gz")
+#inventoryMinifigs <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-09-06/inventory_minifigs.csv.gz")
+#inventoryParts <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-09-06/inventory_parts.csv.gz")
+#inventorySets <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-09-06/inventory_sets.csv.gz")
+sets <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-09-06/sets.csv.gz")
+#minifigs <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-09-06/minifigs.csv.gz")
+#partCategories <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-09-06/part_categories.csv.gz")
+#partRelationships <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-09-06/part_relationships.csv.gz")
+#parts <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-09-06/parts.csv.gz")
+themes <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-09-06/themes.csv.gz")
+```
+
+```{r init}
+dataSource <- "https://rebrickable.com/downloads/"
+
+font <- "Fira Sans Condensed"
+sysfonts::font_add_google(family = font, font)
+showtext::showtext_auto(enable = TRUE)
+theme_set(theme_minimal(base_family = font))
+```
+
+## Number of Parts in Sets
+
+### Are sets getting bigger over time?
+
+```{r parts_over_time}
+mean_parts <- sets |>
+  group_by(year) |>
+  summarise(m = mean(num_parts))
+
+ggParts <- sets |>
+  select(year, num_parts) |>
+  ggplot(aes(year, num_parts)) +
+  geom_jitter(aes(color = num_parts), alpha = 0.8, width = 0.3) +
+  geom_path(data = mean_parts, aes(y = m), colour = "yellow3", size = 1) +
+  scale_x_continuous(
+    breaks = seq(1940, 2030, by = 10),
+    expand = expansion(c(0, 0))
+  ) +
+  scale_y_continuous(
+    expand = expansion(c(0, 0.05))
+  ) +
+  labs(
+    title = "Number of Lego parts in each released set per year",
+    subtitle = "Very large sets have been introduced since ~2000\nThe mean number of parts in sets is increasing.\n",
+    x = "Year",
+    y = "Parts in Set",
+    caption = paste0("Jo Faircloth | #tidytuesday (2022-09-06) | Data: ", dataSource)
+  ) +
+  theme(
+    legend.position = "none",
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
+
+ggParts
+```
+
+## Common Themes
+
+### Which are the most common themes?
+
+```{r common_themes}
+commonThemes <- sets |> 
+  left_join(themes |> rename(theme_id = id, theme_name = name), by = "theme_id") |>
+  select(theme_name) |>
+  group_by(theme_name) |>
+  summarise(n = n()) |>
+  arrange(desc(n)) |>
+  slice_head(n = 20) |>
+  mutate(theme_name = forcats::fct_reorder(theme_name, n))
+
+ggTopThemes <- commonThemes |>
+  ggplot(aes(n, theme_name)) +
+  geom_col() +
+  scale_x_continuous(expand = expansion(c(0, 0))) +
+  labs(
+    title = "The number of sets in a theme",
+    subtitle = "'Gear' has most sets by a long way.\nThere are more 'Star Wars' then 'Technic'",
+    x = "Sets in Theme",
+    y = NULL,
+    caption = paste0("Jo Faircloth | #tidytuesday (2022-09-06) | Data: ", dataSource)
+  ) +
+  theme(
+    plot.caption = element_text(size = 10)
+  )
+
+ggTopThemes
+```
+
+### How to themes change over time?
+
+```{r themes_per_year}
+ggThemesPerYear <- sets |>
+  left_join(themes |> rename(theme_id = id, theme_name = name), by = "theme_id") |>
+  select(theme_name, year) |>
+  filter(theme_name %in% (commonThemes |> arrange(desc(n)) |> slice_head(n = 20))$theme_name) |>
+#  filter(year != lubridate::year(Sys.Date())) |>
+  group_by(theme_name, year) |>
+  summarise(n = n()) |>
+  ungroup() |>
+  arrange(year) |>
+  ggplot(aes(year, n, fill = theme_name, label = theme_name, colour = theme_name)) +
+  ggstream::geom_stream(
+    type = "mirror", 
+    bw = 0.8,
+    extra_span = 0.013) +
+  scale_x_continuous(
+    breaks = seq(1940, 2030, by = 10),
+    expand = expansion(c(0, 0))
+  ) +
+  scale_colour_manual(values = paletteer::paletteer_d("pals::alphabet2") |> colorspace::darken(.8)) +
+  scale_fill_manual(values = paletteer::paletteer_d("pals::alphabet2") %>% colorspace::lighten(0.1)) +
+  labs(
+    title = "Top 20 most common themes over time",
+    subtitle = "'Gear', 'Friends' and 'Ninjago' feature prominently over the last few years",
+    x = NULL,
+    y = NULL,
+    fill = NULL,
+    colour = NULL,
+    caption = paste0("Jo Faircloth | #tidytuesday (2022-09-06) | Data: ", dataSource)) +
+  theme(
+    legend.position = "top",
+    legend.text = element_text(size = 10),
+    axis.text.y = element_blank(),
+    axis.line.y = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.x = element_line(rel(0.5), colour = "grey2", linetype = "dashed"),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.y = element_blank()
+  )
+  
+ggThemesPerYear
+```
+
+See image on github for a <a href="https://raw.githubusercontent.com/misstickles/misstickles.github.io/main/figure/R/tidytuesday/20220906.png" target="_blank">larger plot</a>.
+
+```{r save_charts, eval=FALSE}
+ggAggregated <- (ggParts / ggTopThemes / ggThemesPerYear)
+
+showtext::showtext_opts(dpi = 320)
+
+ggsave("/figure/R/tidytuesday/20220906.png", plot = ggAggregated, width = 7, height = 21, dpi = 320, bg = "white")
+
+showtext::showtext_auto(enable = FALSE)
+```
