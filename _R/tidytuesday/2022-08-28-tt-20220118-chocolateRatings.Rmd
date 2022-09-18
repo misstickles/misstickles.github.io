@@ -120,10 +120,12 @@ choc_reviews |>
     panel.grid.major.x = element_blank()
   )
 
-#ggsave("figure/R/tidytuesday/20220118.png", width = 7, height = 7, dpi = 320, bg = "white")
-
 rtings <- choco_raw %>% count(rating, sort = TRUE)
 ```
+```{r ggplot, eval=FALSE}
+ggsave("figure/R/tidytuesday/20220118.png", width = 7, height = 7, dpi = 320, bg = "white")
+```
+
 
 This plot suggestst that `3.0` is the most common rating (`r rtings |> filter(rating == 3.0) |> dplyr::select(n)` ratings), but `3.5` is most rated overall (`r rtings |> filter(rating == 3.5) |> select(n)` ratings).  It is likely that a lot of other characteristics have few ratings each at `3.5`.  People seem a bit indifferent to their chocolate!
 
