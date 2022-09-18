@@ -1,0 +1,157 @@
+---
+title: "Netflix Shows"
+author: "Jo Faircloth"
+output: html_document
+category: tidytuesday
+tags: [r, tidytuesday]
+layout: post
+---
+
+`tidytuesday"s` _Netflix Shows_ from 20th April 2021, <https://github.com/rfordatascience/tidytuesday/blob/eedfa9fe5c39d973502f00b2574ba14bff7ed82b/data/2021/2021-04-20>.
+
+Data sourced from [Kagle](https://www.kaggle.com/shivamb/netflix-shows?select=netflix_titles.csv).
+
+```{r knit_options, include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  include = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  root.dir = "/")
+```
+
+```{r setup}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(ggthemes)
+library(patchwork)
+```
+
+```{r data}
+netflix <- readr::read_csv("2021-04-20/netflix_titles.csv")
+```
+
+```{r colours}
+colours <- c(red = "#e50914", black = "#222222", grey = "#303030", text = "#ffffff")
+
+covidDate <- as.Date("2020-03-15")
+disneyDate <- as.Date("2019-11-12")
+```
+
+## Monthly title releases
+
+The number of titles released onto Netflix each month.
+
+The launch of Disney+ apears to have provided a peak for new films on Netflix.
+
+Covid-19 possibly led to a lower release rate for the following couple of years, but it is not too dis-similar to the years up to the launch of Disney+.
+
+```{r plot_monthly_titles}
+n <- netflix |>
+  mutate(
+    added = lubridate::mdy(date_added),
+    added = as.Date(added),
+    added_month  = lubridate::floor_date(added, unit = "month")) |>
+  group_by(added_month) |>
+  summarise(n = n())
+
+ggTiles <- n |>
+  ggplot() +
+  geom_tile(aes(x = added_month, y = 1, fill = n, width = 35)) +
+  scale_fill_gradient(low = colours["grey"], high = colours["red"]) +
+  scale_x_date(
+    date_breaks = "2 years",
+    date_labels = "%Y",
+    expand = expansion(c(0, 0))
+  ) +
+  labs(
+    caption = "Visualisation: Jo Faircloth\nSource: Kaggle | #tidytuesday"
+  ) +
+  guides(
+    fill = guide_colorbar(
+      title = "Netflix titles added per month",
+      title.position = "bottom",
+      title.hjust = 0.5,
+      barwidth = 20,
+      barheight = 0.5,
+      frame.colour = colours["text"]
+    )
+  ) +
+  theme_void() +
+  theme(
+    axis.text.x = element_text(colour = colours["text"], size = 12),
+    text = element_text(
+      colour = colours["text"]
+    ),
+    legend.position = "bottom",
+    legend.box.margin = margin(8, 0, 4, 0, "mm"),
+    plot.background = element_rect(fill = colours["black"]),
+    plot.margin = margin(3, 3, 2, 3, "mm"),
+    plot.caption = element_text(
+      colour = colours["text"],
+      hjust = 1,
+      size = 8
+    )
+  )
+
+# covid
+ggTiles <- ggTiles +
+  geom_vline(
+    aes(xintercept = covidDate), 
+    linetype = "dotted",
+    size = 0.5, 
+    colour = colours["text"],
+    alpha = 0.8) +
+  annotate(
+    geom = "text",
+    x = covidDate - 400,
+    y = 1.2,
+    label = "Covid-19:\nglobal lockdows\nbegan",
+    colour = colours["text"]) +
+  geom_curve(
+    aes(
+      x = covidDate - 365, 
+      y = 1.12, 
+      xend = covidDate,
+      yend = 1.05),
+    curvature = 0.3,
+    colour = colours["text"],
+    arrow = arrow(length = unit(2, "mm"))
+  )
+
+# disney
+ggTiles <- ggTiles +
+  geom_vline(
+    aes(xintercept = disneyDate), 
+    linetype = "dotted",
+    size = 0.5, 
+    colour = colours["text"],
+    alpha = 0.8) +
+  annotate(
+    geom = "text",
+    x = disneyDate - 400,
+    y = 0.6,
+    label = "Disney+ launched\nin the USA",
+    colour = colours["text"]) +
+  geom_curve(
+    aes(x = disneyDate - 365, y = 0.65, xend = disneyDate, yend = 0.7),
+    curvature = -0.3,
+    colour = colours["text"],
+    arrow = arrow(length = unit(2, "mm"))
+  )
+
+ggTiles
+```
+
+
+### <a href="https://raw.githubusercontent.com/misstickles/misstickles.github.io/main/figure/R/tidytuesday/20210420" target="_blank">Full size plot</a>
+
+
+```{r eval=FALSE}
+ggsave("figure/R/tidytuesday/20210420.png", plot = ggTiles, bg = colours["black"], dpi = 300, width = 8, height = 5)
+```
+
+
+
