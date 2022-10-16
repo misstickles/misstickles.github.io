@@ -1,0 +1,63 @@
+160a6816a~~2022-09-29T18:16:24+05:30~~Ashwin Maroli~~ashmaroli@users.noreply.github.com~~Incrementally rebuild when a data file is changed (#8771)
+53	0	features/incremental_rebuild.feature
+2	0	lib/jekyll.rb
+83	0	lib/jekyll/data_entry.rb
+61	0	lib/jekyll/data_hash.rb
+6	1	lib/jekyll/drops/site_drop.rb
+6	3	lib/jekyll/readers/data_reader.rb
+8	1	lib/jekyll/utils.rb
+1	0	test/source/_data/boolean.yml
+4	0	test/source/_data/languages_plus.yml
+34	0	test/test_data_entry.rb
+57	0	test/test_data_hash.rb
+
+b632afd2d~~2022-09-25T20:42:58+05:30~~Ashwin Maroli~~ashmaroli@gmail.com~~Add version badge to documentation header
+2	1	docs/_docs/variables.md
+
+d09c5105d~~2022-09-25T20:23:04+05:30~~Ashwin Maroli~~ashmaroli@gmail.com~~Document keys of the `theme` drop
+18	0	docs/_data/jekyll_variables.yml
+4	0	docs/_docs/variables.md
+1	1	lib/jekyll/drops/theme_drop.rb
+
+6633fd233~~2022-09-24T06:54:57-07:00~~jekyllbot~~jekyllbot@jekyllrb.com~~Update history to reflect merge of #9129 [ci skip]
+1	0	History.markdown
+
+b8cf7cf96~~2022-09-24T19:24:56+05:30~~Ashwin Maroli~~ashmaroli@users.noreply.github.com~~Introduce `theme` drop to expose theme details (#9129)
+36	0	lib/jekyll/drops/theme_drop.rb
+4	0	lib/jekyll/drops/unified_payload_drop.rb
+34	0	test/test_theme_drop.rb
+
+911e249d7~~2022-09-21T22:55:50+05:30~~Ashwin Maroli~~ashmaroli@users.noreply.github.com~~Bump RuboCop to `1.36.x` (#9125)
+65	2	.rubocop.yml
+1	1	Gemfile
+2	2	lib/jekyll/commands/build.rb
+1	2	lib/jekyll/commands/clean.rb
+12	12	lib/jekyll/commands/doctor.rb
+4	8	lib/jekyll/commands/new.rb
+3	4	lib/jekyll/commands/new_theme.rb
+15	15	lib/jekyll/commands/serve.rb
+1	1	lib/jekyll/commands/serve/live_reload_reactor.rb
+1	1	lib/jekyll/commands/serve/servlet.rb
+2	2	lib/jekyll/configuration.rb
+1	1	lib/jekyll/converters/markdown/kramdown_parser.rb
+2	2	lib/jekyll/excerpt.rb
+1	1	lib/jekyll/filters.rb
+2	2	lib/jekyll/hooks.rb
+4	3	lib/jekyll/plugin_manager.rb
+2	2	lib/jekyll/renderer.rb
+7	7	lib/jekyll/site.rb
+2	2	lib/jekyll/tags/highlight.rb
+2	2	lib/jekyll/tags/include.rb
+5	5	lib/jekyll/tags/post_url.rb
+2	2	lib/jekyll/theme.rb
+1	1	lib/jekyll/url.rb
+1	1	lib/jekyll/utils/ansi.rb
+2	3	test/helper.rb
+1	3	test/test_commands_serve.rb
+5	3	test/test_doctor_command.rb
+4	5	test/test_excerpt.rb
+2	2	test/test_page_without_a_file.rb
+1	3	test/test_regenerator.rb
+2	2	test/test_site.rb
+7	7	test/test_tags.rb
+4	5	test/test_theme_assets_reader.rb
