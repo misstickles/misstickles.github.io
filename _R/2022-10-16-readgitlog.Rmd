@@ -1,0 +1,106 @@
+---
+title: "Reading a Git log in R"
+description: "Using R to read a git log file"
+output: html_document
+category: code
+tags: [r, code]
+layout: post
+---
+
+```{r knit_options, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, include = TRUE, message = FALSE, warning = FALSE, cache = TRUE)
+```
+
+```{r echo=FALSE}
+logfile.log <- "./data/2022-10-16-readgitlog.log"
+```
+
+Occasionally, for reasons that noone really knows, it is necessary to visualise data from repository logs.
+
+This could include understanding who the frequent authors are, or the most often changed code file, or which files are changed together, or anything else a manager could dream up.
+
+## Retrieve Git Data
+
+Using `git log`, we can retrieve various log data from each commit in our repo.  Information on the command structure can be found on the [git-scm.com](https://git-scm.com/docs/git-log) site.
+
+Here, we have chosen to get data for inserts/deletions for each file (`--numstat`); the short hash; the strict-ISO date, name, email for the author; the subject.  The output is saved to a log file.
+
+```bash
+git log --all --numstat --pretty=format:'%h~~%aI~~%aN~~%aE~~%s' --no-renames --since=2022-10-14 > logfile.log
+```
+
+Having generated our file using the command above, we can use `readr::read_lines(logfile)`\* to read each log file line to a list.
+
+The example output below is a random selection of commits from the [Jekyll repo](https://github.com/jekyll/jekyll).
+
+> \* for large files, `read_lines` may not be very efficient, but it works for us here...
+
+```{r}
+commits.raw <- readr::read_lines(logfile.log)
+
+commits.raw |> head(10)
+```
+
+## Wrangling
+
+To convert this list to a tibble, we can create a new one, and parse in the data, and also filter out blank lines.
+
+There are a number of ways to turn this into a tidy table, but I have added a `commit_number` column which adds a counter to each row.  The counter only increments when it finds our delimiter from the `git log` command (`~~`).  This means that all data for each commit can be uniquly identified, and we can use this value later on.
+
+The data is the same as before, except it's in a 'proper' tibble and each commit has a unique way to identify it.
+
+```{r}
+commits.records <- tibble::tibble(data = commits.raw) |>
+  dplyr::filter(data != "") |>
+  dplyr::mutate(commit_number = cumsum(grepl("[~~]+", .data$data)))
+
+commits.records |> head(10)
+```
+
+## Tidying
+
+So...  How do we make the commit file stats and commit information tidy?
+
+This is one way...
+
+Create a table with only commit information and use `tidyr::separate()` to split the string on our delimiter and create new columns.
+
+```{r}
+commits.info <- commits.records |>
+  dplyr::filter(grepl("[~~]+", data)) |>
+  tidyr::separate(data, c("commit", "ad", "an", "ae", "s"), sep = "[~~]+")
+
+commits.info |> head(4)
+```
+
+Do similar for the file stats, in a different table.  By default the log's `numstat` separates its values with a tab `\t`.
+
+```{r}
+commits.stats <- commits.records |>
+  dplyr::filter(!grepl("[~~]+", data)) |>
+  tidyr::separate(data, c("insertions", "deletions", "filename"), sep = "[\t]+")
+
+commits.stats |> head(10)
+```
+
+For both info and stats, we have kept our `commit_number` column.
+
+We can use this to join stats to info.
+
+```{r}
+commits <- commits.info |>
+  dplyr::left_join(commits.stats, by = "commit_number") |>
+  dplyr::mutate(ad = as.Date(ad))
+
+commits |> head(10)
+```
+
+We now have a tidy table of git logs, that we can use to observe patterns within repo commits.
+
+Phew!
+
+Obvious that it may seem, it took me quite a while to come up with this solution.  On the way, I have learned to use `grepl` and `separate` more, which will be useful for my other projects.
+
+---
+
+Inspiration was taken from these two blogs: <https://www.feststelltaste.de/reading-a-git-log-file-output-with-pandas/> and <https://www.r-bloggers.com/2018/03/guide-to-tidy-git-analysis/>.
