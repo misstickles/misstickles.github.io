@@ -1,0 +1,1215 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://misstickles.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://misstickles.github.io/" rel="alternate" type="text/html" /><updated>2023-12-27T17:31:36+00:00</updated><id>https://misstickles.github.io/feed.xml</id><title type="html">// probably; definitely</title><subtitle></subtitle><entry><title type="html">Board Games</title><link href="https://misstickles.github.io/tidytuesday/2022/10/26/tt-20220125-boardgames.html" rel="alternate" type="text/html" title="Board Games" /><published>2022-10-26T00:00:00+00:00</published><updated>2022-10-26T00:00:00+00:00</updated><id>https://misstickles.github.io/tidytuesday/2022/10/26/tt-20220125-boardgames</id><content type="html" xml:base="https://misstickles.github.io/tidytuesday/2022/10/26/tt-20220125-boardgames.html"><![CDATA[<p><code class="language-plaintext highlighter-rouge">tidytuesday"s</code> <em>Board Gamess</em> from 25th January 2022, <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-01-25">https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-01-25</a>.</p>
+
+<p>Data sourced from <a href="https://www.kaggle.com/datasets/jvanelteren/boardgamegeek-reviews?select=2022-01-08.csv">Kagle</a>.</p>
+
+<h2 id="mean-rating-over-the-years">Mean Rating Over the Years</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## # A tibble: 21,631 × 32
+##    num.x     id primary  descr…¹ yearp…² minpl…³ maxpl…⁴ playi…⁵ minpl…⁶ maxpl…⁷
+##    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1     0  30549 Pandemic In Pan…    2008       2       4      45      45      45
+##  2     1    822 Carcass… Carcas…    2000       2       5      45      30      45
+##  3     2     13 Catan    In CAT…    1995       3       4     120      60     120
+##  4     3  68448 7 Wonde… You ar…    2010       2       7      30      30      30
+##  5     4  36218 Dominion &amp;quot;…    2008       2       4      30      30      30
+##  6     5   9209 Ticket … With e…    2004       2       5      60      30      60
+##  7     6 178900 Codenam… Codena…    2015       2       8      15      15      15
+##  8     7 167791 Terrafo… In the…    2016       1       5     120     120     120
+##  9     8 173346 7 Wonde… In man…    2015       2       2      30      30      30
+## 10     9  31260 Agricola Descri…    2007       1       5     150      30     150
+## # … with 21,621 more rows, 22 more variables: minage &lt;dbl&gt;,
+## #   boardgamecategory &lt;chr&gt;, boardgamemechanic &lt;chr&gt;, boardgamefamily &lt;chr&gt;,
+## #   boardgameexpansion &lt;chr&gt;, boardgameimplementation &lt;chr&gt;,
+## #   boardgamedesigner &lt;chr&gt;, boardgameartist &lt;chr&gt;, boardgamepublisher &lt;chr&gt;,
+## #   owned &lt;dbl&gt;, trading &lt;dbl&gt;, wanting &lt;dbl&gt;, wishing &lt;dbl&gt;, num.y &lt;dbl&gt;,
+## #   name &lt;chr&gt;, year &lt;dbl&gt;, rank &lt;dbl&gt;, average &lt;dbl&gt;, bayes_average &lt;dbl&gt;,
+## #   users_rated &lt;dbl&gt;, url &lt;chr&gt;, thumbnail &lt;chr&gt;, and abbreviated variable …
+</code></pre></div></div>
+
+<p><img src="/figure/R/tidytuesday/2022-10-26-tt-20220125-boardgames/yearly_ratings-1.png" alt="plot of chunk yearly_ratings" /></p>
+
+<p><img src="/figure/R/tidytuesday/2022-10-26-tt-20220125-boardgames/yearly_digraph-1.png" alt="plot of chunk yearly_digraph" /></p>
+
+<p>Overall, until approximately 2007, mean ratings were steady around 5.8 / 6.0.  After 2007, people started rating their games higher.  The 2020 COVID-19 pandemic did not appear to change this trend.  People seemed to be able to enjoy their board games in the middle of World War 2 too.</p>
+
+<p><strong>1957</strong> has an ‘unusual’ drop in mean board game ratings.  At 3.93, it is 1.91 lower than 1956, 1.7 lower than 1958 and is the lowest rating in over 100 years.  <a href="https://www.thepeoplehistory.com/1957.html">Some interesting things happeded</a> in 1957 - notably the first ‘Frisbee’ became available and there was a Flu pandemic in Asia.</p>
+
+<h3 id="full-size-plot"><a href="https://raw.githubusercontent.com/misstickles/misstickles.github.io/main/figure/R/tidytuesday/20210420" target="_blank">Full size plot</a></h3>]]></content><author><name>Jo Faircloth</name></author><category term="tidytuesday" /><category term="r" /><category term="tidytuesday" /><summary type="html"><![CDATA[tidytuesday"s Board Gamess from 25th January 2022, https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-01-25.]]></summary></entry><entry><title type="html">Reading a Git log in R</title><link href="https://misstickles.github.io/code/2022/10/16/readgitlog.html" rel="alternate" type="text/html" title="Reading a Git log in R" /><published>2022-10-16T00:00:00+00:00</published><updated>2022-10-16T00:00:00+00:00</updated><id>https://misstickles.github.io/code/2022/10/16/readgitlog</id><content type="html" xml:base="https://misstickles.github.io/code/2022/10/16/readgitlog.html"><![CDATA[<p>Occasionally, for reasons that noone really knows, it is necessary to visualise data from repository logs.</p>
+
+<p>This could include understanding who the frequent authors are, or the most often changed code file, or which files are changed together, or anything else a manager could dream up.</p>
+
+<h2 id="retrieve-git-data">Retrieve Git Data</h2>
+
+<p>Using <code class="language-plaintext highlighter-rouge">git log</code>, we can retrieve various log data from each commit in our repo.  Information on the command structure can be found on the <a href="https://git-scm.com/docs/git-log">git-scm.com</a> site.</p>
+
+<p>Here, we have chosen to get data for inserts/deletions for each file (<code class="language-plaintext highlighter-rouge">--numstat</code>); the short hash; the strict-ISO date, name, email for the author; the subject.  The output is saved to a log file.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git log <span class="nt">--all</span> <span class="nt">--numstat</span> <span class="nt">--pretty</span><span class="o">=</span>format:<span class="s1">'%h~~%aI~~%aN~~%aE~~%s'</span> <span class="nt">--no-renames</span> <span class="nt">--since</span><span class="o">=</span>2022-10-14 <span class="o">&gt;</span> logfile.log
+</code></pre></div></div>
+
+<p>Having generated our file using the command above, we can use <code class="language-plaintext highlighter-rouge">readr::read_lines(logfile)</code>* to read each log file line to a list.</p>
+
+<p>The example output below is a random selection of commits from the <a href="https://github.com/jekyll/jekyll">Jekyll repo</a>.</p>
+
+<blockquote>
+  <p>* for large files, <code class="language-plaintext highlighter-rouge">read_lines</code> may not be very efficient, but it works for us here…</p>
+</blockquote>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">commits.raw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readr</span><span class="o">::</span><span class="n">read_lines</span><span class="p">(</span><span class="n">logfile.log</span><span class="p">)</span><span class="w">
+
+</span><span class="n">commits.raw</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">head</span><span class="p">(</span><span class="m">10</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##  [1] "6448700552~~2022-10-16T09:13:22-07:00~~Basil Crow~~me@basilcrow.com~~Wait for inbound agent to go offline in tests (#7261)"                                                          
+##  [2] "1\t1\ttest/pom.xml"                                                                                                                                                                  
+##  [3] "5\t1\ttest/src/test/java/hudson/bugs/JnlpAccessWithSecuredHudsonTest.java"                                                                                                           
+##  [4] "10\t6\ttest/src/test/java/hudson/slaves/JNLPLauncherRealTest.java"                                                                                                                   
+##  [5] "6\t2\ttest/src/test/java/jenkins/agents/WebSocketAgentsTest.java"                                                                                                                    
+##  [6] "6\t2\ttest/src/test/java/jenkins/security/Security218Test.java"                                                                                                                      
+##  [7] "5\t1\ttest/src/test/java/jenkins/slaves/restarter/JnlpSlaveRestarterInstallerTest.java"                                                                                              
+##  [8] ""                                                                                                                                                                                    
+##  [9] "bb4061e23d~~2022-10-15T11:31:13-07:00~~dependabot[bot]~~49699333+dependabot[bot]@users.noreply.github.com~~Bump JUnit plugin from 1150.v5c2848328b_60 to 1153.v1c24f1a_d2553 (#7260)"
+## [10] "1\t1\ttest/pom.xml"
+</code></pre></div></div>
+
+<h2 id="wrangling">Wrangling</h2>
+
+<p>To convert this list to a tibble, we can create a new one, and parse in the data, and also filter out blank lines.</p>
+
+<p>There are a number of ways to turn this into a tidy table, but I have added a <code class="language-plaintext highlighter-rouge">commit_number</code> column which adds a counter to each row.  The counter only increments when it finds our delimiter from the <code class="language-plaintext highlighter-rouge">git log</code> command (<code class="language-plaintext highlighter-rouge">~~</code>).  This means that all data for each commit can be uniquly identified, and we can use this value later on.</p>
+
+<p>The data is the same as before, except it’s in a ‘proper’ tibble and each commit has a unique way to identify it.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">commits.records</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tibble</span><span class="o">::</span><span class="n">tibble</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">commits.raw</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w">
+  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">filter</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w">
+  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">mutate</span><span class="p">(</span><span class="n">commit_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">cumsum</span><span class="p">(</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"[~~]+"</span><span class="p">,</span><span class="w"> </span><span class="n">.data</span><span class="o">$</span><span class="n">data</span><span class="p">)))</span><span class="w">
+
+</span><span class="n">commits.records</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">head</span><span class="p">(</span><span class="m">10</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## # A tibble: 10 × 2
+##    data                                                                  commi…¹
+##    &lt;chr&gt;                                                                   &lt;int&gt;
+##  1 "6448700552~~2022-10-16T09:13:22-07:00~~Basil Crow~~me@basilcrow.com…       1
+##  2 "1\t1\ttest/pom.xml"                                                        1
+##  3 "5\t1\ttest/src/test/java/hudson/bugs/JnlpAccessWithSecuredHudsonTes…       1
+##  4 "10\t6\ttest/src/test/java/hudson/slaves/JNLPLauncherRealTest.java"         1
+##  5 "6\t2\ttest/src/test/java/jenkins/agents/WebSocketAgentsTest.java"          1
+##  6 "6\t2\ttest/src/test/java/jenkins/security/Security218Test.java"            1
+##  7 "5\t1\ttest/src/test/java/jenkins/slaves/restarter/JnlpSlaveRestarte…       1
+##  8 "bb4061e23d~~2022-10-15T11:31:13-07:00~~dependabot[bot]~~49699333+de…       2
+##  9 "1\t1\ttest/pom.xml"                                                        2
+## 10 "d2b6473c1a~~2022-10-15T15:30:15-03:00~~Fernando Boaglio~~boaglio@gm…       3
+## # … with abbreviated variable name ¹​commit_number
+</code></pre></div></div>
+
+<h2 id="tidying">Tidying</h2>
+
+<p>So…  How do we make the commit file stats and commit information tidy?</p>
+
+<p>This is one way…</p>
+
+<p>Create a table with only commit information and use <code class="language-plaintext highlighter-rouge">tidyr::separate()</code> to split the string on our delimiter and create new columns.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">commits.info</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">commits.records</span><span class="w"> </span><span class="o">|&gt;</span><span class="w">
+  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">filter</span><span class="p">(</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"[~~]+"</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">))</span><span class="w"> </span><span class="o">|&gt;</span><span class="w">
+  </span><span class="n">tidyr</span><span class="o">::</span><span class="n">separate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"commit"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ad"</span><span class="p">,</span><span class="w"> </span><span class="s2">"an"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ae"</span><span class="p">,</span><span class="w"> </span><span class="s2">"s"</span><span class="p">),</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"[~~]+"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">commits.info</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">head</span><span class="p">(</span><span class="m">4</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## # A tibble: 4 × 6
+##   commit     ad                        an               ae         s     commi…¹
+##   &lt;chr&gt;      &lt;chr&gt;                     &lt;chr&gt;            &lt;chr&gt;      &lt;chr&gt;   &lt;int&gt;
+## 1 6448700552 2022-10-16T09:13:22-07:00 Basil Crow       me@basilc… Wait…       1
+## 2 bb4061e23d 2022-10-15T11:31:13-07:00 dependabot[bot]  49699333+… Bump…       2
+## 3 d2b6473c1a 2022-10-15T15:30:15-03:00 Fernando Boaglio boaglio@g… Upda…       3
+## 4 9ae07ce2cd 2022-10-15T20:29:34+02:00 Stefan Spieker   S.Spieker… Repl…       4
+## # … with abbreviated variable name ¹​commit_number
+</code></pre></div></div>
+
+<p>Do similar for the file stats, in a different table.  By default the log’s <code class="language-plaintext highlighter-rouge">numstat</code> separates its values with a tab <code class="language-plaintext highlighter-rouge">\t</code>.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">commits.stats</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">commits.records</span><span class="w"> </span><span class="o">|&gt;</span><span class="w">
+  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"[~~]+"</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">))</span><span class="w"> </span><span class="o">|&gt;</span><span class="w">
+  </span><span class="n">tidyr</span><span class="o">::</span><span class="n">separate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"insertions"</span><span class="p">,</span><span class="w"> </span><span class="s2">"deletions"</span><span class="p">,</span><span class="w"> </span><span class="s2">"filename"</span><span class="p">),</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"[\t]+"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">commits.stats</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">head</span><span class="p">(</span><span class="m">10</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## # A tibble: 10 × 4
+##    insertions deletions filename                                         commi…¹
+##    &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;                                              &lt;int&gt;
+##  1 1          1         test/pom.xml                                           1
+##  2 5          1         test/src/test/java/hudson/bugs/JnlpAccessWithSe…       1
+##  3 10         6         test/src/test/java/hudson/slaves/JNLPLauncherRe…       1
+##  4 6          2         test/src/test/java/jenkins/agents/WebSocketAgen…       1
+##  5 6          2         test/src/test/java/jenkins/security/Security218…       1
+##  6 5          1         test/src/test/java/jenkins/slaves/restarter/Jnl…       1
+##  7 1          1         test/pom.xml                                           2
+##  8 11         7         core/src/main/resources/hudson/Messages_pt_BR.p…       3
+##  9 3          2         core/src/main/resources/hudson/PluginManager/ad…       3
+## 10 3          2         core/src/main/resources/hudson/PluginManager/av…       3
+## # … with abbreviated variable name ¹​commit_number
+</code></pre></div></div>
+
+<p>For both info and stats, we have kept our <code class="language-plaintext highlighter-rouge">commit_number</code> column.</p>
+
+<p>We can use this to join stats to info.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">commits</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">commits.info</span><span class="w"> </span><span class="o">|&gt;</span><span class="w">
+  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">left_join</span><span class="p">(</span><span class="n">commits.stats</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"commit_number"</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w">
+  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">mutate</span><span class="p">(</span><span class="n">ad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="n">ad</span><span class="p">))</span><span class="w">
+
+</span><span class="n">commits</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">head</span><span class="p">(</span><span class="m">10</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## # A tibble: 10 × 9
+##    commit     ad         an          ae    s     commi…¹ inser…² delet…³ filen…⁴
+##    &lt;chr&gt;      &lt;date&gt;     &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+##  1 6448700552 2022-10-16 Basil Crow  me@b… Wait…       1 1       1       test/p…
+##  2 6448700552 2022-10-16 Basil Crow  me@b… Wait…       1 5       1       test/s…
+##  3 6448700552 2022-10-16 Basil Crow  me@b… Wait…       1 10      6       test/s…
+##  4 6448700552 2022-10-16 Basil Crow  me@b… Wait…       1 6       2       test/s…
+##  5 6448700552 2022-10-16 Basil Crow  me@b… Wait…       1 6       2       test/s…
+##  6 6448700552 2022-10-16 Basil Crow  me@b… Wait…       1 5       1       test/s…
+##  7 bb4061e23d 2022-10-15 dependabot… 4969… Bump…       2 1       1       test/p…
+##  8 d2b6473c1a 2022-10-15 Fernando B… boag… Upda…       3 11      7       core/s…
+##  9 d2b6473c1a 2022-10-15 Fernando B… boag… Upda…       3 3       2       core/s…
+## 10 d2b6473c1a 2022-10-15 Fernando B… boag… Upda…       3 3       2       core/s…
+## # … with abbreviated variable names ¹​commit_number, ²​insertions, ³​deletions,
+## #   ⁴​filename
+</code></pre></div></div>
+
+<p>We now have a tidy table of git logs, that we can use to observe patterns within repo commits.</p>
+
+<p>Phew!</p>
+
+<p>Obvious that it may seem, it took me quite a while to come up with this solution.  On the way, I have learned to use <code class="language-plaintext highlighter-rouge">grepl</code> and <code class="language-plaintext highlighter-rouge">separate</code> more, which will be useful for my other projects.</p>
+
+<hr />
+
+<p>Inspiration was taken from these two blogs: <a href="https://www.feststelltaste.de/reading-a-git-log-file-output-with-pandas/">https://www.feststelltaste.de/reading-a-git-log-file-output-with-pandas/</a> and <a href="https://www.r-bloggers.com/2018/03/guide-to-tidy-git-analysis/">https://www.r-bloggers.com/2018/03/guide-to-tidy-git-analysis/</a>.</p>]]></content><author><name></name></author><category term="code" /><category term="r" /><category term="code" /><summary type="html"><![CDATA[Using R to read a git log file]]></summary></entry><entry><title type="html">Netflix Shows</title><link href="https://misstickles.github.io/tidytuesday/2022/09/14/tt-20210420-netflixshows.html" rel="alternate" type="text/html" title="Netflix Shows" /><published>2022-09-14T00:00:00+00:00</published><updated>2022-09-14T00:00:00+00:00</updated><id>https://misstickles.github.io/tidytuesday/2022/09/14/tt-20210420-netflixshows</id><content type="html" xml:base="https://misstickles.github.io/tidytuesday/2022/09/14/tt-20210420-netflixshows.html"><![CDATA[<p><code class="language-plaintext highlighter-rouge">tidytuesday"s</code> <em>Netflix Shows</em> from 20th April 2021, <a href="https://github.com/rfordatascience/tidytuesday/blob/eedfa9fe5c39d973502f00b2574ba14bff7ed82b/data/2021/2021-04-20">https://github.com/rfordatascience/tidytuesday/blob/eedfa9fe5c39d973502f00b2574ba14bff7ed82b/data/2021/2021-04-20</a>.</p>
+
+<p>Data sourced from <a href="https://www.kaggle.com/shivamb/netflix-shows?select=netflix_titles.csv">Kagle</a>.</p>
+
+<h2 id="monthly-title-releases">Monthly title releases</h2>
+
+<p>The number of titles released onto Netflix each month.</p>
+
+<p>The launch of Disney+ apears to have provided a peak for new films on Netflix.</p>
+
+<p>Covid-19 possibly led to a lower release rate for the following couple of years, but it is not too dis-similar to the years up to the launch of Disney+.</p>
+
+<p><img src="/figure/R/tidytuesday/2022-09-14-tt-20210420-netflixshows/plot_monthly_titles-1.png" alt="plot of chunk plot_monthly_titles" /></p>
+
+<h3 id="full-size-plot"><a href="https://raw.githubusercontent.com/misstickles/misstickles.github.io/main/figure/R/tidytuesday/20210420" target="_blank">Full size plot</a></h3>]]></content><author><name>Jo Faircloth</name></author><category term="tidytuesday" /><category term="r" /><category term="tidytuesday" /><summary type="html"><![CDATA[tidytuesday"s Netflix Shows from 20th April 2021, https://github.com/rfordatascience/tidytuesday/blob/eedfa9fe5c39d973502f00b2574ba14bff7ed82b/data/2021/2021-04-20.]]></summary></entry><entry><title type="html">Lego Sets</title><link href="https://misstickles.github.io/tidytuesday/2022/09/07/tt-20220906-rebrickable.html" rel="alternate" type="text/html" title="Lego Sets" /><published>2022-09-07T00:00:00+00:00</published><updated>2022-09-07T00:00:00+00:00</updated><id>https://misstickles.github.io/tidytuesday/2022/09/07/tt-20220906-rebrickable</id><content type="html" xml:base="https://misstickles.github.io/tidytuesday/2022/09/07/tt-20220906-rebrickable.html"><![CDATA[<p><code class="language-plaintext highlighter-rouge">tidytuesday"s</code> <em>Lego Sets</em> from 6th September 2022, <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-09-06">https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-09-06</a>.</p>
+
+<h2 id="number-of-parts-in-sets">Number of Parts in Sets</h2>
+
+<h3 id="are-sets-getting-bigger-over-time">Are sets getting bigger over time?</h3>
+
+<p><img src="/figure/R/tidytuesday/2022-09-07-tt-20220906-rebrickable/parts_over_time-1.png" alt="plot of chunk parts_over_time" /></p>
+
+<h2 id="common-themes">Common Themes</h2>
+
+<h3 id="which-are-the-most-common-themes">Which are the most common themes?</h3>
+
+<p><img src="/figure/R/tidytuesday/2022-09-07-tt-20220906-rebrickable/common_themes-1.png" alt="plot of chunk common_themes" /></p>
+
+<h3 id="how-to-themes-change-over-time">How to themes change over time?</h3>
+
+<p><img src="/figure/R/tidytuesday/2022-09-07-tt-20220906-rebrickable/themes_per_year-1.png" alt="plot of chunk themes_per_year" /></p>
+
+<p>See image on github for a <a href="https://raw.githubusercontent.com/misstickles/misstickles.github.io/main/figure/R/tidytuesday/20220906.png" target="_blank">larger plot</a>.</p>]]></content><author><name>Jo Faircloth</name></author><category term="tidytuesday" /><category term="r" /><category term="tidytuesday" /><summary type="html"><![CDATA[tidytuesday"s Lego Sets from 6th September 2022, https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-09-06.]]></summary></entry><entry><title type="html">Chocolate Ratings</title><link href="https://misstickles.github.io/tidytuesday/2022/08/28/tt-20220118-chocolateRatings.html" rel="alternate" type="text/html" title="Chocolate Ratings" /><published>2022-08-28T00:00:00+00:00</published><updated>2022-08-28T00:00:00+00:00</updated><id>https://misstickles.github.io/tidytuesday/2022/08/28/tt-20220118-chocolateRatings</id><content type="html" xml:base="https://misstickles.github.io/tidytuesday/2022/08/28/tt-20220118-chocolateRatings.html"><![CDATA[<p><code class="language-plaintext highlighter-rouge">tidytuesday's</code> <em>Chocolate Ratings</em> from 18th January 2022, <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-01-18">https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-01-18</a>.</p>
+
+<p>Using the data provided, we can investigate a few attributes of chocolate, including its rating vs characteristics; source location and manufacturer.</p>
+
+<p>First, we import the data and visualise the type of data that we have.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##       ref       company_manufacturer company_location    review_date  
+##  Min.   :   5   Length:2530          Length:2530        Min.   :2006  
+##  1st Qu.: 802   Class :character     Class :character   1st Qu.:2012  
+##  Median :1454   Mode  :character     Mode  :character   Median :2015  
+##  Mean   :1430                                           Mean   :2014  
+##  3rd Qu.:2079                                           3rd Qu.:2018  
+##  Max.   :2712                                           Max.   :2021  
+##  country_of_bean_origin specific_bean_origin_or_bar_name cocoa_percent     
+##  Length:2530            Length:2530                      Length:2530       
+##  Class :character       Class :character                 Class :character  
+##  Mode  :character       Mode  :character                 Mode  :character  
+##                                                                            
+##                                                                            
+##                                                                            
+##  ingredients        most_memorable_characteristics     rating     
+##  Length:2530        Length:2530                    Min.   :1.000  
+##  Class :character   Class :character               1st Qu.:3.000  
+##  Mode  :character   Mode  :character               Median :3.250  
+##                                                    Mean   :3.196  
+##                                                    3rd Qu.:3.500  
+##                                                    Max.   :4.000
+</code></pre></div></div>
+
+<h2 id="which-characteristics-are-used-to-describe-the-chocolate">Which characteristics are used to describe the chocolate?</h2>
+
+<p><img src="/figure/R/tidytuesday/2022-08-28-tt-20220118-chocolateRatings/characteristics-1.png" alt="plot of chunk characteristics" /></p>
+
+<h2 id="are-these-characteristics-related-to-the-review-given">Are these characteristics related to the review given?</h2>
+
+<p><img src="/figure/R/tidytuesday/2022-08-28-tt-20220118-chocolateRatings/char_review-1.png" alt="plot of chunk char_review" /></p>
+
+<p>This plot suggestst that <code class="language-plaintext highlighter-rouge">3.0</code> is the most common rating (523 ratings), but <code class="language-plaintext highlighter-rouge">3.5</code> is most rated overall (565 ratings).  It is likely that a lot of other characteristics have few ratings each at <code class="language-plaintext highlighter-rouge">3.5</code>.  People seem a bit indifferent to their chocolate!</p>
+
+<h2 id="is-the-mention-of-cocoa-preferred-high--or-low-">Is the mention of <code class="language-plaintext highlighter-rouge">cocoa</code> preferred high % or low %?</h2>
+
+<p><img src="/figure/R/tidytuesday/2022-08-28-tt-20220118-chocolateRatings/popular_cocoa-1.png" alt="plot of chunk popular_cocoa" /></p>
+
+<p>This is a strange plot - I agree!  Area just wasn’t working, and line seems to be missing a few points…  <code class="language-plaintext highlighter-rouge">¯\_(ツ)_/¯</code></p>
+
+<ul>
+  <li>The percentage of cocoa in a bar, where <em>cocoa</em> is a memorable characteristic, seems to follow the total number of available with that percentage of cocoa.</li>
+  <li><code class="language-plaintext highlighter-rouge">70%</code> cocoa is both the most available, and the most memorable with <em>cocoa</em>.</li>
+  <li>There is even a bar with 100% cocoa (seriously??), but <em>cocoa</em> was only memorable in <code class="language-plaintext highlighter-rouge">4.8%</code> of them!</li>
+  <li>It’s interesting that in general, percentage tends to peak when divisible by 5 (eg, 70%, 75%, 80%).  Perhaps this is rounded on behalf of consumers; or because (eg) 73% suggests accuracy that cannot be achieved; or because round numbers are actually more tasty; or something else…</li>
+  <li>The highest proportion of memorable <em>cocoa</em> to the number of bars available is <code class="language-plaintext highlighter-rouge">50%</code> at <code class="language-plaintext highlighter-rouge">56%</code>, <code class="language-plaintext highlighter-rouge">71%</code>, <code class="language-plaintext highlighter-rouge">73%</code> cocoa percent.</li>
+</ul>
+
+<p>So - cocoa seems to be preferred around 70% - 75%.  Sounds a lot.  Testers may have been chocolate “connoisseurs”!  More chart(s) would be needed to discover if these are well rated.</p>]]></content><author><name></name></author><category term="tidytuesday" /><category term="r" /><category term="tidytuesday" /><summary type="html"><![CDATA[Tidy Tuesday from 2022-01-18, chocolate ratings.]]></summary></entry><entry><title type="html">Analysing Historical Weather</title><link href="https://misstickles.github.io/weather/2022/08/21/weather-analysis.html" rel="alternate" type="text/html" title="Analysing Historical Weather" /><published>2022-08-21T00:00:00+00:00</published><updated>2022-08-21T00:00:00+00:00</updated><id>https://misstickles.github.io/weather/2022/08/21/weather-analysis</id><content type="html" xml:base="https://misstickles.github.io/weather/2022/08/21/weather-analysis.html"><![CDATA[<h2 id="collecting-data">Collecting Data</h2>
+
+<p>To start with, we can use the MetOffice’s <a href="https://www.metoffice.gov.uk/research/climate/maps-and-data/historic-station-data" targe="_blank">Historic station data</a>.</p>
+
+<p>There aren’t too many stations offering data, so <em>Eastbourne</em> is closest to me (known as the “Sunshine Coast”, so I expect data to be a bit different to what I perceive north of the downs!).</p>
+
+<p>The data is a text file, located here, <a href="https://www.metoffice.gov.uk/pub/data/weather/uk/climate/stationdata/eastbournedata.txt">https://www.metoffice.gov.uk/pub/data/weather/uk/climate/stationdata/eastbournedata.txt</a>.</p>
+
+<h3 id="understanding-the-data">Understanding the Data</h3>
+
+<p>First import the data. A quick visual shows that we have some introductory text - which we are unable to import (hence using <code class="language-plaintext highlighter-rouge">skip</code>). <code class="language-plaintext highlighter-rouge">fill</code> is required to cater for missing values.</p>
+
+<p>It turned out that there are 2 rows of headers, and the 2nd row starting with blanks confused the import - therefore we read it for the headers then add those to the main data.</p>
+
+<p>We also have to deal with the ‘Provisional’ text in a column that is not labelled.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">.fetch</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">headers</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scan</span><span class="p">(</span><span class="w">
+    </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">url</span><span class="p">,</span><span class="w">
+    </span><span class="n">skip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w">
+    </span><span class="n">nlines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w">
+    </span><span class="n">what</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">character</span><span class="p">()</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+
+  </span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="w">
+    </span><span class="n">url</span><span class="p">(</span><span class="n">url</span><span class="p">),</span><span class="w">
+    </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w">
+    </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w">
+    </span><span class="n">skip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w">
+    </span><span class="n">col.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">headers</span><span class="p">,</span><span class="w"> </span><span class="s2">"isProvisional"</span><span class="p">)</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+
+  </span><span class="nf">return</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">rawEbn</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">.fetch</span><span class="p">(</span><span class="w"> </span><span class="s2">"https://www.metoffice.gov.uk/pub/data/weather/uk/climate/stationdata/eastbournedata.txt"</span><span class="p">)</span><span class="w"> </span><span class="c1">#nolint</span><span class="w">
+
+</span><span class="n">str</span><span class="p">(</span><span class="n">rawEbn</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## 'data.frame':	763 obs. of  8 variables:
+##  $ yyyy         : int  1959 1959 1959 1959 1959 1959 1959 1959 1959 1959 ...
+##  $ mm           : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ tmax         : chr  "6.4" "6.6" "10.4" "12.7" ...
+##  $ tmin         : chr  "1.1" "2.0" "5.1" "7.3" ...
+##  $ af           : chr  "13" "4" "0" "0" ...
+##  $ rain         : chr  "109.5" "0.0" "43.0" "62.5" ...
+##  $ sun          : chr  "100.4" "73.4" "128.4" "163.5" ...
+##  $ isProvisional: chr  "" "" "" "" ...
+</code></pre></div></div>
+
+<p>Cool. We have <em>763</em> observations and <em>8</em> variables.</p>
+
+<h3 id="getting-tidy-data">Getting Tidy Data</h3>
+
+<p>The docs detail some additional characters, that we don’t need. The following characters are removed from the data:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">#</code>, use of a different sensor</li>
+  <li><code class="language-plaintext highlighter-rouge">*</code>, ‘estimated’</li>
+  <li><code class="language-plaintext highlighter-rouge">---</code>, more than 2 days missing data in the month</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">.tidyData</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">rawData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rawData</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">select</span><span class="p">(</span><span class="w">
+      </span><span class="n">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">yyyy</span><span class="p">,</span><span class="w">
+      </span><span class="n">month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mm</span><span class="p">,</span><span class="w">
+      </span><span class="n">maxTemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tmax</span><span class="p">,</span><span class="w">
+      </span><span class="n">minTemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tmin</span><span class="p">,</span><span class="w">
+      </span><span class="n">airFrost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">af</span><span class="p">,</span><span class="w">
+      </span><span class="n">rain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rain</span><span class="p">,</span><span class="w">
+      </span><span class="n">sun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sun</span><span class="w">
+    </span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">mutate</span><span class="p">(</span><span class="w">
+      </span><span class="n">across</span><span class="p">(</span><span class="w">
+        </span><span class="o">!</span><span class="nf">c</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">),</span><span class="w">
+        </span><span class="o">~</span><span class="w"> </span><span class="n">stringr</span><span class="o">::</span><span class="n">str_replace_all</span><span class="p">(</span><span class="n">.x</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"\\*"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="s2">"#"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="s2">"---"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">))</span><span class="w">
+      </span><span class="p">),</span><span class="w">
+      </span><span class="n">across</span><span class="p">(</span><span class="o">!</span><span class="nf">c</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">),</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">as.double</span><span class="p">(</span><span class="n">.x</span><span class="p">)),</span><span class="w">
+      </span><span class="n">across</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">),</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">as.integer</span><span class="p">(</span><span class="n">.x</span><span class="p">))</span><span class="w">
+    </span><span class="p">)</span><span class="w">
+
+  </span><span class="c1"># only get years with 12 months of data (to prevent totals being skew)</span><span class="w">
+  </span><span class="n">minYear</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">filter</span><span class="p">(</span><span class="n">month</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">slice_min</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="w">
+
+  </span><span class="n">maxYear</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">filter</span><span class="p">(</span><span class="n">month</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">12</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">slice_max</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="w">
+
+  </span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">between</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">minYear</span><span class="o">$</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">maxYear</span><span class="o">$</span><span class="n">year</span><span class="p">))</span><span class="w">
+
+  </span><span class="nf">return</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">ebn</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">.tidyData</span><span class="p">(</span><span class="n">rawEbn</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Now we have our tidy data, we can ask some questions…</p>
+
+<h3 id="asking-questions">Asking questions</h3>
+
+<h4 id="is-there-a-trend-in-annual-rainfall">Is there a trend in annual rainfall?</h4>
+
+<p><img src="/figure/R/2022-08-21-weather-analysis/rainfall_total_plot-1.png" alt="plot of chunk rainfall_total_plot" /></p>
+
+<p>Annual rainfall is pretty random, but there is a notable trend downwards.</p>
+
+<h4 id="which-month-has-maximum-and-minimum-rainfall">Which month has maximum and minimum rainfall?</h4>
+
+<ul>
+  <li>Minimum rainfall month was in <em>February 1959</em>, and measured <em>0mm</em>.</li>
+  <li>Maximum rainfall month was in <em>October 2000</em>, and measured <em>261.1mm</em>.</li>
+</ul>
+
+<h4 id="how-does-monthly-rainfall-vary">How does monthly rainfall vary?</h4>
+
+<p>Whisker and box plots show median values (for each month) alongside upper and lower quartiles (50%, 25% and 75% respectively). 90% of data is covered between the whiskers. So at a median, 50% of values appear above the line and 50% below.</p>
+
+<p><img src="/figure/R/2022-08-21-weather-analysis/monthly_rainfall_box-1.png" alt="plot of chunk monthly_rainfall_box" /></p>
+
+<p>Almost all months have had near zero rainfall. <em>October</em> has the greatest range, from <em>2.3mm</em> to  <em>261.1mm</em>.</p>
+
+<h4 id="how-does-monthly-sunshine-vary">How does monthly sunshine vary?</h4>
+
+<p><img src="/figure/R/2022-08-21-weather-analysis/monthly_sun_box-1.png" alt="plot of chunk monthly_sun_box" /></p>
+
+<ul>
+  <li>The least amount of sun in a WHOLE month was in <em>December 1969</em> with just <em>26.4hrs</em>.</li>
+  <li>The most amount of sun was in <em>July 2006</em> with <em>335.3hrs</em>.</li>
+  <li><em>September</em> has the greatest range of sun, which has had between <em>64.9hrs</em> and <em>265.8hrs</em>.</li>
+</ul>
+
+<blockquote>
+  <p>These values include ‘outlier’ data (outside of the 90% likleyhood).  Although I am not presenting actual quartile data here, you can see from the boxplot above which month is most LIKELY to have a wide range of sun hours.</p>
+
+  <p>For Eastbourne, this is <em>June</em>.</p>
+</blockquote>
+
+<h4 id="are-maximum--minimum-temperatures-related">Are maximum / minimum temperatures ‘related’?</h4>
+
+<p><img src="/figure/R/2022-08-21-weather-analysis/max_min_temp-1.png" alt="plot of chunk max_min_temp" /></p>
+
+<p>Yes.</p>
+
+<h4 id="do-years-have-varying-temperature-range">Do years have varying temperature range?</h4>
+
+<p>The minimum minimum to the maximum maximum of each year.</p>
+
+<p><img src="/figure/R/2022-08-21-weather-analysis/temp_range-1.png" alt="plot of chunk temp_range" /></p>
+
+<ul>
+  <li>Minimum temperature range is <em>15.6°C</em> in <em>1974</em>, with a minimum of <em>4°C</em> and maximum of <em>19.6°C</em>.</li>
+  <li>Maximum temperature range is <em>23.8°C</em> in <em>2018</em>, with a minimum of <em>1°C</em> and a maximum of <em>24.8°C</em>.</li>
+</ul>
+
+<h2 id="create-a-play-thing">Create a Play-Thing</h2>
+
+<h3 id="all-weather">All Weather</h3>
+
+<p>Remember that temperatures are the mean daily maximum/minimum for the month. Rain, sun and frost are the sum of mm, hours, days (resp).</p>
+
+<blockquote>
+  <p>UPDATE: It seems that I cannot render to HTML if I connect them all and make them interactive :o(  So here they all are static…</p>
+</blockquote>
+
+<p><img src="/figure/R/2022-08-21-weather-analysis/all_weather-1.png" alt="plot of chunk all_weather" /></p>]]></content><author><name></name></author><category term="weather" /><category term="r" /><category term="weather" /><summary type="html"><![CDATA[Understanding a little historical weather]]></summary></entry><entry><title type="html">Covid-19 Heatmaps</title><link href="https://misstickles.github.io/covid/2021/06/27/covid-2.html" rel="alternate" type="text/html" title="Covid-19 Heatmaps" /><published>2021-06-27T00:00:00+00:00</published><updated>2021-06-27T00:00:00+00:00</updated><id>https://misstickles.github.io/covid/2021/06/27/covid-2</id><content type="html" xml:base="https://misstickles.github.io/covid/2021/06/27/covid-2.html"><![CDATA[<h1 id="lets-plot-covid-19-in-the-uk">Let’s Plot Covid-19 in the UK…</h1>
+
+<h2 id="source">Source</h2>
+
+<h3 id="covid-19">Covid-19</h3>
+
+<p>Covid data is from the UK Government website, using the following URL:</p>
+
+<p><a href="https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&amp;metric=newDeaths28DaysByDeathDate&amp;metric=newCasesBySpecimenDate&amp;format=csv">https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&amp;metric=newDeaths28DaysByDeathDate&amp;metric=newCasesBySpecimenDate&amp;format=csv</a></p>
+
+<p>Covid-19 data is CONFIRMED cases or deaths only.</p>
+
+<ul>
+  <li>A case is registered on the date of the test specimen.</li>
+  <li>A death is registered on the day of death, and the death occurs within 28 days of a positive Covid-19 test.</li>
+  <li>The dates, especially more recent ones, are subject to change as data comes in.</li>
+</ul>
+
+<h3 id="population">Population</h3>
+
+<p>This data is sourced from the <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland">ONS</a> website.  It is from mid 2019, but good enough for our use.</p>
+
+<h3 id="read-and-select-required-data">Read and Select Required Data</h3>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">source</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&amp;metric=newDeaths28DaysByDeathDate&amp;metric=newCasesBySpecimenDate&amp;format=csv"</span><span class="w">
+</span><span class="n">src</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_csv</span><span class="p">(</span><span class="n">source</span><span class="p">)[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="o">:</span><span class="m">6</span><span class="p">)]</span><span class="w">
+
+</span><span class="n">source_counties</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"http://geoportal1-ons.opendata.arcgis.com/datasets/89109c7ba29f496187e125b5c8a091b6_0.csv"</span><span class="w">
+</span><span class="n">counties</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_csv</span><span class="p">(</span><span class="n">source_counties</span><span class="p">)[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">)]</span><span class="w">
+
+</span><span class="n">source_population</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"../data/population-mid2019.xls"</span><span class="w">
+</span><span class="n">population</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_excel</span><span class="p">(</span><span class="w">
+  </span><span class="n">source_population</span><span class="p">,</span><span class="w">
+  </span><span class="n">sheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"MYE2 - Persons"</span><span class="p">,</span><span class="w">
+  </span><span class="n">skip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="w">
+</span><span class="p">)[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">)]</span><span class="w">
+
+</span><span class="n">raw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">src</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">left_join</span><span class="p">(</span><span class="n">counties</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"areaCode"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"LTLA18CD"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">left_join</span><span class="p">(</span><span class="n">population</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"areaCode"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Code"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">,</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w"> </span><span class="s2">"date"</span><span class="p">,</span><span class="w"> </span><span class="s2">"cases"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"deaths"</span><span class="p">,</span><span class="w"> </span><span class="s2">"county"</span><span class="p">,</span><span class="w"> </span><span class="s2">"population"</span><span class="w">
+</span><span class="p">)</span></code></pre></figure>
+
+<h2 id="tidy">Tidy…</h2>
+
+<p>Create an R-tidy table for easier use within <code class="language-plaintext highlighter-rouge">ggplot</code>.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raw</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">pivot_longer</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s2">"cases"</span><span class="p">,</span><span class="w"> </span><span class="s2">"deaths"</span><span class="p">),</span><span class="w"> </span><span class="n">names_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"type"</span><span class="p">,</span><span class="w"> </span><span class="n">values_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"count"</span><span class="p">)</span><span class="w">
+</span><span class="n">data</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## # A tibble: 366,530 x 7
+##    code     name              date       county           population type  count
+##    &lt;chr&gt;    &lt;chr&gt;             &lt;date&gt;     &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
+##  1 E060000~ Redcar and Cleve~ 2021-07-02 Redcar and Clev~     137150 cases    19
+##  2 E060000~ Redcar and Cleve~ 2021-07-02 Redcar and Clev~     137150 deat~     0
+##  3 E070000~ East Devon        2021-07-02 Devon                146284 cases    14
+##  4 E070000~ East Devon        2021-07-02 Devon                146284 deat~     0
+##  5 E070000~ Havant            2021-07-02 Hampshire            126220 cases    10
+##  6 E070000~ Havant            2021-07-02 Hampshire            126220 deat~     0
+##  7 E070002~ Surrey Heath      2021-07-02 Surrey                89305 cases     4
+##  8 E070002~ Surrey Heath      2021-07-02 Surrey                89305 deat~     0
+##  9 E070002~ Worthing          2021-07-02 West Sussex          110570 cases     7
+## 10 E070002~ Worthing          2021-07-02 West Sussex          110570 deat~     0
+## # ... with 366,520 more rows</code></pre></figure>
+
+<p>For simplicity, split the data into <code class="language-plaintext highlighter-rouge">cases</code> and <code class="language-plaintext highlighter-rouge">deaths</code>.</p>
+
+<p>Add some helper columns to each dataset.</p>
+
+<p>Convert case and death counts to a rolling 7-day average.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">cases</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">subset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"cases"</span><span class="p">)</span><span class="w">
+</span><span class="n">deaths</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">subset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"deaths"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">cases_heatmap</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cases</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">arrange</span><span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">date</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">na.omit</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">code</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="w">
+    </span><span class="n">max_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w">
+    </span><span class="n">max_date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">date</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">max_count</span><span class="p">)][</span><span class="m">1</span><span class="p">],</span><span class="w">
+    </span><span class="n">count7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rollmean</span><span class="p">(</span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="n">na.pad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w">
+    </span><span class="n">prop_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">max_count</span><span class="p">,</span><span class="w">
+    </span><span class="n">per_ht</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.integer</span><span class="p">(</span><span class="n">count7</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">population</span><span class="p">),</span><span class="w">
+    </span><span class="n">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w">
+    </span><span class="n">total_per_ht</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.integer</span><span class="p">(</span><span class="n">total</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">population</span><span class="p">)</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ungroup</span><span class="p">()</span><span class="w">
+
+</span><span class="n">deaths_heatmap</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">deaths</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">arrange</span><span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">date</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">na.omit</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">code</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="w">
+    </span><span class="n">max_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w">
+    </span><span class="n">max_date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">date</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">max_count</span><span class="p">)][</span><span class="m">1</span><span class="p">],</span><span class="w">
+    </span><span class="n">count7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rollmean</span><span class="p">(</span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="n">na.pad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w">
+    </span><span class="n">prop_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">max_count</span><span class="p">,</span><span class="w">
+    </span><span class="n">per_ht</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.integer</span><span class="p">(</span><span class="n">count7</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">population</span><span class="p">),</span><span class="w">
+    </span><span class="n">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w">
+    </span><span class="n">total_per_ht</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.integer</span><span class="p">(</span><span class="n">total</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">population</span><span class="p">)</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ungroup</span><span class="p">()</span><span class="w">
+
+</span><span class="n">min_date</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">cases</span><span class="o">$</span><span class="n">date</span><span class="p">)</span><span class="w">
+</span><span class="n">max_date</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">cases</span><span class="o">$</span><span class="n">date</span><span class="p">)</span></code></pre></figure>
+
+<h2 id="heatmap-7-day-rolling-average">Heatmap 7-day Rolling Average</h2>
+
+<p>If you zoom in with your browser, you should just about be able to read the axes.</p>
+
+<p>Total cases for 7-day rolling average.</p>
+
+<p><img src="/figure/R/2021-06-27-covid-2/cases-avg-heatmap-1.png" alt="center" /></p>
+
+<p>Each LA has its number of cases normalised to its own maximum number of cases.  Therefore, each LA will have a red plot signifying the day of maximum cases.</p>
+
+<p>This way, it is easy to spot the first, second, and the third waves (just beginning).</p>
+
+<p>Some (very brief) interesting things:</p>
+
+<ul>
+  <li>some of the LAs with later maximum case dates (at the top), are seeing very high rates in the 3rd wave (proportionally)</li>
+  <li>the early starters in the first wave are also starting early in the third</li>
+  <li>there are a number of LAs (those who saw the earliest cases) who had large waves in both October / November AND January</li>
+</ul>
+
+<p>I like this plot, as it aditionally shows clear information on where the cases began in the UK.</p>
+
+<h2 id="introduce-population">Introduce population</h2>
+
+<p>This similar heatmap presents the number of cases per 100,000 population within each Local Authority.  As before, LAs are ordered by the date a which they recorded their maximum number of cases.</p>
+
+<p>On the right is a plot of the total number of cases recorded for that LA.</p>
+
+<p><img src="/figure/R/2021-06-27-covid-2/cases-heatmap-1.png" alt="center" /></p>
+
+<p>The general pattern is the same as above.  It is less easy to see the first wave, but more easy to identify the regions with the higher number of cases.</p>
+
+<h2 id="deaths">Deaths</h2>
+
+<p>As for cases above, the number of deaths is normalised to the maximum of deaths recorded for each LA.</p>
+
+<p><img src="/figure/R/2021-06-27-covid-2/deaths-heatmap-1.png" alt="center" /></p>
+
+<p>The minimum plot date (and the max) is the same as for cases, so it is possible to see the delay in deaths since the cases.</p>
+
+<p>LAs are ordered differently as those of cases.  I am in no position to speculate why at this time!</p>
+
+<p>I can see an interesting split in this death data… LAs who had high daily deaths in the first wave, had lower in the second; but those with fewer in the first suffered badly in the second.  Ordering by date of highest daily count does not present any correlation with total number of deaths.</p>]]></content><author><name></name></author><category term="covid" /><category term="r" /><category term="covid" /><summary type="html"><![CDATA[Heatmaps of Covid-19 cases in the UK; using data from public government data]]></summary></entry><entry><title type="html">World GNI</title><link href="https://misstickles.github.io/population-data/2021/06/16/global-gni.html" rel="alternate" type="text/html" title="World GNI" /><published>2021-06-16T00:00:00+00:00</published><updated>2021-06-16T00:00:00+00:00</updated><id>https://misstickles.github.io/population-data/2021/06/16/global-gni</id><content type="html" xml:base="https://misstickles.github.io/population-data/2021/06/16/global-gni.html"><![CDATA[<h1 id="global-gni">Global GNI</h1>
+
+<h2 id="gni-formerly-gnp">GNI (formerly GNP)</h2>
+
+<p>Is the sum of value added by all resident producers plus any product taxes (less subsidies) not included in the valuation of output plus net receipts of primary income (compensation of employees and property income) from abroad.</p>
+
+<p>All data are in current U.S. dollars.</p>
+
+<h2 id="source">Source</h2>
+
+<p>All data is from the <em><a href="https://www.worldbank.org/">World Bank</a></em> and uses a <a href="https://datacatalog.worldbank.org/public-licenses#cc-by">Creative Commons</a> licence.  Current at 2021-06-27.  Data is found here:</p>
+
+<p><a href="https://databank.worldbank.org/reports.aspx?source=2&amp;series=NY.GNP.PCAP.CD&amp;country=">https://databank.worldbank.org/reports.aspx?source=2&amp;series=NY.GNP.PCAP.CD&amp;country=</a></p>
+
+<h2 id="load-the-data">Load the Data</h2>
+
+<p>Read the raw data from <em>World Bank</em>.  We replace <code class="language-plaintext highlighter-rouge">..</code> with <code class="language-plaintext highlighter-rouge">NA</code> as this is easier to work with in R and remove <em>Series Name</em> and <em>Series Code</em> columns, as we will not need these.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">gni_raw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_csv</span><span class="p">(</span><span class="w">
+  </span><span class="s2">"../data/global_gni.csv"</span><span class="p">,</span><span class="w">
+  </span><span class="n">na</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">".."</span><span class="p">)</span><span class="w">
+</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">select</span><span class="p">(</span><span class="o">-</span><span class="n">`Series Name`</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">`Series Code`</span><span class="p">)</span><span class="w">
+
+</span><span class="n">str</span><span class="p">(</span><span class="n">gni_raw</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## tibble [269 x 52] (S3: tbl_df/tbl/data.frame)
+##  $ Country Name : chr [1:269] "Afghanistan" "Albania" "Algeria" "American Samoa" ...
+##  $ Country Code : chr [1:269] "AFG" "ALB" "DZA" "ASM" ...
+##  $ 1971 [YR1971]: num [1:269] 1.87e+09 NA 5.04e+09 NA NA ...
+##  $ 1972 [YR1972]: num [1:269] 1.63e+09 NA 6.74e+09 NA NA ...
+##  $ 1973 [YR1973]: num [1:269] 1.77e+09 NA 8.64e+09 7.56e+07 NA ...
+##  $ 1974 [YR1974]: num [1:269] 2.20e+09 NA 1.31e+10 7.70e+07 NA ...
+##  $ 1975 [YR1975]: num [1:269] 2.42e+09 NA 1.54e+10 6.77e+07 NA ...
+##  $ 1976 [YR1976]: num [1:269] 2.61e+09 NA 1.74e+10 6.85e+07 NA ...
+##  $ 1977 [YR1977]: num [1:269] 3.02e+09 NA 1.98e+10 7.92e+07 NA ...
+##  $ 1978 [YR1978]: num [1:269] 3.37e+09 NA 2.51e+10 8.47e+07 NA ...
+##  $ 1979 [YR1979]: num [1:269] 3.78e+09 NA 3.15e+10 1.06e+08 NA ...
+##  $ 1980 [YR1980]: num [1:269] 3.72e+09 NA 4.05e+10 1.27e+08 NA ...
+##  $ 1981 [YR1981]: num [1:269] 3.55e+09 NA 4.23e+10 1.39e+08 NA ...
+##  $ 1982 [YR1982]: num [1:269] NA NA 4.32e+10 1.51e+08 NA ...
+##  $ 1983 [YR1983]: num [1:269] NA NA 4.70e+10 1.66e+08 NA ...
+##  $ 1984 [YR1984]: num [1:269] NA 1.86e+09 5.20e+10 1.78e+08 NA ...
+##  $ 1985 [YR1985]: num [1:269] NA 1.90e+09 5.64e+10 1.90e+08 NA ...
+##  $ 1986 [YR1986]: num [1:269] NA 2.1e+09 6.2e+10 NA NA ...
+##  $ 1987 [YR1987]: num [1:269] NA 2.08e+09 6.48e+10 NA NA ...
+##  $ 1988 [YR1988]: num [1:269] NA 2.05e+09 5.66e+10 NA NA ...
+##  $ 1989 [YR1989]: num [1:269] NA 2.25e+09 5.36e+10 NA NA ...
+##  $ 1990 [YR1990]: num [1:269] NA 2.03e+09 5.98e+10 NA NA ...
+##  $ 1991 [YR1991]: num [1:269] NA 1.08e+09 4.32e+10 NA NA ...
+##  $ 1992 [YR1992]: num [1:269] NA 6.17e+08 4.58e+10 NA NA ...
+##  $ 1993 [YR1993]: num [1:269] NA 1.22e+09 4.82e+10 NA NA ...
+##  $ 1994 [YR1994]: num [1:269] NA 1.89e+09 4.08e+10 NA NA ...
+##  $ 1995 [YR1995]: num [1:269] NA 2.44e+09 3.96e+10 NA NA ...
+##  $ 1996 [YR1996]: num [1:269] NA 3.27e+09 4.44e+10 NA NA ...
+##  $ 1997 [YR1997]: num [1:269] NA 2.31e+09 4.60e+10 NA NA ...
+##  $ 1998 [YR1998]: num [1:269] NA 2.62e+09 4.62e+10 NA NA ...
+##  $ 1999 [YR1999]: num [1:269] NA 3.29e+09 4.64e+10 NA NA ...
+##  $ 2000 [YR2000]: num [1:269] NA 3.59e+09 5.21e+10 NA NA ...
+##  $ 2001 [YR2001]: num [1:269] NA 4.07e+09 5.31e+10 NA NA ...
+##  $ 2002 [YR2002]: num [1:269] NA 4.48e+09 5.45e+10 NA NA ...
+##  $ 2003 [YR2003]: num [1:269] NA 5.78e+09 6.52e+10 NA NA ...
+##  $ 2004 [YR2004]: num [1:269] NA 7.36e+09 8.17e+10 NA NA ...
+##  $ 2005 [YR2005]: num [1:269] NA 8.23e+09 9.81e+10 NA NA ...
+##  $ 2006 [YR2006]: num [1:269] NA 9.16e+09 1.12e+11 NA NA ...
+##  $ 2007 [YR2007]: num [1:269] NA 1.10e+10 1.33e+11 NA NA ...
+##  $ 2008 [YR2008]: num [1:269] NA 1.29e+10 1.70e+11 NA NA ...
+##  $ 2009 [YR2009]: num [1:269] 1.24e+10 1.19e+10 1.36e+11 NA NA ...
+##  $ 2010 [YR2010]: num [1:269] 1.59e+10 1.18e+10 1.61e+11 NA NA ...
+##  $ 2011 [YR2011]: num [1:269] 1.78e+10 1.29e+10 1.98e+11 NA NA ...
+##  $ 2012 [YR2012]: num [1:269] 2.00e+10 1.22e+10 2.05e+11 NA NA ...
+##  $ 2013 [YR2013]: num [1:269] 2.06e+10 1.30e+10 2.05e+11 NA NA ...
+##  $ 2014 [YR2014]: num [1:269] 2.05e+10 1.34e+10 2.09e+11 NA NA ...
+##  $ 2015 [YR2015]: num [1:269] 2.01e+10 1.15e+10 1.62e+11 NA NA ...
+##  $ 2016 [YR2016]: num [1:269] 1.82e+10 1.21e+10 1.58e+11 NA NA ...
+##  $ 2017 [YR2017]: num [1:269] 1.91e+10 1.31e+10 1.68e+11 NA NA ...
+##  $ 2018 [YR2018]: num [1:269] 1.85e+10 1.51e+10 1.71e+11 NA NA ...
+##  $ 2019 [YR2019]: num [1:269] 1.96e+10 1.51e+10 1.67e+11 NA NA ...
+##  $ 2020 [YR2020]: logi [1:269] NA NA NA NA NA NA ...</code></pre></figure>
+
+<p>We see from the <code class="language-plaintext highlighter-rouge">str()</code> that this data is in a wide format, with ‘strange’ year column names.</p>
+
+<h3 id="tidy-the-data">Tidy the Data</h3>
+
+<p>To work best in R, we should use a long table format - giving one observation per row.</p>
+
+<p>Here, we:</p>
+
+<ul>
+  <li>rename the <code class="language-plaintext highlighter-rouge">nnnn [YRnnnn]</code> columns to <code class="language-plaintext highlighter-rouge">nnnn</code></li>
+  <li>remove all spaces in column names</li>
+  <li>pivot the data to create <code class="language-plaintext highlighter-rouge">year</code> and gni <code class="language-plaintext highlighter-rouge">values</code> columns, each row having one one year per country</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># prefix first 4 digits with `y`; remove ` [YRdddd]`</span><span class="w">
+</span><span class="c1"># remove ` `</span><span class="w">
+</span><span class="n">gni</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gni_raw</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">rename_with</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">sub</span><span class="p">(</span><span class="s2">"(^\\d{4}).*$"</span><span class="p">,</span><span class="w"> </span><span class="s2">"\\1"</span><span class="p">,</span><span class="w"> </span><span class="n">.x</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">rename_with</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">sub</span><span class="p">(</span><span class="s2">"\\s"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">.x</span><span class="p">))</span><span class="w">
+
+</span><span class="n">gni</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gni</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">pivot_longer</span><span class="p">(</span><span class="n">matches</span><span class="p">(</span><span class="s2">"\\d{4}"</span><span class="p">),</span><span class="w"> </span><span class="n">names_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"year"</span><span class="p">,</span><span class="w"> </span><span class="n">values_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gni"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">str</span><span class="p">(</span><span class="n">gni</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## tibble [13,450 x 4] (S3: tbl_df/tbl/data.frame)
+##  $ CountryName: chr [1:13450] "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+##  $ CountryCode: chr [1:13450] "AFG" "AFG" "AFG" "AFG" ...
+##  $ year       : chr [1:13450] "1971" "1972" "1973" "1974" ...
+##  $ gni        : num [1:13450] 1.87e+09 1.63e+09 1.77e+09 2.20e+09 2.42e+09 ...</code></pre></figure>
+
+<h3 id="select-countries">Select Countries</h3>
+
+<p>We’re not doing anything major here, just being curious, so just work with a few countries.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">countries</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="w">
+  </span><span class="s2">"GBR"</span><span class="p">,</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w"> </span><span class="s2">"NZL"</span><span class="p">,</span><span class="w"> </span><span class="s2">"AUS"</span><span class="p">,</span><span class="w"> </span><span class="s2">"DEU"</span><span class="p">,</span><span class="w"> </span><span class="s2">"CHN"</span><span class="p">,</span><span class="w"> </span><span class="s2">"JPN"</span><span class="p">,</span><span class="w"> </span><span class="s2">"CAN"</span><span class="p">,</span><span class="w"> </span><span class="s2">"WLD"</span><span class="w">
+</span><span class="p">)</span></code></pre></figure>
+
+<h2 id="plot-gni-data">Plot GNI Data</h2>
+
+<p>A plot of GNI in current United States Dollars (USD).</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">gni</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">CountryCode</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">countries</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">bln</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gni</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">1000000000</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">bln</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CountryCode</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CountryCode</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2008"</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red3"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_line</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"loess"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">CountryName</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_discrete</span><span class="p">(</span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="m">1971</span><span class="p">,</span><span class="w"> </span><span class="m">2021</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">label_comma</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="w">
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"GNI Actual Values between 1971 and 2000"</span><span class="p">,</span><span class="w">
+    </span><span class="n">subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"current USD, billions (1e+9)"</span><span class="p">,</span><span class="w">
+    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Year"</span><span class="p">,</span><span class="w">
+    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Value (billion USD)"</span><span class="p">,</span><span class="w">
+    </span><span class="n">caption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"vertical line marks the 2008 'financial crisis'"</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"none"</span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/figure/R/2021-06-16-global-gni/plot-actual-1.png" alt="center" /></p>
+
+<p>The vertical line represents the year 2008, when the “global financial crisis” occurred.</p>
+
+<p>It is interesting to see that it actually helped Japan and (apart from a quick, small fall) Australia.</p>
+
+<p>The United Kingdom fared the worse, but appears to have been in decline before the event.</p>
+
+<p>The United States only flattened out.</p>
+
+<p>Zooming out to the World data, there clearly is a dip in GNI, but also in approx. 2015 which can also be seen in the chosen country charts.</p>
+
+<h2 id="percentage-change">Percentage Change</h2>
+
+<p>Perhaps a “fairer” approach for comparison, is to compare the percentage increase since the first observed year.</p>
+
+<p>This code will select the minimum year and create a new column (<code class="language-plaintext highlighter-rouge">first</code>) containing that data for each country.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">first_observation</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gni</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">drop_na</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">arrange</span><span class="p">(</span><span class="n">CountryCode</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">CountryCode</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">slice_min</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">rename</span><span class="p">(</span><span class="n">first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gni</span><span class="p">)</span></code></pre></figure>
+
+<p>Join our first observation data to the original GNI data.</p>
+
+<p>Also create a <code class="language-plaintext highlighter-rouge">percent</code> column which takes each GNI observation and creates a percentage increase since the first observation…</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">gni_pct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gni</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">left_join</span><span class="p">(</span><span class="w">
+    </span><span class="n">select</span><span class="p">(</span><span class="n">first_observation</span><span class="p">,</span><span class="w"> </span><span class="n">CountryCode</span><span class="p">,</span><span class="w"> </span><span class="n">first</span><span class="p">),</span><span class="w">
+    </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"CountryCode"</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">drop_na</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">percent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">gni</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">first</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">)</span><span class="w">
+
+</span><span class="n">head</span><span class="p">(</span><span class="n">gni_pct</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## # A tibble: 6 x 6
+##   CountryName CountryCode year          gni       first percent
+##   &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;       &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Afghanistan AFG         1971  1868886653. 1868886653.    0   
+## 2 Afghanistan AFG         1972  1631108938. 1868886653.  -12.7 
+## 3 Afghanistan AFG         1973  1771108944. 1868886653.   -5.23
+## 4 Afghanistan AFG         1974  2202222229. 1868886653.   17.8 
+## 5 Afghanistan AFG         1975  2417777778. 1868886653.   29.4 
+## 6 Afghanistan AFG         1976  2611111162. 1868886653.   39.7</code></pre></figure>
+
+<p>… and plot.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">gni_pct</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">CountryCode</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">countries</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">percent</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CountryCode</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CountryCode</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2008"</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red3"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_line</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"loess"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">CountryName</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_discrete</span><span class="p">(</span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="m">1971</span><span class="p">,</span><span class="w"> </span><span class="m">2021</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="c1">#  scale_y_log10() +</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="w">
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"GNI Percentage increase since 1971"</span><span class="p">,</span><span class="w">
+    </span><span class="n">subsitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"percent increase in GNI, since the previous year"</span><span class="p">,</span><span class="w">
+    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Year"</span><span class="p">,</span><span class="w">
+    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Percent Increase (log10)"</span><span class="p">,</span><span class="w">
+    </span><span class="n">caption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"vertical line marks the 2008 'financial crisis'"</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"none"</span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/figure/R/2021-06-16-global-gni/plot-pc-1.png" alt="center" /></p>
+
+<p>This now clearly shows almost all seemed to suffer during the late 1970s into early 1980s (including the “winter of discontent”).</p>
+
+<h2 id="fun-stats">Fun Stats</h2>
+
+<h3 id="biggest-increase">Biggest Increase</h3>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">biggest</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gni_pct</span><span class="p">[</span><span class="n">which.max</span><span class="p">(</span><span class="n">gni_pct</span><span class="o">$</span><span class="n">percent</span><span class="p">),</span><span class="w"> </span><span class="p">]</span></code></pre></figure>
+
+<p>So it seems that Qatar has and increase of 55,261.22% in 2014.</p>
+
+<p>Let’s plot it.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">gni_pct</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">CountryCode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">biggest</span><span class="o">$</span><span class="n">CountryCode</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">percent</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CountryCode</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CountryCode</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">biggest</span><span class="o">$</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"green3"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="w">
+    </span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2008"</span><span class="p">,</span><span class="w">
+    </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red3"</span><span class="p">,</span><span class="w">
+    </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">,</span><span class="w">
+    </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dotted"</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_line</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"loess"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">CountryName</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_discrete</span><span class="p">(</span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="m">1971</span><span class="p">,</span><span class="w"> </span><span class="m">2021</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="w">
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"GNI Percentage increase since 1971"</span><span class="p">,</span><span class="w">
+    </span><span class="n">subsitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"percent increase in GNI, since the previous year"</span><span class="p">,</span><span class="w">
+    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Year"</span><span class="p">,</span><span class="w">
+    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Percent Increase"</span><span class="p">,</span><span class="w">
+    </span><span class="n">caption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dashed line marks the 2008 'financial crisis'\n
+      green line is the year 2014"</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"none"</span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/figure/R/2021-06-16-global-gni/biggest-pc-1.png" alt="center" /></p>
+
+<p>WOW!  ‘Something’ happened in about 2001, which led to exponential increases each year.  Even Qatar didn’t escape the 2008 financial crises, nor the losses in 2015 (see above) - which occur the year after the highest GNI.</p>
+
+<h2 id="getting-percent-increase-each-year">Getting Percent Increase Each Year</h2>
+
+<p>Hmmmm….</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># gni_pct$percent %&gt;%</span><span class="w">
+</span><span class="c1">#  mutate_all(funs(. - lag(.))) %&gt;%</span><span class="w">
+</span><span class="c1">#  na.omit()</span><span class="w">
+
+</span><span class="c1"># gni_diff &lt;- gni_pct %&gt;%</span><span class="w">
+</span><span class="c1">#   group_by(CountryCode) %&gt;%</span><span class="w">
+</span><span class="c1">#   mutate(diff = FrequencyLag(percent, default = first(percent)))</span><span class="w">
+</span><span class="c1">#   mutate(diff = percent = lag(percent))</span><span class="w">
+</span><span class="c1">#   summarise_at(vars(percent), diff)</span><span class="w">
+</span><span class="c1">#   mutate(diff = c(0, apply(gni_pct[6], 2, diff)))</span><span class="w">
+
+</span><span class="c1"># gni_diff &lt;- gni_pct %&gt;%</span><span class="w">
+</span><span class="c1">#  mutate(</span><span class="w">
+</span><span class="c1">#    diff = ave(</span><span class="w">
+</span><span class="c1">#      percent,</span><span class="w">
+</span><span class="c1">#      factor(CountryCode),</span><span class="w">
+</span><span class="c1">#      FUN = function(x) c(NA, diff(x))</span><span class="w">
+
+
+</span><span class="c1">#   filter(CountryCode %in% countries) %&gt;%</span><span class="w">
+</span><span class="c1">#   ggplot(aes(year, diff, group = CountryCode, colour = CountryCode)) +</span><span class="w">
+</span><span class="c1">#   geom_vline(xintercept = "2008", colour = "red3", size = 0.1) +</span><span class="w">
+</span><span class="c1">#   geom_line(stat = "identity") +</span><span class="w">
+</span><span class="c1">#   geom_point() +</span><span class="w">
+</span><span class="c1">#   geom_smooth(method = "loess") +</span><span class="w">
+</span><span class="c1">#   facet_wrap(~CountryName, scales = "free") +</span><span class="w">
+</span><span class="c1">#   scale_x_discrete(breaks = seq(1971, 2021, 10)) +</span><span class="w">
+</span><span class="c1">#   # scale_y_log10() +</span><span class="w">
+</span><span class="c1">#   labs(</span><span class="w">
+</span><span class="c1">#     title = "GNI Percentage increase since 1971",</span><span class="w">
+</span><span class="c1">#     subsitle = "percent increase in GNI, since the previous year",</span><span class="w">
+</span><span class="c1">#     x = "Year",</span><span class="w">
+</span><span class="c1">#     y = "Percent Increase (log10)",</span><span class="w">
+</span><span class="c1">#     caption = "vertical line marks the 2008 'financial crisis'"</span><span class="w">
+</span><span class="c1">#   ) +</span><span class="w">
+</span><span class="c1">#   theme(legend.position = "none")</span></code></pre></figure>
+
+<h2 id="gosh---we-need-a-map">Gosh - We Need a Map!</h2>
+
+<p>Normally, you may want to take population into account when displaying the “value” of a country.  I don’t intend to do that here, so this is one of many, many approaches that could be used to demonstrate the distribution of wealth around the world.</p>
+
+<p>Randomly, I’m selecting 2019 data.  Most countries should have a value (for the interested reader to confirm if this is true!); and the value will not be impacted by the Covid-19 global epidemic.</p>
+
+<h3 id="arrange-world-data-and-create-map-data">Arrange World Data and Create Map Data</h3>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">world_map</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">map_data</span><span class="p">(</span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"world"</span><span class="p">)</span><span class="w">
+</span><span class="n">world_map</span><span class="o">$</span><span class="n">region</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">iso.alpha</span><span class="p">(</span><span class="n">world_map</span><span class="o">$</span><span class="n">region</span><span class="p">)</span><span class="w">
+
+</span><span class="n">gni_map</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gni</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">year</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2019</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="w">
+    </span><span class="n">iso2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">countrycode</span><span class="p">(</span><span class="n">CountryCode</span><span class="p">,</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"iso3c"</span><span class="p">,</span><span class="w"> </span><span class="n">destination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"iso2c"</span><span class="p">)</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">na.omit</span><span class="p">()</span><span class="w">
+
+</span><span class="n">gni_map</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">iso2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"NA"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">distinct</span><span class="p">(</span><span class="n">CountryCode</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## # A tibble: 1 x 1
+##   CountryCode
+##   &lt;chr&gt;      
+## 1 NAM</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># Namibia's code is "NA" - load it properly (not being R's NA)</span><span class="w">
+</span><span class="n">gni_map</span><span class="o">$</span><span class="n">iso2</span><span class="p">[</span><span class="n">gni_map</span><span class="o">$</span><span class="n">CountryCode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"NAM"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"&lt;NA&gt;"</span></code></pre></figure>
+
+<p>In this code, we obtain a range (I’m sure this can be done ‘automatically’, but enough for now!).  Dividing into 8 groups, each group has 28/9 countries - each being within the same range of GNI.  On another project, we could first remove the regions (groups of countries) that are in the data, which may skew the result…</p>
+
+<p>We manually create the list of breaks and labels, based on the result.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">table</span><span class="p">(</span><span class="n">cut2</span><span class="p">(</span><span class="n">gni_map</span><span class="o">$</span><span class="n">gni</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">9</span><span class="p">))</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## 
+## [6.53e+07,2.30e+09) [2.30e+09,7.84e+09) [7.84e+09,1.50e+10) [1.50e+10,2.46e+10) 
+##                  21                  20                  20                  20 
+## [2.46e+10,5.27e+10) [5.27e+10,9.53e+10) [9.53e+10,2.92e+11) [2.92e+11,7.17e+11) 
+##                  20                  20                  20                  20 
+## [7.17e+11,2.17e+13] 
+##                  20</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">gni_map</span><span class="o">$</span><span class="n">range</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cut</span><span class="p">(</span><span class="w">
+  </span><span class="n">gni_map</span><span class="o">$</span><span class="n">gni</span><span class="p">,</span><span class="w">
+  </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="w">
+    </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">2.30e9</span><span class="p">,</span><span class="w">
+    </span><span class="m">7.84e9</span><span class="p">,</span><span class="w"> </span><span class="m">1.5e10</span><span class="p">,</span><span class="w">
+    </span><span class="m">2.46e10</span><span class="p">,</span><span class="w"> </span><span class="m">5.27e10</span><span class="p">,</span><span class="w">
+    </span><span class="m">9.53e10</span><span class="p">,</span><span class="w"> </span><span class="m">2.92e11</span><span class="p">,</span><span class="w">
+    </span><span class="m">7.17e11</span><span class="p">,</span><span class="w"> </span><span class="m">2.17e13</span><span class="w">
+  </span><span class="p">),</span><span class="w">
+  </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="w">
+    </span><span class="s2">"Under 2.30"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2.30 - 7.84"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"7.84 - 15.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"15.0 - 24.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"24.0 - 52.7"</span><span class="p">,</span><span class="w"> </span><span class="s2">"52.7 - 95.3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"95.3 - 292"</span><span class="p">,</span><span class="w"> </span><span class="s2">"292 - 717"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Over 717"</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+</span><span class="p">)</span></code></pre></figure>
+
+<p>… 9 groups, because that is the max number of colours in the brewer sequential colour palette!</p>
+
+<p><a href="https://colorbrewer2.org/">https://colorbrewer2.org/</a></p>
+
+<h3 id="plot-the-world">Plot the World</h3>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">world</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gni_map</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_map</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">map_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iso2</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">range</span><span class="p">)),</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">world_map</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_polygon</span><span class="p">(</span><span class="w">
+    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">world_map</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="w">
+      </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">long</span><span class="p">,</span><span class="w">
+      </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat</span><span class="p">,</span><span class="w">
+      </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">group</span><span class="w">
+    </span><span class="p">),</span><span class="w">
+    </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w">
+    </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="w">
+    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"GNI Range ($000,000,000)"</span><span class="p">,</span><span class="w">
+    </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">brewer.pal</span><span class="p">(</span><span class="m">9</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Reds"</span><span class="p">))</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_void</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bottom"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="w">
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"World map of GNI in 2019"</span><span class="p">,</span><span class="w">
+    </span><span class="n">subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"current USD ($) all values in billion dollars\n"</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+
+</span><span class="n">world</span></code></pre></figure>
+
+<p><img src="/figure/R/2021-06-16-global-gni/world-plot-1.png" alt="center" /></p>
+
+<h3 id="zoom-in-to-europe">Zoom in to Europe</h3>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">world</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-13</span><span class="p">,</span><span class="w"> </span><span class="m">40</span><span class="p">),</span><span class="w"> </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">33</span><span class="p">,</span><span class="w"> </span><span class="m">73</span><span class="p">),</span><span class="w"> </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Europe map of GNI in 2019"</span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/figure/R/2021-06-16-global-gni/europe-plot-1.png" alt="center" /></p>
+
+<p>It is probably no surprise that North America, much of Europe and Asia are all in the top 2 groups of GNI.</p>
+
+<p>For some, this is the sheer size of the country, but individuals in less populated countries actually have higher wealth.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Much more to do.</p>
+
+<p>Many more places to go.</p>
+
+<p>This has been great learning for <strong>R</strong>, but perhaps I should write more conclusions!!</p>]]></content><author><name></name></author><category term="population-data" /><category term="r" /><category term="gni" /><category term="map" /><summary type="html"><![CDATA[Some very high level looking at a selection of countries's GNI since 1971, with a global map plot.]]></summary></entry><entry><title type="html">Covid 19 Charts</title><link href="https://misstickles.github.io/covid/2021/05/14/covid-chart.html" rel="alternate" type="text/html" title="Covid 19 Charts" /><published>2021-05-14T00:00:00+00:00</published><updated>2021-05-14T00:00:00+00:00</updated><id>https://misstickles.github.io/covid/2021/05/14/covid-chart</id><content type="html" xml:base="https://misstickles.github.io/covid/2021/05/14/covid-chart.html"><![CDATA[<h2 id="playing-with-uk-covid-data">Playing with UK Covid data</h2>
+
+<p>The source of all data in this script is the UK Government website, <a href="https://coronavirus.data.gov.uk/">https://coronavirus.data.gov.uk/</a>.</p>
+
+<p>Now we can get a summary of the <code class="language-plaintext highlighter-rouge">cases</code> data:</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">summary</span><span class="p">(</span><span class="n">cases</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">##    areaCode           areaName           areaType              date           
+##  Length:180605      Length:180605      Length:180605      Min.   :2020-01-30  
+##  Class :character   Class :character   Class :character   1st Qu.:2020-07-04  
+##  Mode  :character   Mode  :character   Mode  :character   Median :2020-10-31  
+##                                                           Mean   :2020-10-30  
+##                                                           3rd Qu.:2021-02-27  
+##                                                           Max.   :2021-06-25  
+##                                                                               
+##  newCasesBySpecimenDate newDeaths28DaysByDeathDate
+##  Min.   :   0.00        Min.   : 0.000            
+##  1st Qu.:   2.00        1st Qu.: 0.000            
+##  Median :   7.00        Median : 0.000            
+##  Mean   :  25.82        Mean   : 0.737            
+##  3rd Qu.:  25.00        3rd Qu.: 1.000            
+##  Max.   :1701.00        Max.   :38.000            
+##  NA's   :19             NA's   :15384</code></pre></figure>
+
+<p>This shows that we have <em>162382</em> observations, with a dates between 2020-01-30 and 2021-06-25.</p>
+
+<h3 id="wrangling-the-data">Wrangling the Data</h3>
+
+<p>To aide simplicity, we first choose a selected number of areas for data to compare and wrangle the data slightly to provide what we’‘ll be needing.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">selected</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cases</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">areaName</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Crawley"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Mid Sussex"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Horsham"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">select</span><span class="p">(</span><span class="n">areaName</span><span class="p">,</span><span class="w"> </span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">newCasesBySpecimenDate</span><span class="p">,</span><span class="w"> </span><span class="n">newDeaths28DaysByDeathDate</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="w">
+    </span><span class="n">cases7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rollmean</span><span class="p">(</span><span class="n">newCasesBySpecimenDate</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="n">na.pad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w">
+    </span><span class="n">deaths7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rollmean</span><span class="p">(</span><span class="n">newDeaths28DaysByDeathDate</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="n">na.pad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+  </span><span class="p">)</span></code></pre></figure>
+
+<ol>
+  <li>Filter our areas.  Just for local interest in this overview, we will look at Crawley, Horsham and Mid Sussex.</li>
+  <li>Select the columns we are interested in.</li>
+  <li>Mutate the data to add columns for 7-day Rolling Average of cases and deaths.</li>
+</ol>
+
+<h4 id="crudely-plot-our-data">Crudely Plot our Data</h4>
+
+<p>Using the 7 day rolling average, to avoid a jagged chart, we show deaths and cases.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">selected</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">deaths7</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">areaName</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_line</span><span class="p">(</span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"# Deaths (7 day rolling average)"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Death Date"</span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/figure/R/2021-05-14-covid-chart/deaths by date-1.png" alt="center" /></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Death Date</code> is the date of death, given that they had <strong>Covid-19</strong> within the past 28 days.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">selected</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">cases7</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">areaName</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_line</span><span class="p">()</span></code></pre></figure>
+
+<p><img src="/figure/R/2021-05-14-covid-chart/unnamed-chunk-3-1.png" alt="center" /></p>
+
+<h3 id="chart-for-cases-and-deaths">Chart for Cases and Deaths</h3>
+
+<p>Not the best way to display this data, but it shows the number of cases at a given time, and how the death rates followed the cases.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">selected</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">newCasesBySpecimenDate</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">areaName</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cases7</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">deaths7</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_log10</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="w">
+    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"# Cases"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Case Specimin Date"</span><span class="p">,</span><span class="w">
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"7 Day rolling average of cases and deaths in selected areas"</span><span class="w">
+  </span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/figure/R/2021-05-14-covid-chart/7 day cases and deaths-1.png" alt="center" /></p>
+
+<p>A boxplot with jitter to show the ‘range’ of data.  Notice that each area have a similar mean and quartile data.  Also that even the outliers are similar.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">selected</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">areaName</span><span class="p">,</span><span class="w"> </span><span class="n">newCasesBySpecimenDate</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">areaName</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_boxplot</span><span class="p">(</span><span class="n">outlier.shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"# Cases"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Area"</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Cases in selected areas"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_jitter</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.3</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.4</span><span class="p">,</span><span class="w"> </span><span class="n">stroke</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/figure/R/2021-05-14-covid-chart/box plot cases-1.png" alt="Boxplot with jitter for cases in selected areas" /></p>
+
+<p>Maybe a better way would be to facet this data.  Unfortunately, at the moment, our data is not truely ‘tidy’.  In order to facet wrap, we need to tidy the <code class="language-plaintext highlighter-rouge">cases7</code> and <code class="language-plaintext highlighter-rouge">deaths7</code> columns.</p>
+
+<p>“Tidy” data follows these rules:</p>
+
+<ol>
+  <li>Each variable in the data set is placed in its own column</li>
+  <li>Each observation is placed in its own row</li>
+  <li>Each value is placed in its own cell</li>
+</ol>
+
+<p><a href="https://garrettgman.github.io/tidying">https://garrettgman.github.io/tidying</a></p>
+
+<p>Oh.  We need to turn</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>areaName</th>
+      <th>cases</th>
+      <th>deaths</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X</td>
+      <td>10</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>into</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>areaName</th>
+      <th>ra7</th>
+      <th>count_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X</td>
+      <td>10</td>
+      <td>cases</td>
+    </tr>
+    <tr>
+      <td>X</td>
+      <td>6</td>
+      <td>deaths</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>so that each row provides us with a single observation.</p>
+
+<p>We use <code class="language-plaintext highlighter-rouge">pivot_longer</code> to create columns <code class="language-plaintext highlighter-rouge">ra7</code> and <code class="language-plaintext highlighter-rouge">count_type</code> and populate it with death/case values and detail the data type.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">tidy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">selected</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">select</span><span class="p">(</span><span class="o">-</span><span class="n">newCasesBySpecimenDate</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">newDeaths28DaysByDeathDate</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">pivot_longer</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">cases7</span><span class="p">,</span><span class="w"> </span><span class="n">deaths7</span><span class="p">),</span><span class="w"> </span><span class="n">names_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"count_type"</span><span class="p">,</span><span class="w"> </span><span class="n">values_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ra7"</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">tidy</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">ra7</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">areaName</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_line</span><span class="p">(</span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">count_type</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loess</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">trans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"log10"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="w">
+    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"# Cases"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Case Specimin Date"</span><span class="p">,</span><span class="w">
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"7 Day rolling average of cases and deaths in selected areas"</span><span class="w">
+  </span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## `geom_smooth()` using formula 'y ~ x'</code></pre></figure>
+
+<p><img src="/figure/R/2021-05-14-covid-chart/7 day cases and deaths faceted-1.png" alt="center" /></p>
+
+<h2 id="sum-across-the-uk">Sum Across the UK</h2>
+
+<p>Just for fun, join everything together and sum cases across the UK…</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">cases</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">cases</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rollmean</span><span class="p">(</span><span class="n">newCasesBySpecimenDate</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="n">na.pad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">date</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">summarise</span><span class="p">(</span><span class="n">sum_cases</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">cases</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">sum_cases</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_log10</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="w">
+    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"# Cases"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Case Specimin Date"</span><span class="p">,</span><span class="w">
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"7 day RA of positive cases in the UK"</span><span class="w">
+  </span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/figure/R/2021-05-14-covid-chart/sum cases across UK-1.png" alt="center" /></p>
+
+<p>Using a logarithmic scale, we can clearly see just how high cases are still - and how quickly it took hold in March / April 2020.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>There are so many (better and correct) ways to present this data.  These charts are just a tiny amount of fun for my first ‘used in anger’ R script.</p>]]></content><author><name></name></author><category term="covid" /><category term="r" /><category term="covid" /><summary type="html"><![CDATA[A first play with R, charts and UK government Covid-19 data.]]></summary></entry><entry><title type="html">Car Engine Graph</title><link href="https://misstickles.github.io/test/2021/05/03/cars.html" rel="alternate" type="text/html" title="Car Engine Graph" /><published>2021-05-03T00:00:00+00:00</published><updated>2021-05-03T00:00:00+00:00</updated><id>https://misstickles.github.io/test/2021/05/03/cars</id><content type="html" xml:base="https://misstickles.github.io/test/2021/05/03/cars.html"><![CDATA[<h2 id="cars">Cars</h2>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">summary</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">##      speed           dist       
+##  Min.   : 4.0   Min.   :  2.00  
+##  1st Qu.:12.0   1st Qu.: 26.00  
+##  Median :15.0   Median : 36.00  
+##  Mean   :15.4   Mean   : 42.98  
+##  3rd Qu.:19.0   3rd Qu.: 56.00  
+##  Max.   :25.0   Max.   :120.00</code></pre></figure>
+
+<h3 id="draw-a-ggplot-for-efficiency-of-car-engines">Draw a ggplot for efficiency of car engines</h3>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## `geom_smooth()` using formula 'y ~ x'</code></pre></figure>
+
+<p><img src="/figure/R/2021-05-03-cars/cars_graph-1.png" alt="center" /></p>]]></content><author><name></name></author><category term="test" /><category term="r" /><category term="test" /><category term="cars" /><summary type="html"><![CDATA[This is a graph to show cars and their stuff]]></summary></entry></feed>

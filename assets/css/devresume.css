@@ -1,0 +1,16 @@
+/*! 
+ * Template Name: DevResume - Bootstrap 4 Resume/CV Template for Software Developers
+ * Version: 1.2
+ * Author: Xiaoying Riley
+ * Copyright: 3rd Wave Media Ltd.
+ * Twitter: @3rdwave_themes
+ * Website: http://themes.3rdwavemedia.com/
+*//*!
+ * Converted Template to Jekyll, themed and made personal modifications
+ * Version: 1.0
+ * Author: Jo Faircloth
+ * Copyright: Inherited
+ * Website: https://misstickles.github.io
+*/body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;color:#616b7b;background-color:#6c92a3}h1,h2,h3,h4,h5,h6{color:#3F4650;font-weight:bold}a.theme-link{color:#3F4650;text-decoration:underline;-webkit-text-decoration-color:rgba(63,70,80,0.3);text-decoration-color:rgba(63,70,80,0.3)}a.theme-link:hover{color:#4B6A78;-webkit-text-decoration-color:rgba(75,106,120,0.8);text-decoration-color:rgba(75,106,120,0.8)}.btn{font-weight:bold;padding:0.375rem 1rem;height:2.5rem;font-size:1rem}.btn:focus,.btn.focus{box-shadow:none !important}.btn-primary{color:#fff}.demo-btn-on-bg{background:rgba(0,0,0,0.2)}.demo-btn-on-bg:hover{background:rgba(0,0,0,0.3)}.resume-wrapper{border:1px solid rgba(0,0,0,0.025);background-color:#fff}.resume-section-heading{position:relative;padding-left:1rem;font-size:1.125rem;letter-spacing:0.15rem;color:#4B6A78}.resume-section-heading:before{content:"";display:inline-block;width:5px;height:100%;background:#4B6A78;position:absolute;left:0;top:0}.resume-name{font-size:2.75rem;font-weight:900;letter-spacing:0.4rem;color:#4B6A78}.resume-tagline{font-size:1.25rem;font-weight:300}.resume-contact{border-left:1px solid rgba(0,0,0,0.08);font-size:0.75rem}a.resume-link{color:#616b7b}a.resume-link:hover{color:#4B6A78}.resume-profile-image{max-width:120px}.resume-intro{font-size:0.875rem}.resume-main .item-title{font-size:1rem}.resume-main .item-meta{font-size:0.75rem}.resume-main .item-content{font-size:0.875rem}.resume-aside{border-left:1px solid rgba(0,0,0,0.08)}.resume-aside .item{font-size:0.875rem}.resume-aside .item-title{font-size:1rem}.resume-education-list,.resume-awards-list{font-size:0.875rem}.resume-degree-time-org,.resume-degree-time{font-size:0.75rem}.resume-lang-list,.resume-interests-list{font-size:0.875rem}.resume-social-list{font-size:0.75rem}.fa-heart{color:#fb866a}.item-content ul{flex-grow:1}.item-content li{padding:0.2rem 0;list-style:square}mark,.mark{background-color:#e3ebee}@media (max-width: 991.98px){.resume-aside{border-left:0}}@media (max-width: 767.98px){.resume-contact{border-left:0}}@media print{@page{size:A4}body{font-size:20pt}img.avatar{filter:grayscale(1);-webkit-filter:greyscale(1)}.main-wrapper .time{float:right;color:black !important;-webkit-print-color-adjust:exact}.sidebar-wrapper{position:static;float:right;width:40%;-webkit-print-color-adjust:exact}.remove-container.container-block{display:none}footer{display:none}.skillset .level-bar-inner{background-color:black !important;-webkit-print-color-adjust:exact}}
+
+/*# sourceMappingURL=devresume.css.map */

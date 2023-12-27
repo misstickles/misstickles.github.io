@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body>
+<h1 id="global-gni">Global GNI</h1>
+
+<h2 id="gni-formerly-gnp">GNI (formerly GNP)</h2>
+
+<p>Is the sum of value added by all resident producers plus any product taxes (less subsidies) not included in the valuation of output plus net receipts of primary income (compensation of employees and property income) from abroad.</p>
+
+<p>All data are in current U.S. dollars.</p>
+
+<h2 id="source">Source</h2>
+
+<p>All data is from the <em><a href="https://www.worldbank.org/">World Bank</a></em> and uses a <a href="https://datacatalog.worldbank.org/public-licenses#cc-by">Creative Commons</a> licence.  Current at 2021-06-27.  Data is found here:</p>
+
+<p><a href="https://databank.worldbank.org/reports.aspx?source=2&series=NY.GNP.PCAP.CD&country=">https://databank.worldbank.org/reports.aspx?source=2&series=NY.GNP.PCAP.CD&country=</a></p>
+
+<h2 id="load-the-data">Load the Data</h2>
+
+<p>Read the raw data from <em>World Bank</em>.  We replace <code class="language-plaintext highlighter-rouge">..</code> with <code class="language-plaintext highlighter-rouge">NA</code> as this is easier to work with in R and remove <em>Series Name</em> and <em>Series Code</em> columns, as we will not need these.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">gni_raw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_csv</span><span class="p">(</span><span class="w">
+  </span><span class="s2">"../data/global_gni.csv"</span><span class="p">,</span><span class="w">
+  </span><span class="n">na</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">".."</span><span class="p">)</span><span class="w">
+</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">select</span><span class="p">(</span><span class="o">-</span><span class="n">`Series Name`</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">`Series Code`</span><span class="p">)</span><span class="w">
+
+</span><span class="n">str</span><span class="p">(</span><span class="n">gni_raw</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## tibble [269 x 52] (S3: tbl_df/tbl/data.frame)
+##  $ Country Name : chr [1:269] "Afghanistan" "Albania" "Algeria" "American Samoa" ...
+##  $ Country Code : chr [1:269] "AFG" "ALB" "DZA" "ASM" ...
+##  $ 1971 [YR1971]: num [1:269] 1.87e+09 NA 5.04e+09 NA NA ...
+##  $ 1972 [YR1972]: num [1:269] 1.63e+09 NA 6.74e+09 NA NA ...
+##  $ 1973 [YR1973]: num [1:269] 1.77e+09 NA 8.64e+09 7.56e+07 NA ...
+##  $ 1974 [YR1974]: num [1:269] 2.20e+09 NA 1.31e+10 7.70e+07 NA ...
+##  $ 1975 [YR1975]: num [1:269] 2.42e+09 NA 1.54e+10 6.77e+07 NA ...
+##  $ 1976 [YR1976]: num [1:269] 2.61e+09 NA 1.74e+10 6.85e+07 NA ...
+##  $ 1977 [YR1977]: num [1:269] 3.02e+09 NA 1.98e+10 7.92e+07 NA ...
+##  $ 1978 [YR1978]: num [1:269] 3.37e+09 NA 2.51e+10 8.47e+07 NA ...
+##  $ 1979 [YR1979]: num [1:269] 3.78e+09 NA 3.15e+10 1.06e+08 NA ...
+##  $ 1980 [YR1980]: num [1:269] 3.72e+09 NA 4.05e+10 1.27e+08 NA ...
+##  $ 1981 [YR1981]: num [1:269] 3.55e+09 NA 4.23e+10 1.39e+08 NA ...
+##  $ 1982 [YR1982]: num [1:269] NA NA 4.32e+10 1.51e+08 NA ...
+##  $ 1983 [YR1983]: num [1:269] NA NA 4.70e+10 1.66e+08 NA ...
+##  $ 1984 [YR1984]: num [1:269] NA 1.86e+09 5.20e+10 1.78e+08 NA ...
+##  $ 1985 [YR1985]: num [1:269] NA 1.90e+09 5.64e+10 1.90e+08 NA ...
+##  $ 1986 [YR1986]: num [1:269] NA 2.1e+09 6.2e+10 NA NA ...
+##  $ 1987 [YR1987]: num [1:269] NA 2.08e+09 6.48e+10 NA NA ...
+##  $ 1988 [YR1988]: num [1:269] NA 2.05e+09 5.66e+10 NA NA ...
+##  $ 1989 [YR1989]: num [1:269] NA 2.25e+09 5.36e+10 NA NA ...
+##  $ 1990 [YR1990]: num [1:269] NA 2.03e+09 5.98e+10 NA NA ...
+##  $ 1991 [YR1991]: num [1:269] NA 1.08e+09 4.32e+10 NA NA ...
+##  $ 1992 [YR1992]: num [1:269] NA 6.17e+08 4.58e+10 NA NA ...
+##  $ 1993 [YR1993]: num [1:269] NA 1.22e+09 4.82e+10 NA NA ...
+##  $ 1994 [YR1994]: num [1:269] NA 1.89e+09 4.08e+10 NA NA ...
+##  $ 1995 [YR1995]: num [1:269] NA 2.44e+09 3.96e+10 NA NA ...
+##  $ 1996 [YR1996]: num [1:269] NA 3.27e+09 4.44e+10 NA NA ...
+##  $ 1997 [YR1997]: num [1:269] NA 2.31e+09 4.60e+10 NA NA ...
+##  $ 1998 [YR1998]: num [1:269] NA 2.62e+09 4.62e+10 NA NA ...
+##  $ 1999 [YR1999]: num [1:269] NA 3.29e+09 4.64e+10 NA NA ...
+##  $ 2000 [YR2000]: num [1:269] NA 3.59e+09 5.21e+10 NA NA ...
+##  $ 2001 [YR2001]: num [1:269] NA 4.07e+09 5.31e+10 NA NA ...
+##  $ 2002 [YR2002]: num [1:269] NA 4.48e+09 5.45e+10 NA NA ...
+##  $ 2003 [YR2003]: num [1:269] NA 5.78e+09 6.52e+10 NA NA ...
+##  $ 2004 [YR2004]: num [1:269] NA 7.36e+09 8.17e+10 NA NA ...
+##  $ 2005 [YR2005]: num [1:269] NA 8.23e+09 9.81e+10 NA NA ...
+##  $ 2006 [YR2006]: num [1:269] NA 9.16e+09 1.12e+11 NA NA ...
+##  $ 2007 [YR2007]: num [1:269] NA 1.10e+10 1.33e+11 NA NA ...
+##  $ 2008 [YR2008]: num [1:269] NA 1.29e+10 1.70e+11 NA NA ...
+##  $ 2009 [YR2009]: num [1:269] 1.24e+10 1.19e+10 1.36e+11 NA NA ...
+##  $ 2010 [YR2010]: num [1:269] 1.59e+10 1.18e+10 1.61e+11 NA NA ...
+##  $ 2011 [YR2011]: num [1:269] 1.78e+10 1.29e+10 1.98e+11 NA NA ...
+##  $ 2012 [YR2012]: num [1:269] 2.00e+10 1.22e+10 2.05e+11 NA NA ...
+##  $ 2013 [YR2013]: num [1:269] 2.06e+10 1.30e+10 2.05e+11 NA NA ...
+##  $ 2014 [YR2014]: num [1:269] 2.05e+10 1.34e+10 2.09e+11 NA NA ...
+##  $ 2015 [YR2015]: num [1:269] 2.01e+10 1.15e+10 1.62e+11 NA NA ...
+##  $ 2016 [YR2016]: num [1:269] 1.82e+10 1.21e+10 1.58e+11 NA NA ...
+##  $ 2017 [YR2017]: num [1:269] 1.91e+10 1.31e+10 1.68e+11 NA NA ...
+##  $ 2018 [YR2018]: num [1:269] 1.85e+10 1.51e+10 1.71e+11 NA NA ...
+##  $ 2019 [YR2019]: num [1:269] 1.96e+10 1.51e+10 1.67e+11 NA NA ...
+##  $ 2020 [YR2020]: logi [1:269] NA NA NA NA NA NA ...</code></pre></figure>
+
+<p>We see from the <code class="language-plaintext highlighter-rouge">str()</code> that this data is in a wide format, with ‘strange’ year column names.</p>
+
+<h3 id="tidy-the-data">Tidy the Data</h3>
+
+<p>To work best in R, we should use a long table format - giving one observation per row.</p>
+
+<p>Here, we:</p>
+
+<ul>
+  <li>rename the <code class="language-plaintext highlighter-rouge">nnnn [YRnnnn]</code> columns to <code class="language-plaintext highlighter-rouge">nnnn</code>
+</li>
+  <li>remove all spaces in column names</li>
+  <li>pivot the data to create <code class="language-plaintext highlighter-rouge">year</code> and gni <code class="language-plaintext highlighter-rouge">values</code> columns, each row having one one year per country</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># prefix first 4 digits with `y`; remove ` [YRdddd]`</span><span class="w">
+</span><span class="c1"># remove ` `</span><span class="w">
+</span><span class="n">gni</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gni_raw</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">rename_with</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">sub</span><span class="p">(</span><span class="s2">"(^\\d{4}).*$"</span><span class="p">,</span><span class="w"> </span><span class="s2">"\\1"</span><span class="p">,</span><span class="w"> </span><span class="n">.x</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">rename_with</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">sub</span><span class="p">(</span><span class="s2">"\\s"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">.x</span><span class="p">))</span><span class="w">
+
+</span><span class="n">gni</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gni</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">pivot_longer</span><span class="p">(</span><span class="n">matches</span><span class="p">(</span><span class="s2">"\\d{4}"</span><span class="p">),</span><span class="w"> </span><span class="n">names_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"year"</span><span class="p">,</span><span class="w"> </span><span class="n">values_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gni"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">str</span><span class="p">(</span><span class="n">gni</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## tibble [13,450 x 4] (S3: tbl_df/tbl/data.frame)
+##  $ CountryName: chr [1:13450] "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+##  $ CountryCode: chr [1:13450] "AFG" "AFG" "AFG" "AFG" ...
+##  $ year       : chr [1:13450] "1971" "1972" "1973" "1974" ...
+##  $ gni        : num [1:13450] 1.87e+09 1.63e+09 1.77e+09 2.20e+09 2.42e+09 ...</code></pre></figure>
+
+<h3 id="select-countries">Select Countries</h3>
+
+<p>We’re not doing anything major here, just being curious, so just work with a few countries.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">countries</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="w">
+  </span><span class="s2">"GBR"</span><span class="p">,</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w"> </span><span class="s2">"NZL"</span><span class="p">,</span><span class="w"> </span><span class="s2">"AUS"</span><span class="p">,</span><span class="w"> </span><span class="s2">"DEU"</span><span class="p">,</span><span class="w"> </span><span class="s2">"CHN"</span><span class="p">,</span><span class="w"> </span><span class="s2">"JPN"</span><span class="p">,</span><span class="w"> </span><span class="s2">"CAN"</span><span class="p">,</span><span class="w"> </span><span class="s2">"WLD"</span><span class="w">
+</span><span class="p">)</span></code></pre></figure>
+
+<h2 id="plot-gni-data">Plot GNI Data</h2>
+
+<p>A plot of GNI in current United States Dollars (USD).</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">gni</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">CountryCode</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">countries</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">bln</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gni</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">1000000000</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">bln</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CountryCode</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CountryCode</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2008"</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red3"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_line</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"loess"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">CountryName</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_discrete</span><span class="p">(</span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="m">1971</span><span class="p">,</span><span class="w"> </span><span class="m">2021</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">label_comma</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="w">
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"GNI Actual Values between 1971 and 2000"</span><span class="p">,</span><span class="w">
+    </span><span class="n">subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"current USD, billions (1e+9)"</span><span class="p">,</span><span class="w">
+    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Year"</span><span class="p">,</span><span class="w">
+    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Value (billion USD)"</span><span class="p">,</span><span class="w">
+    </span><span class="n">caption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"vertical line marks the 2008 'financial crisis'"</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"none"</span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/figure/R/2021-06-16-global-gni/plot-actual-1.png" alt="center"></p>
+
+<p>The vertical line represents the year 2008, when the “global financial crisis” occurred.</p>
+
+<p>It is interesting to see that it actually helped Japan and (apart from a quick, small fall) Australia.</p>
+
+<p>The United Kingdom fared the worse, but appears to have been in decline before the event.</p>
+
+<p>The United States only flattened out.</p>
+
+<p>Zooming out to the World data, there clearly is a dip in GNI, but also in approx. 2015 which can also be seen in the chosen country charts.</p>
+
+<h2 id="percentage-change">Percentage Change</h2>
+
+<p>Perhaps a “fairer” approach for comparison, is to compare the percentage increase since the first observed year.</p>
+
+<p>This code will select the minimum year and create a new column (<code class="language-plaintext highlighter-rouge">first</code>) containing that data for each country.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">first_observation</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gni</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">drop_na</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">arrange</span><span class="p">(</span><span class="n">CountryCode</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">CountryCode</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">slice_min</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">rename</span><span class="p">(</span><span class="n">first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gni</span><span class="p">)</span></code></pre></figure>
+
+<p>Join our first observation data to the original GNI data.</p>
+
+<p>Also create a <code class="language-plaintext highlighter-rouge">percent</code> column which takes each GNI observation and creates a percentage increase since the first observation…</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">gni_pct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gni</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">left_join</span><span class="p">(</span><span class="w">
+    </span><span class="n">select</span><span class="p">(</span><span class="n">first_observation</span><span class="p">,</span><span class="w"> </span><span class="n">CountryCode</span><span class="p">,</span><span class="w"> </span><span class="n">first</span><span class="p">),</span><span class="w">
+    </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"CountryCode"</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">drop_na</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">percent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">gni</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">first</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">)</span><span class="w">
+
+</span><span class="n">head</span><span class="p">(</span><span class="n">gni_pct</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## # A tibble: 6 x 6
+##   CountryName CountryCode year          gni       first percent
+##   &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;       &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Afghanistan AFG         1971  1868886653. 1868886653.    0   
+## 2 Afghanistan AFG         1972  1631108938. 1868886653.  -12.7 
+## 3 Afghanistan AFG         1973  1771108944. 1868886653.   -5.23
+## 4 Afghanistan AFG         1974  2202222229. 1868886653.   17.8 
+## 5 Afghanistan AFG         1975  2417777778. 1868886653.   29.4 
+## 6 Afghanistan AFG         1976  2611111162. 1868886653.   39.7</code></pre></figure>
+
+<p>… and plot.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">gni_pct</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">CountryCode</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">countries</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">percent</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CountryCode</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CountryCode</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2008"</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red3"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_line</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"loess"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">CountryName</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_discrete</span><span class="p">(</span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="m">1971</span><span class="p">,</span><span class="w"> </span><span class="m">2021</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="c1">#  scale_y_log10() +</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="w">
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"GNI Percentage increase since 1971"</span><span class="p">,</span><span class="w">
+    </span><span class="n">subsitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"percent increase in GNI, since the previous year"</span><span class="p">,</span><span class="w">
+    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Year"</span><span class="p">,</span><span class="w">
+    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Percent Increase (log10)"</span><span class="p">,</span><span class="w">
+    </span><span class="n">caption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"vertical line marks the 2008 'financial crisis'"</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"none"</span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/figure/R/2021-06-16-global-gni/plot-pc-1.png" alt="center"></p>
+
+<p>This now clearly shows almost all seemed to suffer during the late 1970s into early 1980s (including the “winter of discontent”).</p>
+
+<h2 id="fun-stats">Fun Stats</h2>
+
+<h3 id="biggest-increase">Biggest Increase</h3>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">biggest</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gni_pct</span><span class="p">[</span><span class="n">which.max</span><span class="p">(</span><span class="n">gni_pct</span><span class="o">$</span><span class="n">percent</span><span class="p">),</span><span class="w"> </span><span class="p">]</span></code></pre></figure>
+
+<p>So it seems that Qatar has and increase of 55,261.22% in 2014.</p>
+
+<p>Let’s plot it.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">gni_pct</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">CountryCode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">biggest</span><span class="o">$</span><span class="n">CountryCode</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">percent</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CountryCode</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CountryCode</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">biggest</span><span class="o">$</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"green3"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="w">
+    </span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2008"</span><span class="p">,</span><span class="w">
+    </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red3"</span><span class="p">,</span><span class="w">
+    </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">,</span><span class="w">
+    </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dotted"</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_line</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"loess"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">CountryName</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_discrete</span><span class="p">(</span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="m">1971</span><span class="p">,</span><span class="w"> </span><span class="m">2021</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="w">
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"GNI Percentage increase since 1971"</span><span class="p">,</span><span class="w">
+    </span><span class="n">subsitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"percent increase in GNI, since the previous year"</span><span class="p">,</span><span class="w">
+    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Year"</span><span class="p">,</span><span class="w">
+    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Percent Increase"</span><span class="p">,</span><span class="w">
+    </span><span class="n">caption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dashed line marks the 2008 'financial crisis'\n
+      green line is the year 2014"</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"none"</span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/figure/R/2021-06-16-global-gni/biggest-pc-1.png" alt="center"></p>
+
+<p>WOW!  ‘Something’ happened in about 2001, which led to exponential increases each year.  Even Qatar didn’t escape the 2008 financial crises, nor the losses in 2015 (see above) - which occur the year after the highest GNI.</p>
+
+<h2 id="getting-percent-increase-each-year">Getting Percent Increase Each Year</h2>
+
+<p>Hmmmm….</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># gni_pct$percent %&gt;%</span><span class="w">
+</span><span class="c1">#  mutate_all(funs(. - lag(.))) %&gt;%</span><span class="w">
+</span><span class="c1">#  na.omit()</span><span class="w">
+
+</span><span class="c1"># gni_diff &lt;- gni_pct %&gt;%</span><span class="w">
+</span><span class="c1">#   group_by(CountryCode) %&gt;%</span><span class="w">
+</span><span class="c1">#   mutate(diff = FrequencyLag(percent, default = first(percent)))</span><span class="w">
+</span><span class="c1">#   mutate(diff = percent = lag(percent))</span><span class="w">
+</span><span class="c1">#   summarise_at(vars(percent), diff)</span><span class="w">
+</span><span class="c1">#   mutate(diff = c(0, apply(gni_pct[6], 2, diff)))</span><span class="w">
+
+</span><span class="c1"># gni_diff &lt;- gni_pct %&gt;%</span><span class="w">
+</span><span class="c1">#  mutate(</span><span class="w">
+</span><span class="c1">#    diff = ave(</span><span class="w">
+</span><span class="c1">#      percent,</span><span class="w">
+</span><span class="c1">#      factor(CountryCode),</span><span class="w">
+</span><span class="c1">#      FUN = function(x) c(NA, diff(x))</span><span class="w">
+
+
+</span><span class="c1">#   filter(CountryCode %in% countries) %&gt;%</span><span class="w">
+</span><span class="c1">#   ggplot(aes(year, diff, group = CountryCode, colour = CountryCode)) +</span><span class="w">
+</span><span class="c1">#   geom_vline(xintercept = "2008", colour = "red3", size = 0.1) +</span><span class="w">
+</span><span class="c1">#   geom_line(stat = "identity") +</span><span class="w">
+</span><span class="c1">#   geom_point() +</span><span class="w">
+</span><span class="c1">#   geom_smooth(method = "loess") +</span><span class="w">
+</span><span class="c1">#   facet_wrap(~CountryName, scales = "free") +</span><span class="w">
+</span><span class="c1">#   scale_x_discrete(breaks = seq(1971, 2021, 10)) +</span><span class="w">
+</span><span class="c1">#   # scale_y_log10() +</span><span class="w">
+</span><span class="c1">#   labs(</span><span class="w">
+</span><span class="c1">#     title = "GNI Percentage increase since 1971",</span><span class="w">
+</span><span class="c1">#     subsitle = "percent increase in GNI, since the previous year",</span><span class="w">
+</span><span class="c1">#     x = "Year",</span><span class="w">
+</span><span class="c1">#     y = "Percent Increase (log10)",</span><span class="w">
+</span><span class="c1">#     caption = "vertical line marks the 2008 'financial crisis'"</span><span class="w">
+</span><span class="c1">#   ) +</span><span class="w">
+</span><span class="c1">#   theme(legend.position = "none")</span></code></pre></figure>
+
+<h2 id="gosh---we-need-a-map">Gosh - We Need a Map!</h2>
+
+<p>Normally, you may want to take population into account when displaying the “value” of a country.  I don’t intend to do that here, so this is one of many, many approaches that could be used to demonstrate the distribution of wealth around the world.</p>
+
+<p>Randomly, I’m selecting 2019 data.  Most countries should have a value (for the interested reader to confirm if this is true!); and the value will not be impacted by the Covid-19 global epidemic.</p>
+
+<h3 id="arrange-world-data-and-create-map-data">Arrange World Data and Create Map Data</h3>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">world_map</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">map_data</span><span class="p">(</span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"world"</span><span class="p">)</span><span class="w">
+</span><span class="n">world_map</span><span class="o">$</span><span class="n">region</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">iso.alpha</span><span class="p">(</span><span class="n">world_map</span><span class="o">$</span><span class="n">region</span><span class="p">)</span><span class="w">
+
+</span><span class="n">gni_map</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gni</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">year</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2019</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="w">
+    </span><span class="n">iso2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">countrycode</span><span class="p">(</span><span class="n">CountryCode</span><span class="p">,</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"iso3c"</span><span class="p">,</span><span class="w"> </span><span class="n">destination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"iso2c"</span><span class="p">)</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">na.omit</span><span class="p">()</span><span class="w">
+
+</span><span class="n">gni_map</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">iso2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"NA"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">distinct</span><span class="p">(</span><span class="n">CountryCode</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## # A tibble: 1 x 1
+##   CountryCode
+##   &lt;chr&gt;      
+## 1 NAM</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># Namibia's code is "NA" - load it properly (not being R's NA)</span><span class="w">
+</span><span class="n">gni_map</span><span class="o">$</span><span class="n">iso2</span><span class="p">[</span><span class="n">gni_map</span><span class="o">$</span><span class="n">CountryCode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"NAM"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"&lt;NA&gt;"</span></code></pre></figure>
+
+<p>In this code, we obtain a range (I’m sure this can be done ‘automatically’, but enough for now!).  Dividing into 8 groups, each group has 28/9 countries - each being within the same range of GNI.  On another project, we could first remove the regions (groups of countries) that are in the data, which may skew the result…</p>
+
+<p>We manually create the list of breaks and labels, based on the result.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">table</span><span class="p">(</span><span class="n">cut2</span><span class="p">(</span><span class="n">gni_map</span><span class="o">$</span><span class="n">gni</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">9</span><span class="p">))</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">## 
+## [6.53e+07,2.30e+09) [2.30e+09,7.84e+09) [7.84e+09,1.50e+10) [1.50e+10,2.46e+10) 
+##                  21                  20                  20                  20 
+## [2.46e+10,5.27e+10) [5.27e+10,9.53e+10) [9.53e+10,2.92e+11) [2.92e+11,7.17e+11) 
+##                  20                  20                  20                  20 
+## [7.17e+11,2.17e+13] 
+##                  20</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">gni_map</span><span class="o">$</span><span class="n">range</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cut</span><span class="p">(</span><span class="w">
+  </span><span class="n">gni_map</span><span class="o">$</span><span class="n">gni</span><span class="p">,</span><span class="w">
+  </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="w">
+    </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">2.30e9</span><span class="p">,</span><span class="w">
+    </span><span class="m">7.84e9</span><span class="p">,</span><span class="w"> </span><span class="m">1.5e10</span><span class="p">,</span><span class="w">
+    </span><span class="m">2.46e10</span><span class="p">,</span><span class="w"> </span><span class="m">5.27e10</span><span class="p">,</span><span class="w">
+    </span><span class="m">9.53e10</span><span class="p">,</span><span class="w"> </span><span class="m">2.92e11</span><span class="p">,</span><span class="w">
+    </span><span class="m">7.17e11</span><span class="p">,</span><span class="w"> </span><span class="m">2.17e13</span><span class="w">
+  </span><span class="p">),</span><span class="w">
+  </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="w">
+    </span><span class="s2">"Under 2.30"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2.30 - 7.84"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"7.84 - 15.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"15.0 - 24.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"24.0 - 52.7"</span><span class="p">,</span><span class="w"> </span><span class="s2">"52.7 - 95.3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"95.3 - 292"</span><span class="p">,</span><span class="w"> </span><span class="s2">"292 - 717"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Over 717"</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+</span><span class="p">)</span></code></pre></figure>
+
+<p>… 9 groups, because that is the max number of colours in the brewer sequential colour palette!</p>
+
+<p><a href="https://colorbrewer2.org/">https://colorbrewer2.org/</a></p>
+
+<h3 id="plot-the-world">Plot the World</h3>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">world</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gni_map</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_map</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">map_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iso2</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">range</span><span class="p">)),</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">world_map</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_polygon</span><span class="p">(</span><span class="w">
+    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">world_map</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="w">
+      </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">long</span><span class="p">,</span><span class="w">
+      </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat</span><span class="p">,</span><span class="w">
+      </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">group</span><span class="w">
+    </span><span class="p">),</span><span class="w">
+    </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w">
+    </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="w">
+    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"GNI Range ($000,000,000)"</span><span class="p">,</span><span class="w">
+    </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">brewer.pal</span><span class="p">(</span><span class="m">9</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Reds"</span><span class="p">))</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_void</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bottom"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="w">
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"World map of GNI in 2019"</span><span class="p">,</span><span class="w">
+    </span><span class="n">subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"current USD ($) all values in billion dollars\n"</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+
+</span><span class="n">world</span></code></pre></figure>
+
+<p><img src="/figure/R/2021-06-16-global-gni/world-plot-1.png" alt="center"></p>
+
+<h3 id="zoom-in-to-europe">Zoom in to Europe</h3>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">world</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-13</span><span class="p">,</span><span class="w"> </span><span class="m">40</span><span class="p">),</span><span class="w"> </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">33</span><span class="p">,</span><span class="w"> </span><span class="m">73</span><span class="p">),</span><span class="w"> </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Europe map of GNI in 2019"</span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/figure/R/2021-06-16-global-gni/europe-plot-1.png" alt="center"></p>
+
+<p>It is probably no surprise that North America, much of Europe and Asia are all in the top 2 groups of GNI.</p>
+
+<p>For some, this is the sheer size of the country, but individuals in less populated countries actually have higher wealth.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Much more to do.</p>
+
+<p>Many more places to go.</p>
+
+<p>This has been great learning for <strong>R</strong>, but perhaps I should write more conclusions!!</p>
+</body></html>
