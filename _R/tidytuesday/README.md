@@ -19,3 +19,7 @@ Three plots in one. So many more to do!
 ## 2022-01-18 [Chocolate Ratings](https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-01-18)
 
 ![Chocolate Ratings](../../figure/R/tidytuesday/20220118.png)
+
+## 2022-01-25 [Board Game Ratings](https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-01-25)
+
+![Board Game Ratings](../../figure/R/tidytuesday/20220125.png)
