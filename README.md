@@ -17,7 +17,9 @@ Theme turned into Jekyll by me and based on a Bootstrap 4 theme by [Xiaoying Ril
 
 Use scripts in `_scripts` to run locally.
 
-Ie, `Rscript.exe ./_scripts/serveRmd.R`
+Ie, `Rscript.exe ./_scripts/serveRmd.R` (Usually, `C:\Program Files\R\R-version\bin\Rscript.exe`).
+
+Serves to <http://127.0.0.1:4321/>.
 
 ### Local Jekyll
 

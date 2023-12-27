@@ -17,12 +17,13 @@ KnitPost <- function(input, outfile, figsfolder, cachefolder, base.url = "/") {
   opts_chunk$set(cache.path = cache.path)
   opts_chunk$set(fig.cap = "center")
   render_jekyll()
-  knit(input, outfile, envir = parent.frame())
+#  knit(input, outfile, envir = parent.frame())
+  rmarkdown::render(input, encoding = "UTF-8", knit_root_dir = "D:/dev/projects/misstickles.github.io/_posts")
 }
 
 knit_folder <- function(infolder, outfolder, figsfolder, cachefolder) {
   for (infile in list.files(infolder, pattern = "*.Rmd", full.names = TRUE)) {
-    outfile <- paste0(outfolder, "/", sub(".Rmd$", ".md", basename(infile)))
+    outfile <- paste0(outfolder, "/", sub(".Rmd$", ".html", basename(infile)))
 
     # knit only if the input file is the last one modified
     if (!file.exists(outfile) ||

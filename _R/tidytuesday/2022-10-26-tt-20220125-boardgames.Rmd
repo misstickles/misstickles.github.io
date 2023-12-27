@@ -1,0 +1,105 @@
+---
+title: "Board Games"
+author: "Jo Faircloth"
+output: html_document
+category: tidytuesday
+tags: [r, tidytuesday]
+layout: post
+---
+
+`tidytuesday"s` _Board Gamess_ from 25th January 2022, <https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-01-25>.
+
+Data sourced from [Kagle](https://www.kaggle.com/datasets/jvanelteren/boardgamegeek-reviews?select=2022-01-08.csv).
+
+```{r knit_options, include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  include = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  root.dir = "/")
+```
+
+```{r setup}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(ggthemes)
+#library(patchwork)
+```
+
+```{r data}
+ratings <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-01-25/ratings.csv')
+
+details <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-01-25/details.csv')
+```
+
+```{r colours}
+colours <- c("")
+```
+
+## Mean Rating Over the Years
+
+```{r yearly_ratings}
+library(dygraphs)
+library(xts)
+
+details |>
+  left_join(ratings, by = "id")
+
+yearly <- ratings |>
+  select(year, average) |>
+  group_by(year) |>
+  summarise(avg = mean(average), n = n())
+
+yearly |>
+  filter(year <= 2022 & year >= 1920) |>
+  ggplot(aes(x = year, y = avg)) +
+  geom_point() +
+  geom_line() +
+  scale_x_continuous(
+    breaks = seq(1920, 2022, 10),
+    expand = expansion(c(0.01, 0.01))) +
+  labs(
+    x = NULL
+  ) +
+  theme_minimal()
+```
+
+```{css}
+.dygraph-label { color: #F00; }
+```
+
+```{r yearly_digraph}
+dg <- yearly |>
+  filter(year >= 1920 & year <= 2022) |>
+  mutate(year = as.Date(ISOdate(year, 1, 1))) |>
+  select(year, avg)
+
+ts <- xts(x = dg$avg, order.by = dg$year)
+
+dygraph(ts, main = "Mean Game Ratings", ylab = "Mean Rating / Year") |>
+  dyAxis("x") |>
+  dyAxis("y", valueRange = c(0, 10)) |>
+  dySeries("V1", label = "Rating") |>
+  dyOptions(drawPoints = TRUE, labelsUTC = TRUE, fillGraph = TRUE, fillAlpha = 0.2, drawGrid = FALSE, colors = "green", stepPlot = TRUE) |>
+  dyRangeSelector(strokeColor = "steelblue") |>
+  dyCrosshair(direction = "vertical") |>
+  dyHighlight(highlightCircleSize = 3, highlightSeriesBackgroundAlpha = 0.2, hideOnMouseOut = FALSE) |>
+  dyEvent("2020-03-26", "UK Lockdown #1", labelLoc = "bottom") |>
+  dyEvent("1939-09-1", "WWII begins", labelLoc = "bottom") |>
+  dyEvent("1945-09-2", "WWII ends", labelLoc = "bottom") |>
+  dyEvent("1957-01-01", "1957", labelLoc = "bottom")
+```
+
+Overall, until approximately 2007, mean ratings were steady around 5.8 / 6.0.  After 2007, people started rating their games higher.  The 2020 COVID-19 pandemic did not appear to change this trend.  People seemed to be able to enjoy their board games in the middle of World War 2 too.
+
+**1957** has an 'unusual' drop in mean board game ratings.  At 3.93, it is 1.91 lower than 1956, 1.7 lower than 1958 and is the lowest rating in over 100 years.  [Some interesting things happeded](https://www.thepeoplehistory.com/1957.html) in 1957 - notably the first 'Frisbee' became available and there was a Flu pandemic in Asia.
+
+
+### <a href="https://raw.githubusercontent.com/misstickles/misstickles.github.io/main/figure/R/tidytuesday/20210420" target="_blank">Full size plot</a>
+
+```{r eval=FALSE}
+ggsave("figure/R/tidytuesday/20210420.png", plot = ggTiles, bg = colours["black"], dpi = 300, width = 8, height = 5)
+```
